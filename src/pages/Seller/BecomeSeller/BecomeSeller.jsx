@@ -1,8 +1,7 @@
-import "./BecomeSeller.css";
+import "../../../Style/Seller.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import LoginForm from "./LoginForm/LoginForm";
-
+import SellerForm from "./Form/SellerForm";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import Footer from "../../../components/Footer/Footer";
 
@@ -76,8 +75,8 @@ export default function BecomeSeller() {
                 </p>
               </div>
 
-              {/* Login Form */}
-              <LoginForm
+              {/* Seller Signup/login Form */}
+              <SellerForm
                 formToggle={formToggle}
                 setFormToggle={setFormToggle}
               />

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineLogin } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
-import { FiHeart, FiLogIn, FiMonitor } from "react-icons/fi";
+import { FiHeart, FiMonitor } from "react-icons/fi";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { RxDashboard } from "react-icons/rx";
@@ -102,7 +102,7 @@ export default function MainHeader() {
               </h1>
             </Link>
 
-            {loggedUser?.success && (
+            {loggedUser?.success ? (
               <div className="relative">
                 <button
                   onClick={() => setProfileDropdown(!profileDropdown)}
@@ -111,7 +111,7 @@ export default function MainHeader() {
                   <img
                     src={
                       loggedUser?.data?.image === "" ||
-                      loggedUser?.data?.image === null
+                      loggedUser?.data?.image === undefined
                         ? "/images/demo_user.jpg"
                         : `${import.meta.env.VITE_BACKEND_URL}/user/${
                             loggedUser?.data?.image
@@ -129,7 +129,7 @@ export default function MainHeader() {
                         <img
                           src={
                             loggedUser?.data?.image === "" ||
-                            loggedUser?.data?.image === null
+                            loggedUser?.data?.image === undefined
                               ? "/images/demo_user.jpg"
                               : `${import.meta.env.VITE_BACKEND_URL}/user/${
                                   loggedUser?.data?.image
@@ -204,6 +204,10 @@ export default function MainHeader() {
                   </ul>
                 )}
               </div>
+            ) : (
+              <Link to="/login" className="flex items-center gap-1">
+                <AiOutlineLogin /> Signup/Login
+              </Link>
             )}
           </div>
         </div>

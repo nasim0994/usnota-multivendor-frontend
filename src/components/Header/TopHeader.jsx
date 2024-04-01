@@ -1,25 +1,11 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { AiOutlineLogin } from "react-icons/ai";
-import { BiUser } from "react-icons/bi";
 import { BsPerson, BsTelephoneInbound } from "react-icons/bs";
-import { CgLogOff } from "react-icons/cg";
-import { HiOutlineClipboardCheck } from "react-icons/hi";
 import { MdOutlineMail } from "react-icons/md";
-import { TbAddressBook } from "react-icons/tb";
-import SignUpInModal from "../signUpModal/SignUpInModal";
+import { useSelector } from "react-redux";
 
 export default function TopHeader() {
-  const [accountDropdown, setAccountDropdown] = useState(false);
-  const [formToggle, setFormToggle] = useState("login");
-
-  useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest("#topAccount")) {
-        setAccountDropdown(false);
-      }
-    });
-  }, []);
+  const { loggedSeller } = useSelector((state) => state.seller);
+  console.log(loggedSeller);
 
   return (
     <div className="hidden lg:block py-2 bg-primary text-base-100">
@@ -43,39 +29,28 @@ export default function TopHeader() {
             </Link>
           </div>
           <div className="flex items-center gap-6">
-            <Link
-              to="/seller/verification"
-              target="_blank"
-              className="flex items-center gap-1 hover:text-gray-200 duration-300"
-            >
-              <BsPerson className="text-base" />
-              <p className="pt-1">Sell on eMall</p>
-            </Link>
-            <Link
-              to="/seller"
-              target="_blank"
-              className="flex items-center gap-1 hover:text-gray-200 duration-300"
-            >
-              <BsPerson className="text-base" />
-              <p className="pt-1">Become a Seller</p>
-            </Link>
-
-            <ul>
-              <li>
-                <label
-                  onClick={() => setFormToggle("login")}
-                  htmlFor="signUpIn"
-                  className="flex items-center gap-1 hover:text-gray-200 duration-300 cursor-pointer"
+            {!loggedSeller?.success || loggedSeller === undefined ? (
+              <Link
+                to="/seller"
+                target="_blank"
+                className="flex items-center gap-1 hover:text-gray-200 duration-300"
+              >
+                <BsPerson className="text-base" />
+                <p className="pt-1">Become a Seller</p>
+              </Link>
+            ) : (
+              loggedSeller?.success &&
+              loggedSeller?.data?.role == "seller" && (
+                <Link
+                  to="/seller/dashboard"
+                  target="_blank"
+                  className="flex items-center gap-1 hover:text-gray-200 duration-300"
                 >
-                  <AiOutlineLogin /> Signup/Login
-                </label>
-
-                <SignUpInModal
-                  formToggle={formToggle}
-                  setFormToggle={setFormToggle}
-                />
-              </li>
-            </ul>
+                  <BsPerson className="text-base" />
+                  <p className="pt-1">Sell on eMall</p>
+                </Link>
+              )
+            )}
           </div>
         </div>
       </div>

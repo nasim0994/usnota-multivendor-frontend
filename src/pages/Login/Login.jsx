@@ -1,7 +1,7 @@
-import { AiFillEye, AiFillEyeInvisible, AiFillUnlock } from "react-icons/ai";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AiFillEye, AiFillEyeInvisible, AiFillUnlock } from "react-icons/ai";
 import { MdOutlinePhoneAndroid } from "react-icons/md";
-import { useEffect, useState } from "react";
 import ButtonSpinner from "../../components/ButtonSpinner/ButtonSpinner";
 import { useSelector } from "react-redux";
 import { useLoginMutation } from "../../Redux/user/authApi";
@@ -12,7 +12,7 @@ export default function Login() {
   window.scroll(0, 0);
   const [showPassword, setShowPassword] = useState(false);
   const { loggedUser } = useSelector((state) => state.user);
-  const [login, { isLoading, isError, error, isSuccess }] = useLoginMutation();
+  const [login, { isLoading, isError, error }] = useLoginMutation();
   const { data: logo } = useGetMainLogoQuery();
 
   const navigate = useNavigate();
@@ -35,14 +35,11 @@ export default function Login() {
       password,
     };
 
-    await login(loginInfo);
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
+    const res = await login(loginInfo);
+    if (res?.data?.success) {
       toast.success("Login Success");
     }
-  }, [isSuccess]);
+  };
 
   return (
     <div className="py-6 min-h-[70vh] flex justify-center items-center">

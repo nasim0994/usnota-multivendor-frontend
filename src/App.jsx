@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import { routes } from "./Routes/Routes";
 import useAuthCheck from "./hooks/useAuthCheck";
+import useSellerAuthCheck from "./hooks/useSellerAuthCheck";
 import Spinner from "./components/Spinner/Spinner";
 import { Helmet } from "react-helmet";
 import { useGetFaviconQuery } from "./Redux/favicon/faviconApi";
@@ -11,6 +12,7 @@ import { useGetSEOQuery } from "./Redux/seoApi";
 
 export default function App() {
   const authChecked = useAuthCheck();
+  const sellerAuthChecked = useSellerAuthCheck();
 
   const { data: favicon, isLoading } = useGetFaviconQuery();
   const icon = favicon?.data[0]?.icon;
@@ -36,7 +38,13 @@ export default function App() {
   //   }
   // }, [colors]);
 
-  if (!authChecked || isLoading || businessIsLoading || seoIsLoading) {
+  if (
+    !authChecked ||
+    isLoading ||
+    businessIsLoading ||
+    seoIsLoading ||
+    !sellerAuthChecked
+  ) {
     return <Spinner />;
   }
 
