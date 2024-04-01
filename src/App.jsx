@@ -25,16 +25,16 @@ export default function App() {
   const { data: color } = useGetThemesQuery();
   const colors = color?.data[0];
 
-  useEffect(() => {
-    if (colors) {
-      document.documentElement.style.setProperty("--primary", colors?.primary);
-      document.documentElement.style.setProperty(
-        "--secondary",
-        colors?.secondary
-      );
-      document.documentElement.style.setProperty("--accent", colors?.accent);
-    }
-  }, [colors]);
+  // useEffect(() => {
+  //   if (colors) {
+  //     document.documentElement.style.setProperty("--primary", colors?.primary);
+  //     document.documentElement.style.setProperty(
+  //       "--secondary",
+  //       colors?.secondary
+  //     );
+  //     document.documentElement.style.setProperty("--accent", colors?.accent);
+  //   }
+  // }, [colors]);
 
   if (!authChecked || isLoading || businessIsLoading || seoIsLoading) {
     return <Spinner />;
@@ -45,7 +45,9 @@ export default function App() {
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {businessInfo?.companyName}-{businessInfo?.tagline}
+          {businessInfo
+            ? businessInfo?.companyName - businessInfo?.tagline
+            : "Title Here"}
         </title>
         <link
           rel="icon"

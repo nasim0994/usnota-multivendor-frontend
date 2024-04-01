@@ -1,59 +1,79 @@
-import { AiFillInstagram } from "react-icons/ai";
-import { BsFacebook, BsTelephoneInbound, BsYoutube } from "react-icons/bs";
-import { FaLinkedin } from "react-icons/fa";
-import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useGetContactQuery } from "../../Redux/contact/contactApi";
+import { useEffect, useState } from "react";
+import { AiOutlineLogin } from "react-icons/ai";
+import { BiUser } from "react-icons/bi";
+import { BsPerson, BsTelephoneInbound } from "react-icons/bs";
+import { CgLogOff } from "react-icons/cg";
+import { HiOutlineClipboardCheck } from "react-icons/hi";
+import { MdOutlineMail } from "react-icons/md";
+import { TbAddressBook } from "react-icons/tb";
+import SignUpInModal from "../signUpModal/SignUpInModal";
 
-const TopHeader = () => {
-  const { data } = useGetContactQuery();
-  const contact = data?.data[0];
+export default function TopHeader() {
+  const [accountDropdown, setAccountDropdown] = useState(false);
+  const [formToggle, setFormToggle] = useState("login");
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("#topAccount")) {
+        setAccountDropdown(false);
+      }
+    });
+  }, []);
+
   return (
-    <div className="hidden sm:block bg-primary py-1.5 border-b text-base-100">
-      <div className="container mx-auto font-medium">
-        <div className="flex justify-between items-center text-sm">
+    <div className="hidden lg:block py-2 bg-primary text-base-100">
+      <div className="container">
+        <div className="flex justify-between items-center text-[13px]">
           <div className="flex items-center">
-            <ul className="flex items-center gap-2">
-              <li>
-                <Link
-                  to={contact?.facebookLink}
-                  target="_blank"
-                  className="hover:text-base-100 duration-200"
-                >
-                  <BsFacebook />
-                </Link>
-              </li>
-              <li>
-                <Link to={contact?.linkedinLink} target="_blank">
-                  <FaLinkedin className="text-[15px]" />
-                </Link>
-              </li>
-              <li>
-                <Link to={contact?.instagramLink} target="_blank">
-                  <AiFillInstagram className="text-base mr-1" />
-                </Link>
-              </li>
-              <li>
-                <Link to={contact?.youtubeLink} target="_blank">
-                  <BsYoutube className="text-[15px] mt-px" />
-                </Link>
-              </li>
-            </ul>
+            <Link
+              to="tel: +8801906-198021"
+              className="flex items-center gap-2 hover:text-gray-200 duration-300"
+            >
+              <BsTelephoneInbound />
+              <p>+8801906-198021</p>
+            </Link>
+            <div className="divider divider-horizontal mx-1"></div>
+            <Link
+              to="mailto: abc@example.com"
+              className="flex items-center gap-2 hover:text-gray-200 duration-300"
+            >
+              <MdOutlineMail className="text-base" />
+              <p>suport@pmall.com</p>
+            </Link>
           </div>
-          <div className="flex items-center gap-6 ">
-            <ul className="flex gap-4 items-center font-medium">
-              <li className="border-r pr-3">
-                <p className="flex items-center gap-1.5">
-                  <BsTelephoneInbound />
-                  {contact?.phone}
-                </p>
-              </li>
+          <div className="flex items-center gap-6">
+            <Link
+              to="/seller/verification"
+              target="_blank"
+              className="flex items-center gap-1 hover:text-gray-200 duration-300"
+            >
+              <BsPerson className="text-base" />
+              <p className="pt-1">Sell on eMall</p>
+            </Link>
+            <Link
+              to="/seller"
+              target="_blank"
+              className="flex items-center gap-1 hover:text-gray-200 duration-300"
+            >
+              <BsPerson className="text-base" />
+              <p className="pt-1">Become a Seller</p>
+            </Link>
 
+            <ul>
               <li>
-                <p className="flex items-center gap-1.5">
-                  <MdOutlineEmail className="text-base" />
-                  {contact?.email}
-                </p>
+                <label
+                  onClick={() => setFormToggle("login")}
+                  htmlFor="signUpIn"
+                  className="flex items-center gap-1 hover:text-gray-200 duration-300 cursor-pointer"
+                >
+                  <AiOutlineLogin /> Signup/Login
+                </label>
+
+                <SignUpInModal
+                  formToggle={formToggle}
+                  setFormToggle={setFormToggle}
+                />
               </li>
             </ul>
           </div>
@@ -61,6 +81,4 @@ const TopHeader = () => {
       </div>
     </div>
   );
-};
-
-export default TopHeader;
+}

@@ -98,7 +98,12 @@ import TopCampaignBanner from "../pages/Admin/EcommerceSetting/TopCampaignBanner
 import SEOSetting from "../pages/Admin/SEOSetting/SEOSetting";
 import ShippingConfiguration from "../pages/Admin/EcommerceSetting/ShippingConfiguration/ShippingConfiguration";
 
+//-----------------Seller
+import BecomeSeller from "../pages/Seller/BecomeSeller/BecomeSeller";
+import Store from "../pages/Seller/Store/Store";
+
 export const routes = createBrowserRouter([
+  // ----- Main
   {
     path: "/",
     element: <MainLayout />,
@@ -167,8 +172,16 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
+      //------Seller
+      {
+        path: "/store/:id",
+        element: <Store />,
+      },
     ],
   },
+
+  // ----- Account
   {
     path: "/account",
     element: (
@@ -207,6 +220,8 @@ export const routes = createBrowserRouter([
       },
     ],
   },
+
+  // ----- Admin
   {
     path: "/admin",
     element: (
@@ -417,5 +432,11 @@ export const routes = createBrowserRouter([
         element: <SEOSetting />,
       },
     ],
+  },
+
+  //-----------Seller
+  {
+    path: "/seller",
+    element: <BecomeSeller />,
   },
 ]);

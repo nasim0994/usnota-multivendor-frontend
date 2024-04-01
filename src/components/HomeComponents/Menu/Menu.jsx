@@ -39,6 +39,23 @@ export default function Menu() {
                   About Us
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/about-us"
+                  className="block px-3 hover:text-primary duration-200"
+                >
+                  Best Seller
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/about-us"
+                  className="block px-3 hover:text-primary duration-200"
+                >
+                  FAQ
+                </NavLink>
+              </li>
             </ul>
           </nav>
         </div>

@@ -1,0 +1,17 @@
+.merchantBanner {
+  background-image: linear-gradient(310deg, #000000ab, #000000c9),
+    url(https://grabmerchanthelp.zendesk.com/hc/article_attachments/900006446566/Mod_3_EDM_5.gif);
+  background-size: contain;
+  background-position: center;
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+
+  transition: all 0.5s;
+}
+
+.activeFAQ {
+  max-height: 500px;
+}

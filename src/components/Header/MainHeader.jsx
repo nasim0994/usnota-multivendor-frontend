@@ -102,7 +102,7 @@ export default function MainHeader() {
               </h1>
             </Link>
 
-            {loggedUser?.success ? (
+            {loggedUser?.success && (
               <div className="relative">
                 <button
                   onClick={() => setProfileDropdown(!profileDropdown)}
@@ -204,14 +204,6 @@ export default function MainHeader() {
                   </ul>
                 )}
               </div>
-            ) : (
-              <Link
-                to="/login"
-                className="flex gap-1.5 items-center text-neutral hover:text-primary duration-300"
-              >
-                <FiLogIn className="text-xl sm:text-[17px]" />
-                <h1 className="font-medium hidden sm:block">Login</h1>
-              </Link>
             )}
           </div>
         </div>

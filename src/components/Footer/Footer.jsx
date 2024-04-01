@@ -25,7 +25,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="pt-8 pb-4 bg-gray-50">
+    <footer className="pt-8 pb-4 bg-accent text-base-100">
       <div className="container">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
           <div className="md:col-span-2">
@@ -44,20 +44,20 @@ export default function Footer() {
                 />
               </Link>
             </div>
-            <p className="text-neutral-content mt-1 font-medium">
+            <p className="text-gray-400 mt-1 font-medium">
               {businessInfo?.tagline}
             </p>
 
-            <div className="mt-2 text-sm text-neutral-content">
+            <div className="mt-2 text-sm text-gray-400">
               <p>{businessInfo?.bio}</p>
             </div>
           </div>
 
           <div>
-            <h2 className="mb-3 text-base font-bold uppercase text-neutral/90">
+            <h2 className="mb-3 text-base font-bold uppercase text-gray-200">
               Categories
             </h2>
-            <ul className="text-neutral-content text-[15px]">
+            <ul className="text-gray-400 text-sm">
               {fiveCategories?.map((category, i) => (
                 <li key={i} className="mb-2">
                   <Link
@@ -72,10 +72,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-3 text-base font-bold uppercase text-neutral/90">
+            <h2 className="mb-3 text-base font-bold uppercase text-gray-200">
               Information
             </h2>
-            <ul className="text-neutral-content text-[15px]">
+            <ul className="text-gray-400 text-sm">
               <li className="mb-2">
                 <Link to="/shops" className="hover:underline">
                   Shop
@@ -101,10 +101,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-3 text-base font-bold uppercase text-neutral/90">
+            <h2 className="mb-3 text-base font-bold uppercase text-gray-200">
               Get in Touch
             </h2>
-            <ul className="text-neutral-content text-[15px]">
+            <ul className="text-gray-400 text-sm">
               <li>
                 <p>{contact?.data[0]?.phone}</p>
               </li>
@@ -118,7 +118,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-700" />
+        <hr className="my-4 border-gray-200 sm:mx-auto" />
 
         <div>
           <img
@@ -128,11 +128,11 @@ export default function Footer() {
           />
         </div>
 
-        <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-700" />
+        <hr className="my-4 border-gray-200 sm:mx-auto" />
 
         {/* bottom */}
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-[15px] text-neutral-content">
+          <span className="text-[15px] text-gray-400">
             Copyright© {yearNow != startYear && startYear + " -"} {yearNow}{" "}
             {businessInfo?.companyName}. All Rights Reserved. develop by{" "}
             <Link
@@ -143,7 +143,7 @@ export default function Footer() {
               eManager
             </Link>
           </span>
-          <ul className="flex items-center gap-2 text-neutral-content mt-3 sm:mt-0">
+          <ul className="flex items-center gap-2 text-gray-400 mt-3 sm:mt-0">
             <li>
               <Link to={contact?.data[0]?.facebookLink} target="_blank">
                 <BsFacebook className="text-lg hover:-mt-2 duration-300" />
