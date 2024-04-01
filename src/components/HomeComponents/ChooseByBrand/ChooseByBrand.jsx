@@ -39,8 +39,8 @@ export default function ChooseByBrand() {
   }
 
   return (
-    <div className="mt-4">
-      <div className="container">
+    <div>
+      <div className="container bg-base-100 p-4 rounded-lg shadow-lg">
         <div className="sm:flex gap-8 items-center border-b pb-2 border-primary">
           <h1 className="md:text-xl font-medium md:font-semibold text-neutral">
             Featured Brands

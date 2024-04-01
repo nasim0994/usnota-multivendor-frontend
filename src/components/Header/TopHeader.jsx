@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 export default function TopHeader() {
   const { loggedSeller } = useSelector((state) => state.seller);
-  console.log(loggedSeller);
 
   return (
     <div className="hidden lg:block py-2 bg-primary text-base-100">
