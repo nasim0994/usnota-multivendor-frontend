@@ -47,10 +47,10 @@ import AllBrands from "../pages/Admin/Brand/AllBrands";
 import AddBrand from "../pages/Admin/Brand/AddBrand";
 import EditBrand from "../pages/Admin/Brand/EditBrand";
 
-//---------------Product
-import AddProduct from "../pages/Admin/Product/AddProduct";
-import ProductList from "../pages/Admin/Product/ProductList";
-import EditProduct from "../pages/Admin/Product/EditProduct";
+// //---------------Product
+// import AddProduct from "../pages/Admin/Product/AddProduct";
+// import ProductList from "../pages/Admin/Product/ProductList";
+// import EditProduct from "../pages/Admin/Product/EditProduct";
 
 //---------------Order
 import AllOrders from "../pages/Admin/Order/AllOrders";
@@ -100,10 +100,17 @@ import ShippingConfiguration from "../pages/Admin/EcommerceSetting/ShippingConfi
 
 //-----------------Seller
 import BecomeSeller from "../pages/Seller/BecomeSeller/BecomeSeller";
+
+import SellerRoute from "../PrivateRoute/SellerRoute";
+
 import Store from "../pages/Seller/Store/Store";
 import SellerLayout from "../Layout/SellerLayout";
 import SellerDashboard from "../pages/Seller/SellerDashboard/SellerDashboard";
-import SellerRoute from "../PrivateRoute/SellerRoute";
+
+//---------------Product
+import ProductList from "../pages/Seller/Product/ProductList";
+import AddProduct from "../pages/Seller/Product/AddProduct";
+import EditProduct from "../pages/Seller/Product/EditProduct";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -289,18 +296,18 @@ export const routes = createBrowserRouter([
         path: "/admin/edit-brand/:id",
         element: <EditBrand />,
       },
-      {
-        path: "/admin/product/all-products",
-        element: <ProductList />,
-      },
-      {
-        path: "/admin/product/add-product",
-        element: <AddProduct />,
-      },
-      {
-        path: "/admin/product/edit-product/:id",
-        element: <EditProduct />,
-      },
+      // {
+      //   path: "/admin/product/all-products",
+      //   element: <ProductList />,
+      // },
+      // {
+      //   path: "/admin/product/add-product",
+      //   element: <AddProduct />,
+      // },
+      // {
+      //   path: "/admin/product/edit-product/:id",
+      //   element: <EditProduct />,
+      // },
       {
         path: "/admin/order/all-orders",
         element: <AllOrders />,
@@ -443,7 +450,7 @@ export const routes = createBrowserRouter([
     element: <BecomeSeller />,
   },
   {
-    path: "/seller/dashboard",
+    path: "/seller",
     element: (
       <SellerRoute>
         <SellerLayout />
@@ -453,6 +460,19 @@ export const routes = createBrowserRouter([
       {
         path: "/seller/dashboard",
         element: <SellerDashboard />,
+      },
+      //--------Product
+      {
+        path: "/seller/product/all-products",
+        element: <ProductList />,
+      },
+      {
+        path: "/seller/product/add-product",
+        element: <AddProduct />,
+      },
+      {
+        path: "/seller/product/edit-product/:id",
+        element: <EditProduct />,
       },
     ],
   },

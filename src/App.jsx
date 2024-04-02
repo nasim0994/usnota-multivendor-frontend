@@ -20,6 +20,9 @@ export default function App() {
   const { data: business, isLoading: businessIsLoading } =
     useGetBusinessInfoQuery();
   const businessInfo = business?.data[0];
+  const title = business?.success
+    ? businessInfo?.companyName + "-" + businessInfo?.tagline
+    : "Title Here";
 
   const { data, isLoading: seoIsLoading } = useGetSEOQuery();
   const seo = data?.data[0];
@@ -52,11 +55,7 @@ export default function App() {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>
-          {businessInfo
-            ? businessInfo?.companyName - businessInfo?.tagline
-            : "Title Here"}
-        </title>
+        <title>{title}</title>
         <link
           rel="icon"
           type="image/svg+xml"

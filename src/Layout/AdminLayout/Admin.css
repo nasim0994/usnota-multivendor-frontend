@@ -45,17 +45,20 @@
 .admin_siderbar ul li button:hover {
   background: #445360;
   padding: 10px;
+  color: #fff;
 }
 
 .admin_siderbar .active {
   background: #445360;
   padding: 10px;
+  color: #fff;
 }
 
 .admin_siderbar .dropdown {
   max-height: 0px;
   overflow: hidden;
   transition: all 0.3s ease;
+  display: block;
 }
 
 .admin_siderbar .dropdown_show {

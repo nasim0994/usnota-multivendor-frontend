@@ -23,30 +23,7 @@ const adminSidebarItems = [
   {
     icon: <MdOutlineDashboard />,
     title: "Dashbaord",
-    path: "/admin/dashboard",
-  },
-  {
-    icon: <MdOutlineCategory />,
-    title: "Category",
-    subMenu: [
-      {
-        title: "Categories",
-        path: "/admin/category/categories",
-      },
-      {
-        title: "Sub Categories",
-        path: "/admin/category/sub-categories",
-      },
-      {
-        title: "Sub SubCategories",
-        path: "/admin/category/sub-sub-categories",
-      },
-    ],
-  },
-  {
-    icon: <SiBrandfolder />,
-    title: "Brand",
-    path: "/admin/brands",
+    path: "/seller/dashboard",
   },
   {
     icon: <BsCart4 />,
@@ -54,11 +31,11 @@ const adminSidebarItems = [
     subMenu: [
       {
         title: "Add New Product",
-        path: "/admin/product/add-product",
+        path: "/seller/product/add-product",
       },
       {
         title: "All Products",
-        path: "/admin/product/all-products",
+        path: "/seller/product/all-products",
       },
     ],
   },
@@ -68,71 +45,14 @@ const adminSidebarItems = [
     subMenu: [
       {
         title: "All Orders",
-        path: "/admin/order/all-orders",
+        path: "/seller/order/all-orders",
       },
     ],
-  },
-  {
-    icon: <MdFlashOn />,
-    title: "Flash Deal",
-    path: "/admin/flash-deal",
   },
   {
     icon: <VscPreview />,
     title: "Review",
-    path: "/admin/reviews",
-  },
-  {
-    icon: <FaUsers />,
-    title: "Customer",
-    subMenu: [
-      {
-        title: "All Customers",
-        path: "/admin/customer/all-customers",
-      },
-    ],
-  },
-  {
-    icon: <RiAdminFill />,
-    title: "Administrator",
-    subMenu: [
-      {
-        title: "All Administrator",
-        path: "/admin/administrator/all-administrator",
-      },
-    ],
-  },
-  {
-    icon: <MdOutlineSettings />,
-    title: "Banner",
-    subMenu: [
-      {
-        title: "Main Banner",
-        path: "/admin/ecommerce-setting/banner",
-      },
-      {
-        title: "Top Campaign Banner",
-        path: "/admin/ecommerce-setting/top-campaign-banner",
-      },
-      {
-        title: "Campaign Banner",
-        path: "/admin/ecommerce-setting/campaign-banner",
-      },
-    ],
-  },
-  {
-    icon: <MdOutlineSettings />,
-    title: "E-commerce Setting",
-    subMenu: [
-      {
-        title: "Coupon",
-        path: "/admin/ecommerce-setting/coupons",
-      },
-      {
-        title: "Shipping Configuration",
-        path: "/admin/ecommerce-setting/shipping-configuration",
-      },
-    ],
+    path: "/seller/reviews",
   },
   {
     icon: <IoMdSettings />,
@@ -141,44 +61,9 @@ const adminSidebarItems = [
     subMenu: [
       {
         title: "Profile",
-        path: "/admin/general-setting/profile",
-      },
-      {
-        title: "Business Info",
-        path: "/admin/general-setting/business-info",
-      },
-      {
-        title: "Themes",
-        path: "/admin/general-setting/themes",
+        path: "/seller/general-setting/profile",
       },
     ],
-  },
-  {
-    icon: <MdMonitor />,
-    title: "Front-End Setting",
-    subMenu: [
-      {
-        title: "Logo",
-        path: "/admin/front-end/logo",
-      },
-      {
-        title: "Favicon",
-        path: "/admin/front-end/favicon",
-      },
-      {
-        title: "About Us",
-        path: "/admin/front-end/about-us",
-      },
-      {
-        title: "Contact Us",
-        path: "/admin/front-end/contact-us",
-      },
-    ],
-  },
-  {
-    icon: <CiSearch className="text-lg" />,
-    title: "SEO Setting",
-    path: "/admin/seo-setting",
   },
 ];
 

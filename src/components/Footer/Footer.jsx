@@ -39,14 +39,11 @@ export default function Footer() {
                           logo?.data[0]?.logo
                         }`
                   }
-                  className="w-36"
+                  className="w-48"
                   alt="Logo"
                 />
               </Link>
             </div>
-            <p className="text-gray-400 mt-1 font-medium">
-              {businessInfo?.tagline}
-            </p>
 
             <div className="mt-2 text-sm text-gray-400">
               <p>{businessInfo?.bio}</p>

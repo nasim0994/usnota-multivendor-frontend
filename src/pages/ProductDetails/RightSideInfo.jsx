@@ -10,7 +10,7 @@ import { FaStar } from "react-icons/fa";
 import { useGetShippingConfigQuery } from "../../Redux/shippingConfigApi";
 import { Link } from "react-router-dom";
 
-const RightSideInfo = () => {
+const RightSideInfo = ({ seller, service }) => {
   const { data } = useGetShippingConfigQuery();
   const shippingConfig = data?.data[0];
 
@@ -98,7 +98,9 @@ const RightSideInfo = () => {
         </div>
 
         <div>
-          <p className="text-secondary text-base font-medium">Shopping Hobe</p>
+          <p className="text-secondary text-base font-medium">
+            {seller?.shopName}
+          </p>
         </div>
 
         <div className="flex justify-between items-center mt-2">
@@ -119,7 +121,10 @@ const RightSideInfo = () => {
         </div>
 
         <div className="flex justify-between items-center mt-4">
-          <Link to="/store/1" className="flex items-center gap-1 ">
+          <Link
+            to={`/store/${seller?._id}`}
+            className="flex items-center gap-1 "
+          >
             <FiExternalLink className="text-lg opacity-90 -mt-1" />
             <p className="hover:text-primary duration-300">Visit Store</p>
           </Link>

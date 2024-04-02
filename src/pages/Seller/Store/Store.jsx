@@ -1,6 +1,24 @@
+import { useParams } from "react-router-dom";
+import { useSellerByIdQuery } from "../../../Redux/seller/seller/sellerApi";
+import { useGetProductBySellerIdQuery } from "../../../Redux/product/productApi";
+import Spinner from "../../../components/Spinner/Spinner";
+import ProductCard from "../../../components/ProductCard/ProductCard";
+
 export default function Store() {
+  const { id } = useParams();
+  const { data: sellerInfo, isLoading: sellerIsLoading } =
+    useSellerByIdQuery(id);
+  const seller = sellerInfo?.data;
+
+  const { data, isLoading } = useGetProductBySellerIdQuery(id);
+  const products = data?.data;
+
+  if (sellerIsLoading || isLoading) {
+    return <Spinner />;
+  }
+
   return (
-    <section>
+    <section className="pb-10">
       {/* profile */}
       <div>
         <div>
@@ -11,7 +29,7 @@ export default function Store() {
             <div className="flex items-start gap-4">
               <div>
                 <img
-                  src="/public/images/store/logo.jpg"
+                  src="/images/store/logo.jpg"
                   alt=""
                   className="w-40 h-40 rounded-full shadow border -mt-14"
                 />
@@ -19,7 +37,7 @@ export default function Store() {
 
               <div className="pt-5">
                 <h1 className="text-2xl text-neutral font-medium">
-                  Shopping Hobe
+                  {seller?.shopName}
                 </h1>
                 <div className="mt-1 flex items-center gap-4 text-neutral-content text-[13px]">
                   <div className="flex items-center gap-1 border-r pr-4">
@@ -51,7 +69,11 @@ export default function Store() {
             </h1>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 mt-1"></div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 mt-1">
+            {products?.map((product) => (
+              <ProductCard key={product?._id} product={product} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

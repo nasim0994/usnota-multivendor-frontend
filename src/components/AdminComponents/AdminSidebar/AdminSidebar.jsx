@@ -72,11 +72,11 @@ const adminSidebarItems = [
       },
     ],
   },
-  {
-    icon: <MdFlashOn />,
-    title: "Flash Deal",
-    path: "/admin/flash-deal",
-  },
+  // {
+  //   icon: <MdFlashOn />,
+  //   title: "Flash Deal",
+  //   path: "/admin/flash-deal",
+  // },
   {
     icon: <VscPreview />,
     title: "Review",
@@ -214,7 +214,7 @@ export default function AdminSidebar() {
 
       <div className="bg-[#445360] p-2 flex justify-between items-center font-light">
         <p>Visit Front-End</p>
-        <Link to="/" target="_blank" className="text-primary hover:underline">
+        <Link to="/" target="_blank" className="text-base-100 hover:underline">
           {businessInfo?.data[0]?.companyName}
         </Link>
       </div>

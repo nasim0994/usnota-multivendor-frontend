@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SellerSidebar from "../components/SellerComponents/SellerSidebar/SellerSidebar";
-import AdminHeader from "../components/AdminComponents/AdminHeader/AdminHeader";
+import SellerHeader from "../components/SellerComponents/SellerHeader/SellerHeader";
 import { Outlet } from "react-router-dom";
 
 export default function SellerLayout() {
@@ -23,7 +23,7 @@ export default function SellerLayout() {
         <SellerSidebar />
       </aside>
       <div className="admin_content">
-        <AdminHeader setSidebar={setSidebar} />
+        <SellerHeader setSidebar={setSidebar} />
         <main className="sm:p-5 py-5">
           <Outlet />
         </main>

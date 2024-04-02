@@ -37,7 +37,10 @@ export default function ProductDetails() {
           </div>
 
           <div className="lg:w-[25%] bg-stone-50 p-4 text-sm">
-            <RightSideInfo service={data?.data?.service} />
+            <RightSideInfo
+              service={data?.data?.service}
+              seller={data?.data?.seller}
+            />
           </div>
         </div>
 

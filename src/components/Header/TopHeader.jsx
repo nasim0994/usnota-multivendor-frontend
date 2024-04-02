@@ -28,27 +28,23 @@ export default function TopHeader() {
             </Link>
           </div>
           <div className="flex items-center gap-6">
-            {!loggedSeller?.success || loggedSeller === undefined ? (
+            <Link
+              to="/seller"
+              target="_blank"
+              className="flex items-center gap-1 hover:text-gray-200 duration-300"
+            >
+              <BsPerson className="text-base" />
+              <p className="pt-1">Become a Seller</p>
+            </Link>
+            {loggedSeller?.success && loggedSeller?.data?.role == "seller" && (
               <Link
-                to="/seller"
+                to="/seller/dashboard"
                 target="_blank"
                 className="flex items-center gap-1 hover:text-gray-200 duration-300"
               >
                 <BsPerson className="text-base" />
-                <p className="pt-1">Become a Seller</p>
+                <p className="pt-1">Sell on eMall</p>
               </Link>
-            ) : (
-              loggedSeller?.success &&
-              loggedSeller?.data?.role == "seller" && (
-                <Link
-                  to="/seller/dashboard"
-                  target="_blank"
-                  className="flex items-center gap-1 hover:text-gray-200 duration-300"
-                >
-                  <BsPerson className="text-base" />
-                  <p className="pt-1">Sell on eMall</p>
-                </Link>
-              )
             )}
           </div>
         </div>

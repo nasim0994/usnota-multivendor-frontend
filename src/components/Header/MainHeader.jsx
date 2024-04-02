@@ -48,7 +48,7 @@ export default function MainHeader() {
                       }`
                 }
                 alt=""
-                className="w-28 sm:w-32 h-12 sm:h-14"
+                className="w-32 sm:w-40"
               />
             </Link>
           </div>

@@ -36,7 +36,27 @@ export const sellerApi = sellerApiSlice.injectEndpoints({
         }
       },
     }),
+
+    // all Seller get
+    allSellers: builder.query({
+      query: () => ({
+        url: "/seller/all-seller",
+      }),
+      providesTags: ["seller"],
+    }),
+
+    // signle Seller get bt Id
+    sellerById: builder.query({
+      query: (id) => ({
+        url: `/seller/${id}`,
+      }),
+      providesTags: ["seller"],
+    }),
   }),
 });
 
-export const { useSellerRegisterMutation, useSellerLoginMutation } = sellerApi;
+export const {
+  useSellerRegisterMutation,
+  useSellerLoginMutation,
+  useSellerByIdQuery,
+} = sellerApi;

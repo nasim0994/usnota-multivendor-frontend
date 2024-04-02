@@ -38,9 +38,8 @@ export default function BecomeSeller() {
       {/* Header */}
       <header className="py-2 bg-base-100">
         <div className="container">
-          <Link to="" className=" inline-flex items-center">
-            <img src="/images/logo/logo.png" alt="" className="w-28" />
-            <p className="text-primary font-medium">Seller</p>
+          <Link to="/seller">
+            <img src="/images/logo/seller-logo.png" alt="" className="w-52" />
           </Link>
         </div>
       </header>
