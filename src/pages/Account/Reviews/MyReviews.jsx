@@ -23,6 +23,8 @@ export default function MyReviews() {
   const { data } = useGetReviewsByUserIdQuery({ userId, ...query });
   const [deleteReview] = useDeleteReviewMutation();
 
+  console.log(data);
+
   const pages = Math.ceil(
     parseInt(data?.meta?.total) / parseInt(data?.meta?.limit)
   );
@@ -40,12 +42,12 @@ export default function MyReviews() {
     Swal.fire("", "Review deleted successfully", "success");
   };
 
-   // Edit Review
-   const [editedReview, setEditedReview] = useState({});
-   const handleReviewEdit = (review) => {
-     setEditedReview(review);
-     setEditModal(true);
-   };
+  // Edit Review
+  const [editedReview, setEditedReview] = useState({});
+  const handleReviewEdit = (review) => {
+    setEditedReview(review);
+    setEditModal(true);
+  };
 
   return (
     <div>
@@ -84,18 +86,18 @@ export default function MyReviews() {
             </p>
 
             <div className="absolute top-3 right-3 flex items-center gap-1">
-            <button
-                    onClick={() => handleReviewEdit(review)}
-                    className="text-lg text-neutral-content hover:text-primary duration-200 "
-                  >
-                    <MdEdit />
-                  </button>
+              <button
+                onClick={() => handleReviewEdit(review)}
+                className="text-lg text-neutral-content hover:text-primary duration-200 "
+              >
+                <MdEdit />
+              </button>
 
-                  <ReviewEditForm
-                    editModal={editModal}
-                    setEditModal={setEditModal}
-                    review={editedReview}
-                  />
+              <ReviewEditForm
+                editModal={editModal}
+                setEditModal={setEditModal}
+                review={editedReview}
+              />
 
               <button
                 onClick={() => handleReviewDelete(review?._id)}

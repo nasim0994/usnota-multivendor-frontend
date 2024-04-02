@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SellerForm from "./Form/SellerForm";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import Footer from "../../../components/Footer/Footer";
+import { useGetSellerLogoQuery } from "../../../Redux/logo/logoApi";
 
 const faqs = [
   {
@@ -25,6 +26,7 @@ const faqs = [
 ];
 
 export default function BecomeSeller() {
+  const { data } = useGetSellerLogoQuery();
   const [formToggle, setFormToggle] = useState("login");
   const [toggleFAQ, setToggleFAQ] = useState(null);
   const handelToggleFAQ = (i) => {
@@ -33,19 +35,30 @@ export default function BecomeSeller() {
     }
     setToggleFAQ(i);
   };
+
   return (
     <div>
       {/* Header */}
       <header className="py-2 bg-base-100">
         <div className="container">
           <Link to="/seller">
-            <img src="/images/logo/seller-logo.png" alt="" className="w-52" />
+            <img
+              src={
+                data?.data[0]?.logo === null
+                  ? "/images/logo/seller-logo.png"
+                  : `${import.meta.env.VITE_BACKEND_URL}/logo/${
+                      data?.data[0]?.logo
+                    }`
+              }
+              alt=""
+              className="w-48"
+            />
           </Link>
         </div>
       </header>
 
       {/* Banner */}
-      <div className="merchantBanner py-10 lg:h-[90vh] lg:flex justify-center items-center">
+      <div className="merchantBanner py-10 lg:min-h-[90vh] lg:flex justify-center items-center">
         <div className="container">
           <div className="lg:grid grid-cols-2 gap-40 justify-between items-center text-base-100">
             <div className="mb-10 lg:mb-0">
@@ -67,7 +80,7 @@ export default function BecomeSeller() {
 
             {/* Login/ Signup */}
             <div className="bg-base-100 text-neutral px-4 py-10 rounded-lg md:w-3/4 mx-auto">
-              <div className="text-center mb-8">
+              <div className="text-center mb-4">
                 <h2 className="text-2xl font-semibold">Welcome</h2>
                 <p className="text-sm">
                   To eMall Seller Login/Registration Panel

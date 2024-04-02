@@ -4,13 +4,16 @@ import { IoClose } from "react-icons/io5";
 import Swal from "sweetalert2";
 import { useAddReviewMutation } from "../../../Redux/review/reviewApi";
 
-export default function ReviewAddForm({ addModal, setAddModal, product, user }) {
+export default function ReviewAddForm({
+  addModal,
+  setAddModal,
+  product,
+  user,
+}) {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const [description, setDescription] = useState("");
   const stars = Array(5).fill(0);
-
-  // console.log(user);
 
   const [addReview, { isLoading, isError, error, isSuccess }] =
     useAddReviewMutation();
@@ -56,7 +59,7 @@ export default function ReviewAddForm({ addModal, setAddModal, product, user }) 
       >
         <div className="flex justify-between items-start">
           <div>
-            <p>Product name</p>
+            <p>{product?.title}</p>
             <p className="text-neutral-content text-sm">Rate this product</p>
           </div>
           <button

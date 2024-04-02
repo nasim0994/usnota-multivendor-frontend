@@ -1,21 +1,11 @@
 import { Link } from "react-router-dom";
-import {
-  MdOutlineCategory,
-  MdOutlineDashboard,
-  MdMonitor,
-  MdOutlineSettings,
-} from "react-icons/md";
-import { SiBrandfolder } from "react-icons/si";
-import { RiAdminFill } from "react-icons/ri";
+import { MdOutlineDashboard } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
-import { FaUsers } from "react-icons/fa";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import SidebarItems from "./SidebarItems";
-import { useGetMainLogoQuery } from "../../../Redux/logo/logoApi";
+import { useGetSellerLogoQuery } from "../../../Redux/logo/logoApi";
 import { VscPreview } from "react-icons/vsc";
 import { IoMdSettings } from "react-icons/io";
-import { MdFlashOn } from "react-icons/md";
-import { CiSearch } from "react-icons/ci";
 
 import { useGetBusinessInfoQuery } from "../../../Redux/businessInfoApi/businessInfoApi";
 
@@ -68,13 +58,13 @@ const adminSidebarItems = [
 ];
 
 export default function SellerSidebar() {
-  const { data } = useGetMainLogoQuery();
+  const { data } = useGetSellerLogoQuery();
   const { data: businessInfo } = useGetBusinessInfoQuery();
 
   return (
     <div className="h-full flex flex-col justify-between">
       <div>
-        <Link to="/admin/dashboard" className="block border-b py-4">
+        <Link to="/seller/dashboard" className="block border-b py-4">
           <img
             src={
               data?.data[0]?.logo === null
@@ -84,7 +74,7 @@ export default function SellerSidebar() {
                   }`
             }
             alt=""
-            className="w-28 mx-auto h-16"
+            className="w-48 mx-auto"
           />
         </Link>
 

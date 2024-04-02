@@ -49,20 +49,6 @@ const adminSidebarItems = [
     path: "/admin/brands",
   },
   {
-    icon: <BsCart4 />,
-    title: "Product",
-    subMenu: [
-      {
-        title: "Add New Product",
-        path: "/admin/product/add-product",
-      },
-      {
-        title: "All Products",
-        path: "/admin/product/all-products",
-      },
-    ],
-  },
-  {
     icon: <BiSolidShoppingBags />,
     title: "Order",
     subMenu: [
@@ -82,22 +68,21 @@ const adminSidebarItems = [
     title: "Review",
     path: "/admin/reviews",
   },
+
   {
     icon: <FaUsers />,
-    title: "Customer",
+    title: "Users",
     subMenu: [
       {
-        title: "All Customers",
+        title: "Customers",
         path: "/admin/customer/all-customers",
       },
-    ],
-  },
-  {
-    icon: <RiAdminFill />,
-    title: "Administrator",
-    subMenu: [
       {
-        title: "All Administrator",
+        title: "Sellers",
+        path: "/admin/seller/all-sellers",
+      },
+      {
+        title: "Administrator",
         path: "/admin/administrator/all-administrator",
       },
     ],

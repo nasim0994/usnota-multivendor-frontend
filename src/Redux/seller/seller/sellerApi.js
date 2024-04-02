@@ -4,10 +4,10 @@ import { sellerLoggedIn } from "./sellerSlice";
 export const sellerApi = sellerApiSlice.injectEndpoints({
   endpoints: (builder) => ({
     sellerRegister: builder.mutation({
-      query: (userInfo) => ({
+      query: (sellerInfo) => ({
         url: "/seller/register",
         method: "POST",
-        body: userInfo,
+        body: sellerInfo,
       }),
     }),
 
@@ -40,7 +40,7 @@ export const sellerApi = sellerApiSlice.injectEndpoints({
     // all Seller get
     allSellers: builder.query({
       query: () => ({
-        url: "/seller/all-seller",
+        url: "/seller/all-sellers",
       }),
       providesTags: ["seller"],
     }),
@@ -59,4 +59,5 @@ export const {
   useSellerRegisterMutation,
   useSellerLoginMutation,
   useSellerByIdQuery,
+  useAllSellersQuery,
 } = sellerApi;

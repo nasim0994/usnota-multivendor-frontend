@@ -111,6 +111,7 @@ import SellerDashboard from "../pages/Seller/SellerDashboard/SellerDashboard";
 import ProductList from "../pages/Seller/Product/ProductList";
 import AddProduct from "../pages/Seller/Product/AddProduct";
 import EditProduct from "../pages/Seller/Product/EditProduct";
+import AllSellers from "../pages/Admin/Users/Sellers/AllSellers";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -296,18 +297,6 @@ export const routes = createBrowserRouter([
         path: "/admin/edit-brand/:id",
         element: <EditBrand />,
       },
-      // {
-      //   path: "/admin/product/all-products",
-      //   element: <ProductList />,
-      // },
-      // {
-      //   path: "/admin/product/add-product",
-      //   element: <AddProduct />,
-      // },
-      // {
-      //   path: "/admin/product/edit-product/:id",
-      //   element: <EditProduct />,
-      // },
       {
         path: "/admin/order/all-orders",
         element: <AllOrders />,
@@ -335,6 +324,12 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/reviews",
         element: <AllReview />,
+      },
+
+      //--------------Sellers
+      {
+        path: "/admin/seller/all-sellers",
+        element: <AllSellers />,
       },
 
       //--------------Administrator

@@ -24,5 +24,7 @@ export const apiSlice = createApi({
     "topCampaignBanner",
     "seo",
     "shippingConfig",
+    "sellerLogo",
+    "mainLogo",
   ],
 });

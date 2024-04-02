@@ -1,7 +1,6 @@
 import { apiSlice } from "../api/apiSlice";
 
 export const logoApi = apiSlice.injectEndpoints({
-  tagTypes: ["mainLogo", "dashboardLogo"],
   endpoints: (builder) => ({
     getMainLogo: builder.query({
       query: () => ({
@@ -9,6 +8,7 @@ export const logoApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["mainLogo"],
     }),
+
     updateMainLogo: builder.mutation({
       query: ({ id, formData }) => ({
         url: `/logo/update-logo/${id}`,
@@ -17,6 +17,7 @@ export const logoApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["mainLogo"],
     }),
+
     addLogo: builder.mutation({
       query: (formData) => ({
         url: "/logo/add-logo",
@@ -25,6 +26,32 @@ export const logoApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["mainLogo"],
     }),
+
+    // Seller Logo
+    addSellerLogo: builder.mutation({
+      query: (formData) => ({
+        url: "/logo/add-seller-logo",
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ["sellerLogo"],
+    }),
+
+    updateSellerLogo: builder.mutation({
+      query: ({ id, formData }) => ({
+        url: `/logo/update-seller-logo/${id}`,
+        method: "PATCH",
+        body: formData,
+      }),
+      invalidatesTags: ["sellerLogo"],
+    }),
+
+    getSellerLogo: builder.query({
+      query: () => ({
+        url: "/logo/seller-logo",
+      }),
+      providesTags: ["sellerLogo"],
+    }),
   }),
 });
 
@@ -32,4 +59,8 @@ export const {
   useGetMainLogoQuery,
   useUpdateMainLogoMutation,
   useAddLogoMutation,
+
+  useAddSellerLogoMutation,
+  useUpdateSellerLogoMutation,
+  useGetSellerLogoQuery,
 } = logoApi;

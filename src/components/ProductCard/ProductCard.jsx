@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Rating from "../Rating/Rating";
+import { FaStar } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
   const {
@@ -11,7 +11,10 @@ const ProductCard = ({ product }) => {
     variants,
     rating,
     reviewer,
+    sold,
   } = product;
+
+  console.log(rating);
 
   return (
     <div className="mt-2 hover:shadow-lg rounded overflow-hidden duration-300 border sm:border-0 product_card">
@@ -31,9 +34,19 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="p-2">
-          <h1 className="font-medium mb-1 text-sm sm:text-[15px] h-14 min-[410px]:h-10">
+          <h1 className="font-medium mb-1 text-sm sm:text-[15px]">
             {title.length > 30 ? `${title.slice(0, 30)}...` : title}
           </h1>
+
+          <div className="pt-1 pb-2 flex gap-1 items-center justify-between text-xs mt-1 text-gray-400">
+            <p className="flex items-center gap-1">
+              <FaStar className="text-yellow-500" />
+              {rating ? rating : 0}/5 ({reviewer ? reviewer : 0})
+            </p>
+            <p>.</p>
+            <p>{sold} Sold</p>
+          </div>
+
           <div className="flex items-center gap-2">
             <p className="text-primary text-sm sm:text-lg">
               ৳
@@ -53,15 +66,9 @@ const ProductCard = ({ product }) => {
               </del>
             )}
           </div>
-          <div className="flex gap-1 items-center text-sm mt-1">
-            <Rating rating={rating || 0} />
-            <p className="text-xs text-neutral-content">
-              ({reviewer ? reviewer : 0})
-            </p>
-          </div>
         </div>
 
-        <div className="p-2">
+        <div className="pb-2">
           <button className="bg-primary text-base-100 w-full text-sm py-1.5">
             Buy Now
           </button>
