@@ -52,6 +52,15 @@ export const sellerApi = sellerApiSlice.injectEndpoints({
       }),
       providesTags: ["seller"],
     }),
+
+    // signle Seller get bt Id
+    toggleVerify: builder.mutation({
+      query: (id) => ({
+        url: `/seller/toggle-verify/${id}`,
+        method: "PUT",
+      }),
+      providesTags: ["seller"],
+    }),
   }),
 });
 
@@ -60,4 +69,5 @@ export const {
   useSellerLoginMutation,
   useSellerByIdQuery,
   useAllSellersQuery,
+  useToggleVerifyMutation,
 } = sellerApi;

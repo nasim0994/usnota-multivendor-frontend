@@ -38,46 +38,47 @@ export default function ChooseByBrand() {
     ));
   }
 
-  return (
-    <div>
-      <div className="container bg-base-100 p-4 rounded-lg shadow-lg">
-        <div className="sm:flex gap-8 items-center border-b pb-2 border-primary">
-          <h1 className="md:text-xl font-medium md:font-semibold text-neutral">
-            Featured Brands
-          </h1>
-        </div>
+  if (data?.data?.loength > 0)
+    return (
+      <div>
+        <div className="container bg-base-100 p-4 rounded-lg shadow-lg">
+          <div className="sm:flex gap-8 items-center border-b pb-2 border-primary">
+            <h1 className="md:text-xl font-medium md:font-semibold text-neutral">
+              Featured Brands
+            </h1>
+          </div>
 
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={10}
-          modules={[Autoplay]}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            100: {
-              slidesPerView: 3,
-              spaceBetween: 3,
-            },
-            350: {
-              slidesPerView: 4,
-              spaceBetween: 3,
-            },
-            750: {
-              slidesPerView: 5,
-              spaceBetween: 3,
-            },
-            1024: {
-              slidesPerView: 6,
-              spaceBetween: 10,
-            },
-          }}
-          className="mt-2"
-        >
-          {content}
-        </Swiper>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={10}
+            modules={[Autoplay]}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              100: {
+                slidesPerView: 3,
+                spaceBetween: 3,
+              },
+              350: {
+                slidesPerView: 4,
+                spaceBetween: 3,
+              },
+              750: {
+                slidesPerView: 5,
+                spaceBetween: 3,
+              },
+              1024: {
+                slidesPerView: 6,
+                spaceBetween: 10,
+              },
+            }}
+            className="mt-2"
+          >
+            {content}
+          </Swiper>
+        </div>
       </div>
-    </div>
-  );
+    );
 }

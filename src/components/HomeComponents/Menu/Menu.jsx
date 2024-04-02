@@ -33,15 +33,7 @@ export default function Menu() {
               </li>
               <li>
                 <NavLink
-                  to="/about-us"
-                  className="block px-3 hover:text-primary duration-200"
-                >
-                  About Us
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/about-us"
+                  to="/best-seller"
                   className="block px-3 hover:text-primary duration-200"
                 >
                   Best Seller
@@ -50,7 +42,7 @@ export default function Menu() {
 
               <li>
                 <NavLink
-                  to="/about-us"
+                  to="/faq"
                   className="block px-3 hover:text-primary duration-200"
                 >
                   FAQ

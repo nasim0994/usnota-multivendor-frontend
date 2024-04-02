@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { BsPerson, BsTelephoneInbound } from "react-icons/bs";
 import { MdOutlineMail } from "react-icons/md";
+import { FiSend } from "react-icons/fi";
 import { useSelector } from "react-redux";
 
 export default function TopHeader() {
@@ -28,6 +29,13 @@ export default function TopHeader() {
             </Link>
           </div>
           <div className="flex items-center gap-6">
+            <Link
+              to="/tracj-order"
+              className="flex items-center gap-1 hover:text-gray-200 duration-300"
+            >
+              <FiSend className="text-base" />
+              <p className="pt-1">Track Order</p>
+            </Link>
             <Link
               to="/seller"
               target="_blank"

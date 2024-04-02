@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useGetMainLogoQuery } from "../../Redux/logo/logoApi";
 import { userLogout } from "../../Redux/user/userSlice";
 import SearchBox from "./SearchBox";
-import { BsSearch } from "react-icons/bs";
+import { CgMenuRight } from "react-icons/cg";
 import SearchSidebar from "./SearchSidebar/SearchSidebar";
 
 export default function MainHeader() {
@@ -34,7 +34,7 @@ export default function MainHeader() {
   }, []);
 
   return (
-    <header className="py-1 md:py-2 text-neutral border-b sticky top-0 z-40 bg-[#ffffffcc] backdrop-blur-[10px]">
+    <header className="py-1 md:py-2 text-neutral md:border-b sticky top-0 z-40 bg-[#ffffffcc] backdrop-blur-[10px]">
       <div className="container">
         <div className="flex items-center justify-between gap-2">
           <div>
@@ -56,9 +56,9 @@ export default function MainHeader() {
           <div className="sm:hidden">
             <button
               onClick={() => setSearchSidebar(!searchSidebar)}
-              className="pr-2"
+              className="pr-2 pt-1 text-[22px]"
             >
-              <BsSearch className="text-lg" />
+              <CgMenuRight />
             </button>
 
             <SearchSidebar
@@ -67,7 +67,7 @@ export default function MainHeader() {
             />
           </div>
 
-          <div className="hidden sm:block sm:w-1/2 xl:w-3/5">
+          <div className="hidden lg:block lg:w-1/2 xl:w-3/5">
             <SearchBox />
           </div>
 

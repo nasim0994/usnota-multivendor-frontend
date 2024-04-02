@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FiHome } from "react-icons/fi";
-import { AiOutlineMenu } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { CiShop } from "react-icons/ci";
+import { BiCategoryAlt } from "react-icons/bi";
 import MobileMenuSidebar from "../MobileMenuSidebar";
 
 export default function MobileBottomHeader() {
@@ -33,7 +33,7 @@ export default function MobileBottomHeader() {
             onClick={() => setMobileMenu(true)}
             className="flex flex-col justify-center items-center gap-1"
           >
-            <AiOutlineMenu className="text-xl" />
+            <BiCategoryAlt className="text-xl" />
             <p className="text-xs">Categories</p>
           </button>
 

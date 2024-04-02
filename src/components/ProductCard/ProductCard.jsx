@@ -14,12 +14,10 @@ const ProductCard = ({ product }) => {
     sold,
   } = product;
 
-  console.log(rating);
-
   return (
     <div className="mt-2 hover:shadow-lg rounded overflow-hidden duration-300 border sm:border-0 product_card">
       <Link to={`/product/${slug}`}>
-        <div className="overflow-hidden relative h-44 sm:h-56">
+        <div className="overflow-hidden relative h-40 sm:h-56">
           <img
             src={`${import.meta.env.VITE_BACKEND_URL}/products/${images[0]}`}
             alt=""
