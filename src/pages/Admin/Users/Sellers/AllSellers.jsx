@@ -54,7 +54,7 @@ export default function AllSellers() {
         </td>
         <td>
           <div className="flex items-center gap-2 text-lg">
-            <Link>
+            <Link to={`/admin/seller/view/${seller?._id}`}>
               <FaEye className="text-primary" />
             </Link>
             {/* <button>

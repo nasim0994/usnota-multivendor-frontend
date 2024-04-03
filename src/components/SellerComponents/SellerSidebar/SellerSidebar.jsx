@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdOutlineDashboard, MdOutlineVerifiedUser } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
-import { BiSolidShoppingBags } from "react-icons/bi";
+import { BiSolidShoppingBags, BiSupport } from "react-icons/bi";
 import SidebarItems from "./SidebarItems";
 import { useGetSellerLogoQuery } from "../../../Redux/logo/logoApi";
 import { VscPreview } from "react-icons/vsc";
@@ -48,13 +48,28 @@ const adminSidebarItems = [
     path: "/seller/reviews",
   },
   {
+    icon: <BiSupport />,
+    title: "Support",
+    slug: "account-setting",
+    subMenu: [
+      {
+        title: "Help Center",
+        path: "/seller/support/help-center",
+      },
+      {
+        title: "Contact Us",
+        path: "/seller/support/contact-us",
+      },
+    ],
+  },
+  {
     icon: <IoMdSettings />,
-    title: "General Setting",
-    slug: "general-setting",
+    title: "Account & Setting",
+    slug: "account-setting",
     subMenu: [
       {
         title: "Profile",
-        path: "/seller/general-setting/profile",
+        path: "/seller/account-setting/profile",
       },
     ],
   },

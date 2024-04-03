@@ -49,7 +49,7 @@ export default function SellerHeader({ setSidebar }) {
           {dropdown && (
             <div className="absolute top-[140%] right-0 w-40 bg-base-100 rounded shadow p-2">
               <Link
-                to="/admin/general-setting/profile"
+                to="/seller/account-setting/profile"
                 className="block hover:bg-gray-100 w-full text-start px-2 py-1 rounded"
               >
                 Profile

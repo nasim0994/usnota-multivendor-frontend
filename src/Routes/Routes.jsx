@@ -113,6 +113,7 @@ import ProductList from "../pages/Seller/Product/ProductList";
 import AddProduct from "../pages/Seller/Product/AddProduct";
 import EditProduct from "../pages/Seller/Product/EditProduct";
 import AllSellers from "../pages/Admin/Users/Sellers/AllSellers";
+import ViewSeller from "../pages/Admin/Users/Sellers/ViewSeller/ViewSeller";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -331,6 +332,10 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/seller/all-sellers",
         element: <AllSellers />,
+      },
+      {
+        path: "/admin/seller/view/:id",
+        element: <ViewSeller />,
       },
 
       //--------------Administrator

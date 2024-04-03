@@ -22,7 +22,11 @@ export default function Store() {
       {/* profile */}
       <div>
         <div>
-          <img src="/images/store/banner.jpg" alt="" className="w-full h-48" />
+          <img
+            src="/images/store/banner.jpg"
+            alt=""
+            className="w-full h-32 sm:h-48"
+          />
         </div>
         <div className="container">
           <div className="flex justify-between">
@@ -31,30 +35,29 @@ export default function Store() {
                 <img
                   src="/images/store/logo.jpg"
                   alt=""
-                  className="w-40 h-40 rounded-full shadow border -mt-14"
+                  className="w-20 sm:w-40 h-20 sm:h-40 rounded-full shadow border -mt-6 sm:-mt-14"
                 />
               </div>
 
-              <div className="pt-5">
-                <h1 className="text-2xl text-neutral font-medium">
+              <div className="sm:pt-5">
+                <h1 className="sm:text-2xl text-neutral font-medium">
                   {seller?.shopName}
                 </h1>
-                <div className="mt-1 flex items-center gap-4 text-neutral-content text-[13px]">
-                  <div className="flex items-center gap-1 border-r pr-4">
+                <div className="mt-1 flex items-center gap-4 text-neutral-content text-[11px] sm:text-[13px]">
+                  <div className="flex items-center gap-1 border-r pr-1 sm:pr-4">
                     <p>Likes (0)</p>
                   </div>
-                  <div className="flex items-center gap-1 border-r pr-4">
-                    <p>Follows (0)</p>
-                  </div>
                   <div className="flex items-center gap-1">
-                    <p>Ratings (0)</p>
+                    <p>Follows (0)</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div>
-              <button className="primary_btn">+ Follow</button>
+              <button className="primary_btn text-xs sm:text-base text-nowrap">
+                + Follow
+              </button>
             </div>
           </div>
         </div>
