@@ -184,24 +184,17 @@ export default function AdminSidebar() {
                   }`
             }
             alt=""
-            className="w-28 mx-auto h-16"
+            className="w-40 mx-auto h-12"
           />
         </Link>
 
-        <nav className="admin_siderbar">
+        <nav>
           <ul>
             {adminSidebarItems?.map((item, i) => (
               <SidebarItems key={i} item={item} />
             ))}
           </ul>
         </nav>
-      </div>
-
-      <div className="bg-[#445360] p-2 flex justify-between items-center font-light">
-        <p>Visit Front-End</p>
-        <Link to="/" target="_blank" className="text-base-100 hover:underline">
-          {businessInfo?.data[0]?.companyName}
-        </Link>
       </div>
     </div>
   );

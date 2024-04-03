@@ -1,0 +1,63 @@
+.step {
+  background: #eaeaea;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  height: 36px;
+}
+
+.step-icon {
+  width: 47px;
+  height: 47px;
+  border-radius: 100%;
+  background: #fff;
+  border: 2px solid #fff;
+  margin-left: -20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* w-full h-full border-2 border-gray-300 rounded-full flex justify-center items-center */
+.step-icon-inner {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #eaeaea;
+  border-radius: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active-step {
+  background: var(--secondary);
+  color: #fff;
+}
+
+.active-step .step-icon-inner {
+  color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.success-step {
+  background: var(--primary);
+  color: #fff;
+}
+.success-step .step-icon {
+  background: var(--primary);
+}
+
+.success-step .step-icon-inner {
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.css-1fdsijx-ValueContainer {
+  padding: 4px 10px !important;
+}
+
+.uploader__container {
+  margin: auto;
+}

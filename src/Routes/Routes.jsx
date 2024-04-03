@@ -102,10 +102,11 @@ import ShippingConfiguration from "../pages/Admin/EcommerceSetting/ShippingConfi
 import BecomeSeller from "../pages/Seller/BecomeSeller/BecomeSeller";
 
 import SellerRoute from "../PrivateRoute/SellerRoute";
-
-import Store from "../pages/Seller/Store/Store";
 import SellerLayout from "../Layout/SellerLayout";
+
 import SellerDashboard from "../pages/Seller/SellerDashboard/SellerDashboard";
+import Verification from "../pages/Seller/Verification/Verification";
+import Store from "../pages/Seller/Store/Store";
 
 //---------------Product
 import ProductList from "../pages/Seller/Product/ProductList";
@@ -455,6 +456,10 @@ export const routes = createBrowserRouter([
       {
         path: "/seller/dashboard",
         element: <SellerDashboard />,
+      },
+      {
+        path: "/seller/verification",
+        element: <Verification />,
       },
       //--------Product
       {

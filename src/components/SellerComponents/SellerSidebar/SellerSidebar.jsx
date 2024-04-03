@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MdOutlineDashboard } from "react-icons/md";
+import { MdOutlineDashboard, MdOutlineVerifiedUser } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import SidebarItems from "./SidebarItems";
@@ -7,13 +7,16 @@ import { useGetSellerLogoQuery } from "../../../Redux/logo/logoApi";
 import { VscPreview } from "react-icons/vsc";
 import { IoMdSettings } from "react-icons/io";
 
-import { useGetBusinessInfoQuery } from "../../../Redux/businessInfoApi/businessInfoApi";
-
 const adminSidebarItems = [
   {
     icon: <MdOutlineDashboard />,
     title: "Dashbaord",
     path: "/seller/dashboard",
+  },
+  {
+    icon: <MdOutlineVerifiedUser />,
+    title: "Verification",
+    path: "/seller/verification",
   },
   {
     icon: <BsCart4 />,
@@ -59,7 +62,6 @@ const adminSidebarItems = [
 
 export default function SellerSidebar() {
   const { data } = useGetSellerLogoQuery();
-  const { data: businessInfo } = useGetBusinessInfoQuery();
 
   return (
     <div className="h-full flex flex-col justify-between">
@@ -78,20 +80,13 @@ export default function SellerSidebar() {
           />
         </Link>
 
-        <nav className="admin_siderbar">
-          <ul>
+        <nav>
+          <ul className="text-neutral-content">
             {adminSidebarItems?.map((item, i) => (
               <SidebarItems key={i} item={item} />
             ))}
           </ul>
         </nav>
-      </div>
-
-      <div className="bg-[#445360] p-2 flex justify-between items-center font-light">
-        <p>Visit Front-End</p>
-        <Link to="/" target="_blank" className="text-primary hover:underline">
-          {businessInfo?.data[0]?.companyName}
-        </Link>
       </div>
     </div>
   );

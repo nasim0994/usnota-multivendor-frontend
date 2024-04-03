@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
+import { TbWorldWww } from "react-icons/tb";
 import { sellerLogout } from "../../../Redux/seller/seller/sellerSlice";
 
 export default function SellerHeader({ setSidebar }) {
   const [dropdown, setDropdown] = useState(false);
-  const { pathname } = useLocation();
   const { loggedSeller } = useSelector((state) => state.seller);
   const dispatch = useDispatch();
 
@@ -25,15 +25,15 @@ export default function SellerHeader({ setSidebar }) {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setSidebar(true)}
-            className="admin_sidebar_btn lg:hidden"
+            className="sidebar_btn lg:hidden"
           >
             <HiOutlineMenuAlt2 className="text-xl" />
           </button>
-          <div className="flex items-center text-[15px]">
-            <Link to="/admin/dashboard">Dashboard</Link>
-            {pathname !== "/admin/dashboard" && (
-              <p className="hidden sm:block">{pathname}</p>
-            )}
+
+          <div className="tooltip tooltip-bottom" data-tip="Visit Front-End">
+            <Link to="/" target="_blank">
+              <TbWorldWww className="text-2xl" />
+            </Link>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export default function SellerHeader({ setSidebar }) {
             className="d_btn flex items-center gap-1"
           >
             <FaRegUserCircle className="text-lg" />
-            <p className="hidden sm:block">{loggedSeller?.data?.name}</p>
+            <p className="hidden sm:block">{loggedSeller?.data?.shopName}</p>
           </button>
 
           {dropdown && (

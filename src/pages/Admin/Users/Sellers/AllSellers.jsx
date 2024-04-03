@@ -57,9 +57,9 @@ export default function AllSellers() {
             <Link>
               <FaEye className="text-primary" />
             </Link>
-            <button>
+            {/* <button>
               <MdDelete className="text-red-500" />
-            </button>
+            </button> */}
           </div>
         </td>
       </tr>

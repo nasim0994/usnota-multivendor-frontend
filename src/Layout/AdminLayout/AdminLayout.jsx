@@ -9,9 +9,8 @@ export default function AdminLayout() {
   useEffect(() => {
     window.addEventListener("click", (e) => {
       if (
-        (!e.target.closest(".admin_sidebar") &&
-          !e.target.closest(".admin_sidebar_btn")) ||
-        e.target.closest(".admin_siderbar ul li a")
+        (!e.target.closest(".sidebar") && !e.target.closest(".sidebar_btn")) ||
+        e.target.closest(".sidebar ul li a")
       ) {
         setSidebar(false);
       }
@@ -20,10 +19,11 @@ export default function AdminLayout() {
 
   return (
     <section className="flex">
-      <aside className={`admin_sidebar ${sidebar && "admin_sidebar_show"}`}>
+      <aside className={`admin_sidebar sidebar ${sidebar && "sidebar_show"}`}>
         <AdminSidebar />
       </aside>
-      <div className="admin_content">
+
+      <div className="outlet_content">
         <AdminHeader setSidebar={setSidebar} />
         <main className="sm:p-5 py-5">
           <Outlet />

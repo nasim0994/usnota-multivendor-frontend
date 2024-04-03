@@ -3,7 +3,7 @@
 :root {
   --primary: #072962;
   /* --primary: #055759; */
-  --secondary: #1d777c;
+  --secondary: #de525c;
   --accent: #031a2f;
   --neutral: #3d3d3f;
   --neutralContent: #636363;
@@ -109,7 +109,7 @@ h2 {
     width: 90% !important;
   }
 
-  .admin_sidebar {
+  .sidebar {
     width: 90% !important;
   }
 }
@@ -471,5 +471,105 @@ table tbody td {
 @media only screen and (max-width: 640px) {
   .pagination-container button {
     margin: 4px;
+  }
+}
+
+/* ------------------Sidebar style--------------- */
+.sidebar {
+  height: 100vh;
+  overflow-y: auto;
+  position: fixed;
+  width: 270px;
+  left: -0%;
+  top: 0;
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.outlet_content {
+  width: calc(100% - 270px);
+  background: #adb7c121;
+  min-height: 100vh;
+  position: relative;
+  left: 270px;
+}
+
+.sidebar ul li button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li button:hover {
+  color: var(--primary);
+}
+
+.sidebar .active {
+  color: var(--primary);
+}
+
+.sidebar .dropdown {
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.sidebar .dropdown_show {
+  max-height: 300px;
+  transition: all 0.3s ease;
+}
+
+.sidebar .dropdown ul li a,
+.sidebar .dropdown ul li button {
+  padding: 8px 8px 8px 35px;
+}
+
+.sidebar .subDropdown ul li a {
+  padding: 8px 8px 8px 45px;
+}
+
+.sidebar .subDropdown {
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.sidebar .subDropdown_show {
+  max-height: 300px;
+  transition: all 0.3s ease;
+}
+
+@media only screen and (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 9999;
+    left: -1%;
+    transition: all 0.3s ease;
+  }
+
+  .sidebar_show {
+    transform: translateX(0%);
+  }
+
+  .outlet_content {
+    width: 100%;
+    left: 0;
+    padding: 10px;
   }
 }

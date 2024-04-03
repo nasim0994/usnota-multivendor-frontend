@@ -25,7 +25,7 @@ export default function AdminHeader({ setSidebar }) {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setSidebar(true)}
-            className="admin_sidebar_btn lg:hidden"
+            className="sidebar_btn lg:hidden"
           >
             <HiOutlineMenuAlt2 className="text-xl" />
           </button>

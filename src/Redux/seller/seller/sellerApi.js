@@ -61,6 +61,16 @@ export const sellerApi = sellerApiSlice.injectEndpoints({
       }),
       providesTags: ["seller"],
     }),
+
+    // update info for verification
+    updateInfoForVerify: builder.mutation({
+      query: ({ id, formData }) => ({
+        url: `/seller/update/verify/${id}`,
+        method: "PATCH",
+        body: formData,
+      }),
+      providesTags: ["seller"],
+    }),
   }),
 });
 
@@ -70,4 +80,5 @@ export const {
   useSellerByIdQuery,
   useAllSellersQuery,
   useToggleVerifyMutation,
+  useUpdateInfoForVerifyMutation,
 } = sellerApi;

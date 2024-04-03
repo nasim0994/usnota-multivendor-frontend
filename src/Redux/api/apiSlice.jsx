@@ -26,5 +26,6 @@ export const apiSlice = createApi({
     "shippingConfig",
     "sellerLogo",
     "mainLogo",
+    "seller",
   ],
 });
