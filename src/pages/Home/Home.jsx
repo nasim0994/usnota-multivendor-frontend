@@ -18,13 +18,13 @@ export default function Home() {
       <Menu />
       <Hero />
       <MobileCategories />
+      <ChooseByCategory />
       <TopCampaignBanner />
       <FlashSale />
       <FeaturedProducts />
-      <ChooseByCategory />
       <CampaignBanner />
-      <ChooseByBrand />
       <PopularProducts />
+      <ChooseByBrand />
       <CategoryWaysProducts />
       <Services />
     </>

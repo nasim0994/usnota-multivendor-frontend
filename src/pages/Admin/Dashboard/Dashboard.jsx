@@ -8,8 +8,10 @@ import { useGetSubSubCategoriesQuery } from "../../../Redux/subSubCategory/subSu
 import { useAllUsersQuery } from "../../../Redux/user/userApi";
 import { useGetAllAdminsQuery } from "../../../Redux/admin/adminApi";
 import { FaBoxOpen, FaUsers, FaUserShield, FaCartPlus } from "react-icons/fa";
-import { GrView } from "react-icons/gr";
-import { AiOutlineDelete } from "react-icons/ai";
+import { BiCategoryAlt } from "react-icons/bi";
+import { SiBrandfolder } from "react-icons/si";
+import { useAllSellersQuery } from "../../../Redux/seller/seller/sellerApi";
+import { FaEye } from "react-icons/fa";
 
 export default function Dashboard() {
   const { data: products } = useGetAllProductsQuery();
@@ -20,6 +22,8 @@ export default function Dashboard() {
   const { data: subCategory } = useGetSubCategoriesQuery();
   const { data: subSubCategory } = useGetSubSubCategoriesQuery();
   const { data: brand } = useAllBrandsQuery();
+
+  const { data, isLoading, isError, error } = useAllSellersQuery();
 
   return (
     <section>
@@ -77,7 +81,7 @@ export default function Dashboard() {
           </div>
 
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
-            <FaUserShield className="text-xl" />
+            <BiCategoryAlt className="text-xl" />
           </div>
         </div>
 
@@ -90,7 +94,7 @@ export default function Dashboard() {
           </div>
 
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
-            <FaUserShield className="text-xl" />
+            <BiCategoryAlt className="text-xl" />
           </div>
         </div>
 
@@ -105,7 +109,7 @@ export default function Dashboard() {
           </div>
 
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
-            <FaUserShield className="text-xl" />
+            <BiCategoryAlt className="text-xl" />
           </div>
         </div>
 
@@ -116,66 +120,60 @@ export default function Dashboard() {
           </div>
 
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
-            <FaUserShield className="text-xl" />
+            <SiBrandfolder className="text-xl" />
           </div>
         </div>
       </div>
 
       <div className="mt-4 bg-base-100 p-4 rounded shadow">
         <div className="flex items-center justify-between">
-          <p>Latest Orders</p>
-          <Link to="/admin/order/all-orders" className="primary_btn text-sm">
-            All Orders
+          <p>Sellers</p>
+          <Link to="/admin/seller/all-sellers" className="primary_btn text-sm">
+            See All
           </Link>
         </div>
 
-        <div className="mt-4 relative overflow-x-auto">
+        <div className="relative overflow-x-auto mt-4">
           <table className="dashboard_table">
             <thead>
               <tr>
-                <th>Order Id</th>
-                <th>Total Products</th>
+                <th>Shop Name</th>
+                <th>Phone</th>
+                <th>Verify</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {orders?.data?.map((order) => (
-                <tr key={order?._id}>
-                  <td>{order?._id}</td>
-                  <td>{order?.products?.length}</td>
+              {data?.data?.map((seller) => (
+                <tr key={seller?._id}>
+                  <td>{seller?.shopName}</td>
+                  <td>{seller?.phone}</td>
                   <td>
-                    <div
-                      className={`w-max border text-xs ${
-                        order?.status === "pending"
-                          ? "border-yellow-500"
-                          : order?.status === "shipped"
-                          ? "border-green-500"
-                          : "border-red-500"
-                      } rounded px-2 py-1`}
-                    >
-                      {order?.status === "pending" ? (
-                        <span className="text-yellow-500">{order?.status}</span>
-                      ) : order?.status === "shipped" ? (
-                        <span className="text-green-500">{order?.status}</span>
-                      ) : (
-                        <span className="text-red-500">{order?.status}</span>
-                      )}
-                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input
+                        checked={seller?.verify && seller?.verify}
+                        type="checkbox"
+                        value={seller?.verify}
+                        class="sr-only peer"
+                        disabled
+                      />
+                      <div class="w-11 h-[23px] bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[1.5px] after:start-[1px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    </label>
                   </td>
-                  <td className="flex gap-3">
-                    <Link
-                      to={`/admin/order/${order?._id}`}
-                      className=" hover:text-blue-700"
-                    >
-                      <GrView />
-                    </Link>
-                    <button
-                      onClick={() => deleteOrderHandler(order?._id)}
-                      className="hover:text-red-700"
-                    >
-                      <AiOutlineDelete />
-                    </button>
+                  <td
+                    className={`${
+                      seller?.status ? "text-green-500" : "text-red-500"
+                    }`}
+                  >
+                    {seller?.status ? "active" : "unActive"}
+                  </td>
+                  <td>
+                    <div className="flex items-center gap-2 text-lg">
+                      <Link to={`/admin/seller/view/${seller?._id}`}>
+                        <FaEye className="text-primary" />
+                      </Link>
+                    </div>
                   </td>
                 </tr>
               ))}

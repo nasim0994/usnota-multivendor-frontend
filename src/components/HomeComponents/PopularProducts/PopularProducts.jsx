@@ -1,14 +1,11 @@
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useGetAllProductsQuery } from "../../../Redux/product/productApi";
+import { useGetPopularProductsQuery } from "../../../Redux/product/productApi";
 import ProductCard from "../../ProductCard/ProductCard";
 import ProductCards from "../../Skeleton/ProductCards/ProductCards";
 
 const PopularProducts = () => {
-  const query = {
-    limit: 10,
-  };
-  const { data, isLoading, isError, error } = useGetAllProductsQuery(query);
+  const { data, isLoading, isError, error } = useGetPopularProductsQuery();
 
   let content = null;
   if (isLoading) {
@@ -24,11 +21,11 @@ const PopularProducts = () => {
   }
 
   return (
-    <div className="mt-2">
+    <div>
       <div className="container bg-base-100 p-4 rounded-lg shadow-lg">
         <div className="flex justify-between sm:items-center border-b pb-2 border-primary">
           <h1 className="md:text-xl font-medium md:font-semibold text-neutral">
-            Popular Products
+            Best Selling Products
           </h1>
 
           <div>

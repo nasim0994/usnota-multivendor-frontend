@@ -31,6 +31,7 @@ export default function ProductInfo({ product }) {
     sellingPrice,
     quantity,
     variants,
+    seller,
   } = product;
 
   // Total Stock
@@ -142,6 +143,7 @@ export default function ProductInfo({ product }) {
       size: selectedSize,
       color: selectedColor,
       stock: availableStock,
+      sellerId: seller?._id,
     };
 
     dispatch(addToCart([cartProduct]));
@@ -168,6 +170,7 @@ export default function ProductInfo({ product }) {
       size: selectedSize,
       color: selectedColor,
       stock: availableStock,
+      sellerId: seller?._id,
     };
 
     const findProduct = carts?.find(
@@ -374,7 +377,7 @@ export default function ProductInfo({ product }) {
           </button>
 
           <Link
-            to=""
+            to="tel:+8801906-198021"
             className="bg-secondary text-base-100 px-2 py-1.5 rounded flex items-center gap-1 justify-center scale-[.97] hover:scale-[1] duration-300"
           >
             <MdAddCall />

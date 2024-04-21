@@ -108,21 +108,22 @@ export default function Checkout() {
     }
 
     const products = [];
-    carts.map((product) =>
+    carts.map((product) => {
       products.push({
         productId: product._id,
         quantity: product.quantity,
         size: product.size,
         color: product.color,
         variant: product?.variant,
-      })
-    );
+        sellerId: product?.sellerId,
+      });
+    });
 
     const order = {
       userId: loggedUser?.data?._id,
       shippingInfo: {
         city,
-        area,
+        district: area,
         street,
       },
       paymentMethod,
@@ -132,6 +133,7 @@ export default function Checkout() {
 
     if (paymentMethod === "cod") {
       const res = await addOrder(order);
+
       if (res?.data?.success) {
         Swal.fire("", "order success", "success");
         dispatch(clearCart());
@@ -330,7 +332,6 @@ export default function Checkout() {
                   rows="4"
                   placeholder="House number and street name"
                   className="border-2 w-full p-2 mt-2 outline-none rounded"
-                  required
                 ></textarea>
               </div>
             </div>
@@ -379,7 +380,7 @@ export default function Checkout() {
                         type="radio"
                         name="payment_method"
                         className="w-3 h-3 cursor-pointer"
-                        checked={paymentMethod === "cod" && true}
+                        defaultChecked={paymentMethod === "cod" && true}
                         onClick={() => setPaymentMethod("cod")}
                       />
                       <label htmlFor="cod" className="ms-2 cursor-pointer">
@@ -388,7 +389,11 @@ export default function Checkout() {
                     </div>
 
                     <div>
-                      <img src="" alt="" className="w-4 h-4" />
+                      <img
+                        src="/images/payments/cod.png"
+                        alt=""
+                        className="w-6"
+                      />
                     </div>
                   </li>
 
@@ -399,36 +404,20 @@ export default function Checkout() {
                         type="radio"
                         name="payment_method"
                         className="w-3 h-3 cursor-pointer"
-                        checked={paymentMethod === "ssl" && true}
+                        defaultChecked={paymentMethod === "ssl" && true}
                         onClick={() => setPaymentMethod("ssl")}
                       />
                       <label htmlFor="ssl" className="ms-2 cursor-pointer">
-                        SSL
+                        SSL Commerz
                       </label>
                     </div>
 
                     <div>
-                      <img src="" alt="" className="w-4 h-4" />
-                    </div>
-                  </li>
-
-                  <li className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <input
-                        id="amar_pay"
-                        type="radio"
-                        name="payment_method"
-                        className="w-3 h-3 cursor-pointer"
-                        checked={paymentMethod === "amar_pay" && true}
-                        onClick={() => setPaymentMethod("amar_pay")}
+                      <img
+                        src="/images/payments/ssl.png"
+                        alt=""
+                        className="h-4"
                       />
-                      <label htmlFor="amar_pay" className="ms-2 cursor-pointer">
-                        Amar pay
-                      </label>
-                    </div>
-
-                    <div>
-                      <img src="" alt="" className="w-4 h-4" />
                     </div>
                   </li>
                 </ul>

@@ -11,7 +11,7 @@ export default function TopCampaignBanner() {
   }
 
   return (
-    <section className="py-4">
+    <section className="pt-2 md:py-4">
       <div className="container">
         <div className="sm:w-3/4 mx-auto">
           <div className="w-full h-28 sm:h-40 lg:h-60 relative">

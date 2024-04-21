@@ -34,18 +34,13 @@ const adminSidebarItems = [
   },
   {
     icon: <BiSolidShoppingBags />,
-    title: "Order",
-    subMenu: [
-      {
-        title: "All Orders",
-        path: "/seller/order/all-orders",
-      },
-    ],
+    title: "Orders",
+    path: "/seller/order/all-orders",
   },
   {
     icon: <VscPreview />,
     title: "Review",
-    path: "/seller/reviews",
+    path: "/seller/review/all-reviews",
   },
   {
     icon: <BiSupport />,

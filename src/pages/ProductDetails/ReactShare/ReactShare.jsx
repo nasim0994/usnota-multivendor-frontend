@@ -15,6 +15,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 
 export default function ReactShare({ slug }) {
   const url = `${import.meta.env.VITE_FRONTEND_URL}/product/${slug}`;
+
   return (
     <div className="mt-px flex gap-2">
       <FacebookShareButton url={url}>

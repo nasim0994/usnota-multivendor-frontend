@@ -1,7 +1,6 @@
 import { apiSlice } from "../api/apiSlice";
 
 export const orderApi = apiSlice.injectEndpoints({
-  // tagTypes: ["order"],
   endpoints: (builder) => ({
     getMyOrders: builder.query({
       query: (userId) => ({
@@ -60,6 +59,14 @@ export const orderApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["order"],
     }),
+
+    // Seller
+    getSellerOrderById: builder.query({
+      query: (sellerId) => ({
+        url: `/order/seller-orders/${sellerId}`,
+      }),
+      providesTags: ["order"],
+    }),
   }),
 });
 
@@ -72,4 +79,6 @@ export const {
   useStatusUpdateMutation,
   useInitSslPaymentMutation,
   useGetOrderByTransactionIdQuery,
+
+  useGetSellerOrderByIdQuery,
 } = orderApi;

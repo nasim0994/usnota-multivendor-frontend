@@ -48,7 +48,7 @@ export default function CampaignBanner() {
   }
 
   return (
-    <section className="pt-5">
+    <section className="py-4">
       <div className="container">{content}</div>
     </section>
   );

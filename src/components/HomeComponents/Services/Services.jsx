@@ -8,7 +8,7 @@ const Services = () => {
     <div className="py-5">
       <div className="container">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 text-center">
-          <div className="border border-neutral/40 rounded p-4 flex flex-col sm:flex-row sm:gap-4 justify-center items-center">
+          <div className="border rounded p-4 flex flex-col sm:flex-row sm:gap-4 justify-center items-center bg-base-100 shadow">
             <div>
               <TbTruckDelivery className="text-4xl text-primary" />
             </div>
@@ -20,7 +20,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="border border-neutral/40 rounded p-4 flex flex-col sm:flex-row sm:gap-4 justify-center items-center">
+          <div className="border rounded p-4 flex flex-col sm:flex-row sm:gap-4 justify-center items-center bg-base-100 shadow">
             <div>
               <MdVerified className="text-3xl  text-secondary" />
             </div>
@@ -32,7 +32,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="border border-neutral/40 rounded p-4 flex flex-col sm:flex-row sm:gap-4 justify-center items-center">
+          <div className="border rounded p-4 flex flex-col sm:flex-row sm:gap-4 justify-center items-center bg-base-100 shadow">
             <div>
               <AiOutlineRedo className="text-3xl text-primary" />
             </div>
@@ -44,7 +44,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="border border-neutral/40 rounded p-4 flex flex-col sm:flex-row sm:gap-4 justify-center items-center">
+          <div className="border rounded p-4 flex flex-col sm:flex-row sm:gap-4 justify-center items-center bg-base-100 shadow">
             <div>
               <BiSupport className="text-3xl text-green-500" />
             </div>

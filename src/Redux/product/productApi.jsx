@@ -11,6 +11,14 @@ export const productApi = apiSlice.injectEndpoints({
       providesTags: ["product", "review"],
     }),
 
+    getPopularProducts: builder.query({
+      query: () => ({
+        url: `/product/popular-products`,
+        method: "GET",
+      }),
+      providesTags: ["product", "review"],
+    }),
+
     getAllProducts: builder.query({
       query: (query) => ({
         url: `/product/all-products`,
@@ -78,4 +86,5 @@ export const {
   useUpdateProductMutation,
   useDeleteProductMutation,
   useGetProductBySellerIdQuery,
+  useGetPopularProductsQuery,
 } = productApi;

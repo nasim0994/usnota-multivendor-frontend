@@ -73,7 +73,8 @@ export default function OrderDetails() {
         <div className="border p-4 rounded-md">
           <p className="text-lg">Order Details:</p>
           <p>
-            Order Id: <span className="text-primary">#{order?._id}</span>
+            Order Id:{" "}
+            <span className="text-primary">#{order?.invoiceNumber}</span>
           </p>
         </div>
 

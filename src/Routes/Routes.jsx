@@ -114,6 +114,8 @@ import AddProduct from "../pages/Seller/Product/AddProduct";
 import EditProduct from "../pages/Seller/Product/EditProduct";
 import AllSellers from "../pages/Admin/Users/Sellers/AllSellers";
 import ViewSeller from "../pages/Admin/Users/Sellers/ViewSeller/ViewSeller";
+import SellerOrders from "../pages/Seller/Orders/SellerOrders";
+import SellerReview from "../pages/Seller/SellerReview/SellerReview";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -466,6 +468,7 @@ export const routes = createBrowserRouter([
         path: "/seller/verification",
         element: <Verification />,
       },
+
       //--------Product
       {
         path: "/seller/product/all-products",
@@ -478,6 +481,18 @@ export const routes = createBrowserRouter([
       {
         path: "/seller/product/edit-product/:id",
         element: <EditProduct />,
+      },
+
+      //--------order
+      {
+        path: "/seller/order/all-orders",
+        element: <SellerOrders />,
+      },
+
+      //--------Review
+      {
+        path: "/seller/review/all-reviews",
+        element: <SellerReview />,
       },
     ],
   },

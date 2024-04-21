@@ -8,6 +8,7 @@ import { Autoplay } from "swiper/modules";
 
 export default function ChooseByBrand() {
   const { data, isLoading, isError, error } = useAllBrandsQuery();
+  console.log(data?.data);
 
   let content = null;
   if (isLoading) {
@@ -38,9 +39,9 @@ export default function ChooseByBrand() {
     ));
   }
 
-  if (data?.data?.loength > 0)
+  if (data?.data?.length > 0)
     return (
-      <div>
+      <section className="mt-4">
         <div className="container bg-base-100 p-4 rounded-lg shadow-lg">
           <div className="sm:flex gap-8 items-center border-b pb-2 border-primary">
             <h1 className="md:text-xl font-medium md:font-semibold text-neutral">
@@ -79,6 +80,6 @@ export default function ChooseByBrand() {
             {content}
           </Swiper>
         </div>
-      </div>
+      </section>
     );
 }
