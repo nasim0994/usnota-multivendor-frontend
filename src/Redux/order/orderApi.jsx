@@ -62,8 +62,10 @@ export const orderApi = apiSlice.injectEndpoints({
 
     // Seller
     getSellerOrderById: builder.query({
-      query: (sellerId) => ({
+      query: ({ sellerId, query }) => ({
         url: `/order/seller-orders/${sellerId}`,
+        method: "GET",
+        params: query,
       }),
       providesTags: ["order"],
     }),

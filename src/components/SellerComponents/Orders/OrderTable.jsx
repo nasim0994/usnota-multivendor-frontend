@@ -1,18 +1,10 @@
-import { useSelector } from "react-redux";
-import {
-  useDeleteOrderMutation,
-  useGetSellerOrderByIdQuery,
-} from "../../../Redux/order/orderApi";
+import { useDeleteOrderMutation } from "../../../Redux/order/orderApi";
 import { Link } from "react-router-dom";
 import { GrView } from "react-icons/gr";
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 
-export default function OrderTable() {
-  const { loggedSeller } = useSelector((state) => state.seller);
-  const sellerId = loggedSeller?.data?._id;
-  const { data: orders } = useGetSellerOrderByIdQuery(sellerId);
-
+export default function OrderTable({ orders }) {
   const [deleteOrder] = useDeleteOrderMutation();
   const handleDeleteOrder = async (id) => {
     const isConfirm = window.confirm("Are you sure delete is order?");
@@ -28,10 +20,11 @@ export default function OrderTable() {
 
   return (
     <div className="mt-4 relative overflow-x-auto">
-      <table className="dashboard_table">
+      <table className="dashboard_table bg-base-100 shadow">
         <thead>
           <tr>
             <th>Order Id</th>
+            <th>Date</th>
             <th>Total Products</th>
             <th>Payment Method</th>
             <th>Status</th>
@@ -42,6 +35,7 @@ export default function OrderTable() {
           {orders?.data?.map((order) => (
             <tr key={order?._id}>
               <td>#{order?.invoiceNumber}</td>
+              <td>{order?.createdAt?.split("T")[0]}</td>
               <td>{order?.products?.length}</td>
               <td>{order?.paymentMethod}</td>
               <td>
