@@ -48,12 +48,22 @@ export const reviewApi = apiSlice.injectEndpoints({
     }),
 
     editReview: builder.mutation({
-      query: ({data,id}) => ({
+      query: ({ data, id }) => ({
         url: `/review/update-review/${id}`,
         method: "PATCH",
         body: data,
       }),
       invalidatesTags: ["review", "product"],
+    }),
+
+    // Seller
+    getReviewsBySellerId: builder.query({
+      query: ({ sellerId, query }) => ({
+        url: `/review/get-reviews-by-seller/${sellerId}`,
+        method: "GET",
+        params: query,
+      }),
+      providesTags: ["review", "product"],
     }),
   }),
 });
@@ -65,4 +75,6 @@ export const {
   useGetReviewsByUserIdQuery,
   useDeleteReviewMutation,
   useGetAllReviewsQuery,
+
+  useGetReviewsBySellerIdQuery,
 } = reviewApi;

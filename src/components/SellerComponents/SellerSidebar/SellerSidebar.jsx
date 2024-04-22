@@ -43,6 +43,17 @@ const adminSidebarItems = [
     path: "/seller/review/all-reviews",
   },
   {
+    icon: <IoMdSettings />,
+    title: "Account & Setting",
+    slug: "account-setting",
+    subMenu: [
+      {
+        title: "Profile",
+        path: "/seller/account-setting/profile",
+      },
+    ],
+  },
+  {
     icon: <BiSupport />,
     title: "Support",
     slug: "account-setting",
@@ -54,17 +65,6 @@ const adminSidebarItems = [
       {
         title: "Contact Us",
         path: "/seller/support/contact-us",
-      },
-    ],
-  },
-  {
-    icon: <IoMdSettings />,
-    title: "Account & Setting",
-    slug: "account-setting",
-    subMenu: [
-      {
-        title: "Profile",
-        path: "/seller/account-setting/profile",
       },
     ],
   },

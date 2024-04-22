@@ -14,6 +14,8 @@ import { useSelector } from "react-redux";
 import OrderTable from "../../../components/SellerComponents/Orders/OrderTable";
 import Pagination from "../../../components/Pagination/Pagination";
 import { useState } from "react";
+import { useGetReviewsBySellerIdQuery } from "../../../Redux/review/reviewApi";
+import { GoCodeReview } from "react-icons/go";
 
 export default function SellerDashboard() {
   const { loggedSeller } = useSelector((state) => state.seller);
@@ -30,6 +32,7 @@ export default function SellerDashboard() {
   const { data: subCategory } = useGetSubCategoriesQuery();
   const { data: subSubCategory } = useGetSubSubCategoriesQuery();
   const { data: brand } = useAllBrandsQuery();
+  const { data: reviews } = useGetReviewsBySellerIdQuery({ sellerId });
 
   // Function to filter data created today
   const filterTodayOrders = () => {
@@ -115,6 +118,19 @@ export default function SellerDashboard() {
 
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
             <SiBrandfolder className="text-xl" />
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
+          <div>
+            <p className="text-neutral font-dinMedium">Total Reviews</p>
+            <h3 className="text-green-600 font-bold">
+              {reviews?.data?.length}
+            </h3>
+          </div>
+
+          <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
+            <GoCodeReview className="text-xl" />
           </div>
         </div>
       </div>

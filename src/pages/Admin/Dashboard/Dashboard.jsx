@@ -140,7 +140,6 @@ export default function Dashboard() {
                 <th>Shop Name</th>
                 <th>Phone</th>
                 <th>Verify</th>
-                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -160,13 +159,6 @@ export default function Dashboard() {
                       />
                       <div class="w-11 h-[23px] bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[1.5px] after:start-[1px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                     </label>
-                  </td>
-                  <td
-                    className={`${
-                      seller?.status ? "text-green-500" : "text-red-500"
-                    }`}
-                  >
-                    {seller?.status ? "active" : "unActive"}
                   </td>
                   <td>
                     <div className="flex items-center gap-2 text-lg">

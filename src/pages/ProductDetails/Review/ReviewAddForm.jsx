@@ -43,6 +43,7 @@ export default function ReviewAddForm({
       description,
       user: user?._id,
       product: product?._id,
+      seller: product?.seller?._id,
     };
 
     await addReview(data).unwrap();

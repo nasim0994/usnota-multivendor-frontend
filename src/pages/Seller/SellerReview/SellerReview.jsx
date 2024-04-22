@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import {
   useDeleteReviewMutation,
-  useGetAllReviewsQuery,
+  useGetReviewsBySellerIdQuery,
 } from "../../../Redux/review/reviewApi";
 import Pagination from "../../../components/Pagination/Pagination";
 import Rating from "../../../components/Rating/Rating";
@@ -13,16 +13,18 @@ export default function SellerReview() {
   const [currentPage, setCurrentPage] = useState(1);
   const [description, setDescription] = useState("");
 
-  const { loggedUser } = useSelector((state) => state.user);
-  const user = loggedUser?.data;
+  const { loggedSeller } = useSelector((state) => state.seller);
+  const sellerId = loggedSeller?.data?._id;
 
   const query = {};
   query["limit"] = 5;
   query["page"] = currentPage;
   query["description"] = description;
-  const { data } = useGetAllReviewsQuery({ ...query });
+  const { data } = useGetReviewsBySellerIdQuery({ sellerId, query });
+
+  console.log(data?.data);
+
   const [deleteReview] = useDeleteReviewMutation();
-  // console.log(data?.data);
 
   const pages = Math.ceil(
     parseInt(data?.meta?.total) / parseInt(data?.meta?.limit)
@@ -33,11 +35,7 @@ export default function SellerReview() {
       "Are you sure you want to delete this review?"
     );
     if (!confirm) return;
-
-    const data = {
-      user: user?._id,
-    };
-    await deleteReview({ reviewId, data }).unwrap();
+    await deleteReview({ reviewId, sellerId }).unwrap();
     Swal.fire("", "Review deleted successfully", "success");
   };
 
@@ -64,10 +62,10 @@ export default function SellerReview() {
                 <div className="flex items-center gap-5">
                   <img
                     src={
-                      user?.image === "" || user?.image === null
+                      review?.user?.image === "" || review?.user?.image === null
                         ? "/images/demo_user.jpg"
                         : `${import.meta.env.VITE_BACKEND_URL}/user/${
-                            user?.image
+                            review?.user?.image
                           }`
                     }
                     alt=""
