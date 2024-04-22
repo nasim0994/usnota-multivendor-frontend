@@ -91,7 +91,7 @@ export default function Profile() {
             <>
               <button className={`overlay ${modal && "overlay_show"}`}></button>
               <div
-                className={`modal w-[90%] sm:w-[500px] ${
+                className={`custom_modal w-[90%] sm:w-[500px] ${
                   modal && "modal_show"
                 }`}
               >

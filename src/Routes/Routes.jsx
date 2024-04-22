@@ -116,6 +116,7 @@ import AllSellers from "../pages/Admin/Users/Sellers/AllSellers";
 import ViewSeller from "../pages/Admin/Users/Sellers/ViewSeller/ViewSeller";
 import SellerOrders from "../pages/Seller/Orders/SellerOrders";
 import SellerReview from "../pages/Seller/SellerReview/SellerReview";
+import SellerProfile from "../pages/Seller/AccountSetting/SellerProfile/SellerProfile";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -493,6 +494,12 @@ export const routes = createBrowserRouter([
       {
         path: "/seller/review/all-reviews",
         element: <SellerReview />,
+      },
+
+      //--------Account & Setting
+      {
+        path: "/seller/account-setting/profile",
+        element: <SellerProfile />,
       },
     ],
   },

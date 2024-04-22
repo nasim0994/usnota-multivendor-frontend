@@ -332,7 +332,7 @@ table tbody td {
   visibility: visible;
 }
 
-.modal {
+.custom_modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -340,6 +340,8 @@ table tbody td {
   background: var(--base100);
   border-radius: 10px;
   z-index: 9999;
+
+  padding: 20px;
 
   opacity: 0;
   visibility: hidden;

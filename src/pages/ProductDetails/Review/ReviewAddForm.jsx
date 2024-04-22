@@ -55,7 +55,9 @@ export default function ReviewAddForm({
         className={`modal_overlay ${addModal && "modal_overlay_show"}`}
       ></button>
       <div
-        className={`modal w-[95%] sm:w-[500px] p-4 ${addModal && "modal_show"}`}
+        className={`custom_modal w-[95%] sm:w-[500px] p-4 ${
+          addModal && "modal_show"
+        }`}
       >
         <div className="flex justify-between items-start">
           <div>

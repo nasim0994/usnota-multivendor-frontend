@@ -42,7 +42,7 @@ export default function ReviewEditForm({ editModal, setEditModal, review }) {
       ></button>
       <form
         onSubmit={handleEditReview}
-        className={`modal w-[95%] sm:w-[500px] p-4 ${
+        className={`custom_modal w-[95%] sm:w-[500px] p-4 ${
           editModal && "modal_show"
         }`}
       >
