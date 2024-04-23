@@ -140,22 +140,19 @@ export default function Footer() {
             <Link
               to="https://emanagerit.com"
               target="_blank"
-              className="hover:underline"
+              className="underline"
             >
               eManager
             </Link>
           </span>
           <ul className="flex items-center gap-2 text-gray-400 mt-3 sm:mt-0">
             <li>
-              <Link to={contact?.data[0]?.facebookLink} target="_blank">
+              <Link to={contact?.data[0]?.facebookPageLink} target="_blank">
                 <BsFacebook className="text-lg hover:-mt-2 duration-300" />
               </Link>
             </li>
             <li>
-              <Link
-                to={`https://wa.me/${contact?.data[0]?.whatsapp}`}
-                target="_blank"
-              >
+              <Link to={`${contact?.data[0]?.whatsapp}`} target="_blank">
                 <IoLogoWhatsapp className="text-xl hover:-mt-2 duration-300" />
               </Link>
             </li>

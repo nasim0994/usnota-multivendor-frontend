@@ -68,7 +68,7 @@ export default function Logo() {
 
     if (sellerData?.data?.length > 0) {
       const res = await updateSellerLogo({ sellerId, formData });
-      console.log(res);
+
       if (res?.data?.success) {
         Swal.fire("", "Logo update success", "success");
         setSellerLogos([]);

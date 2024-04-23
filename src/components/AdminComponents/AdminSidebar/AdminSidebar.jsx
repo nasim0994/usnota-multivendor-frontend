@@ -147,13 +147,34 @@ const adminSidebarItems = [
         title: "Favicon",
         path: "/admin/front-end/favicon",
       },
-      {
-        title: "About Us",
-        path: "/admin/front-end/about-us",
-      },
+      // {
+      //   title: "About Us",
+      //   path: "/admin/front-end/about-us",
+      // },
       {
         title: "Contact Us",
         path: "/admin/front-end/contact-us",
+      },
+      {
+        title: "Seller Page",
+        subSubMenu: [
+          {
+            title: "Banner",
+            path: "/admin/front-end/seller-page/banner",
+          },
+          {
+            title: "Why Sell Here?",
+            path: "/admin/front-end/seller-page/why-sell-here",
+          },
+          {
+            title: "Mobile App",
+            path: "/admin/front-end/seller-page/mobile-app",
+          },
+          {
+            title: "FAQ",
+            path: "/admin/front-end/seller-page/faq",
+          },
+        ],
       },
     ],
   },

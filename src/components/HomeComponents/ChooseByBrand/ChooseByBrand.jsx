@@ -8,7 +8,6 @@ import { Autoplay } from "swiper/modules";
 
 export default function ChooseByBrand() {
   const { data, isLoading, isError, error } = useAllBrandsQuery();
-  console.log(data?.data);
 
   let content = null;
   if (isLoading) {

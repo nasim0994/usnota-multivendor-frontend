@@ -533,7 +533,7 @@ table tbody td {
 }
 
 .sidebar .dropdown_show {
-  max-height: 300px;
+  max-height: 400px;
   transition: all 0.3s ease;
 }
 
@@ -553,7 +553,7 @@ table tbody td {
 }
 
 .sidebar .subDropdown_show {
-  max-height: 300px;
+  max-height: 400px;
   transition: all 0.3s ease;
 }
 

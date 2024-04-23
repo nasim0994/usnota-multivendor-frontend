@@ -24,30 +24,27 @@ export default function Contact() {
   ] = useAddContactMutation();
 
   const id = data?.data[0]?._id;
-  console.log(id);
 
   const handleUpdateContact = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const title = form.title.value;
-    const description = form.description.value;
     const phone = form.phone.value;
     const whatsapp = form.whatsapp.value;
     const email = form.email.value;
     const address = form.address.value;
-    const facebookLink = form.facebook.value;
+    const facebookGroupLink = form.facebookGroup.value;
+    const facebookPageLink = form.facebookPage.value;
     const instagramLink = form.instagram.value;
     const youtubeLink = form.youtube.value;
     const linkedinLink = form.linkedin.value;
 
     const contactInfo = {
-      title,
-      description,
       phone,
       whatsapp,
       email,
       address,
-      facebookLink,
+      facebookGroupLink,
+      facebookPageLink,
       instagramLink,
       youtubeLink,
       linkedinLink,
@@ -93,15 +90,15 @@ export default function Contact() {
       </div>
       <form
         onSubmit={handleUpdateContact}
-        className="p-4 form_group flex flex-col gap-3 md:mx-48 border rounded mt-3 text-sm"
+        className="p-4 form_group flex flex-col gap-3 sm:mx-10 xl:mx-48 border rounded mt-3 text-sm"
       >
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <p className="text-neutral-content">Title</p>
+            <p className="text-neutral-content">Phone</p>
             <input
               type="text"
-              name="title"
-              defaultValue={data?.data[0]?.title}
+              name="phone"
+              defaultValue={data?.data[0]?.phone}
             />
           </div>
 
@@ -117,30 +114,13 @@ export default function Contact() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <p className="text-neutral-content">Phone</p>
-            <input
-              type="text"
-              name="phone"
-              defaultValue={data?.data[0]?.phone}
-            />
-          </div>
-
-          <div>
-            <p className="text-neutral-content">Whatsapp</p>
+            <p className="text-neutral-content">Whatsapp Link</p>
             <input
               type="text"
               name="whatsapp"
               defaultValue={data?.data[0]?.whatsapp}
             />
           </div>
-        </div>
-        <div>
-          <p className="text-neutral-content">Description</p>
-          <textarea
-            name="description"
-            rows="5"
-            defaultValue={data?.data[0]?.description}
-          ></textarea>
         </div>
 
         <div>
@@ -154,11 +134,20 @@ export default function Contact() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <p className="text-neutral-content">Facebook Link</p>
+            <p className="text-neutral-content">Facebook Group Link</p>
             <input
               type="text"
-              name="facebook"
-              defaultValue={data?.data[0]?.facebookLink}
+              name="facebookGroup"
+              defaultValue={data?.data[0]?.facebookGroupLink}
+            />
+          </div>
+
+          <div>
+            <p className="text-neutral-content">Facebook Page Link</p>
+            <input
+              type="text"
+              name="facebookPage"
+              defaultValue={data?.data[0]?.facebookPageLink}
             />
           </div>
 
@@ -170,9 +159,7 @@ export default function Contact() {
               defaultValue={data?.data[0]?.instagramLink}
             />
           </div>
-        </div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <p className="text-neutral-content">Youtube Link</p>
             <input

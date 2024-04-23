@@ -8,11 +8,11 @@ import { useGetSellerLogoQuery } from "../../../Redux/logo/logoApi";
 
 const faqs = [
   {
-    question: "What categories can I sell on eMall?",
+    question: "What categories can I sell on Shoping Hobe?",
     ans: `By signing up in Instantkaj.com, you can easily search for jobs in search job and earn by working from home.`,
   },
   {
-    question: "What is eMall Commission?",
+    question: "What is Shoping Hobe Commission?",
     ans: `InstantKaj.com is the Best Freelancing platform in Bangladesh which acts like a bridge between freelancer and employee. Here Freelancers of Bangladesh can easily get their payouts through mobile banking. Employers can also make it Instantly! This is really efficient.`,
   },
   {
@@ -58,7 +58,12 @@ export default function BecomeSeller() {
       </header>
 
       {/* Banner */}
-      <div className="merchantBanner py-10 lg:min-h-[90vh] lg:flex justify-center items-center">
+      <div
+        style={{
+          "--image-url": `linear-gradient(310deg, #000000ab, #000000c9) ,url(${"https://grabmerchanthelp.zendesk.com/hc/article_attachments/900006446566/Mod_3_EDM_5.gif"})`,
+        }}
+        className={`merchantBanner py-10 lg:min-h-[90vh] lg:flex justify-center items-center bg-[image:var(--image-url)]`}
+      >
         <div className="container">
           <div className="lg:grid grid-cols-2 gap-40 justify-between items-center text-base-100">
             <div className="mb-10 lg:mb-0">
@@ -83,7 +88,7 @@ export default function BecomeSeller() {
               <div className="text-center mb-4">
                 <h2 className="text-2xl font-semibold">Welcome</h2>
                 <p className="text-sm">
-                  To eMall Seller Login/Registration Panel
+                  To Shoping Hobe Seller Login/Registration Panel
                 </p>
               </div>
 
@@ -100,7 +105,7 @@ export default function BecomeSeller() {
       {/* Why PMall */}
       <div className="py-10">
         <div className="w-[95%] xl:w-[1280px] mx-auto">
-          <h1 className="text-4xl font-bold">WHY SELL ON eMall?</h1>
+          <h1 className="text-4xl font-bold">WHY SELL ON Shoping Hobe?</h1>
 
           <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             <div className="flex gap-4">
@@ -108,8 +113,8 @@ export default function BecomeSeller() {
               <div>
                 <h2 className="text-2xl font-medium">Reach</h2>
                 <p className="text-sm mt-2">
-                  Millions of customers on eMall, Bangladesh's most visited
-                  shopping destination
+                  Millions of customers on Shoping Hobe, Bangladesh's most
+                  visited shopping destination
                 </p>
               </div>
             </div>
@@ -179,13 +184,13 @@ export default function BecomeSeller() {
               <div className="md:w-[70%] text-base-100">
                 <p>Go Mobile</p>
                 <h6 className="text-4xl font-semibold">
-                  USE THE FREE eMall SELLER APP
+                  USE THE FREE Shoping Hobe SELLER APP
                 </h6>
                 <p className="mt-4 w-4/5 text-[17px]">
-                  The eMall Seller app is packed with features to help you
-                  manage and grow your ecommerce business wherever you are. It
-                  gives you the freedom to take care of business details right
-                  from your phone.
+                  The Shoping Hobe Seller app is packed with features to help
+                  you manage and grow your ecommerce business wherever you are.
+                  It gives you the freedom to take care of business details
+                  right from your phone.
                 </p>
 
                 <Link to="">
@@ -285,9 +290,9 @@ export default function BecomeSeller() {
             <div>
               <h1 className="text-4xl text-primary font-bold">FAQ</h1>
               <p className="text-neutral/80 py-4">
-                eMall.com simplifies the lives of small business owners with its
-                all-in-one e-commerce platform that's tailored to meet every
-                business's unique Seller service needs.
+                Shoping Hobe.com simplifies the lives of small business owners
+                with its all-in-one e-commerce platform that's tailored to meet
+                every business's unique Seller service needs.
               </p>
 
               <div className="mt-4">

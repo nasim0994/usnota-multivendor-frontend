@@ -38,8 +38,8 @@ export const logoApi = apiSlice.injectEndpoints({
     }),
 
     updateSellerLogo: builder.mutation({
-      query: ({ id, formData }) => ({
-        url: `/logo/update-seller-logo/${id}`,
+      query: ({ sellerId, formData }) => ({
+        url: `/logo/update/seller-logo/${sellerId}`,
         method: "PATCH",
         body: formData,
       }),

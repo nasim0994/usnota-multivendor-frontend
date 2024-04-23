@@ -122,6 +122,11 @@ import SellerProfile from "../pages/Seller/AccountSetting/SellerProfile/SellerPr
 
 import SellerContact from "../pages/Seller/Support/SellerContact/SellerContact";
 import SellerHelpCenter from "../pages/Seller/Support/SellerHelpCenter/SellerHelpCenter";
+import SellerPageBanner from "../pages/Admin/FrontEnd/SellerPage/SellerPageBanner";
+import MobileApp from "../pages/Admin/FrontEnd/SellerPage/MobileApp";
+import WhySellLists from "../pages/Admin/FrontEnd/SellerPage/WhySell/WhySellLists";
+import AddWhySell from "../pages/Admin/FrontEnd/SellerPage/WhySell/AddWhySell";
+import EditWhySale from "../pages/Admin/FrontEnd/SellerPage/WhySell/EditWhySale";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -321,14 +326,14 @@ export const routes = createBrowserRouter([
       },
 
       //--------------Flash Deal
-      {
-        path: "/admin/flash-deal/add",
-        element: <AddFlashDeal />,
-      },
-      {
-        path: "/admin/flash-deal",
-        element: <FlashDealList />,
-      },
+      // {
+      //   path: "/admin/flash-deal/add",
+      //   element: <AddFlashDeal />,
+      // },
+      // {
+      //   path: "/admin/flash-deal",
+      //   element: <FlashDealList />,
+      // },
 
       //--------------Review
       {
@@ -443,6 +448,28 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/front-end/contact-us",
         element: <Contact />,
+      },
+      //-----Seller Page
+      {
+        path: "/admin/front-end/seller-page/banner",
+        element: <SellerPageBanner />,
+      },
+      {
+        path: "/admin/front-end/seller-page/why-sell-here",
+        element: <WhySellLists />,
+      },
+      {
+        path: "/admin/front-end/seller-page/add-why-sell",
+        element: <AddWhySell />,
+      },
+      {
+        path: "/admin/front-end/seller-page/edit-why-sell/:id",
+        element: <EditWhySale />,
+      },
+
+      {
+        path: "/admin/front-end/seller-page/mobile-app",
+        element: <MobileApp />,
       },
 
       //----------SEO Setting

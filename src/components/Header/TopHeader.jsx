@@ -3,9 +3,12 @@ import { BsPerson, BsTelephoneInbound } from "react-icons/bs";
 import { MdOutlineMail } from "react-icons/md";
 import { FiSend } from "react-icons/fi";
 import { useSelector } from "react-redux";
+import { useGetContactQuery } from "../../Redux/contact/contactApi";
 
 export default function TopHeader() {
   const { loggedSeller } = useSelector((state) => state.seller);
+  const { data: contact, isLoading } = useGetContactQuery();
+  const contactInfo = contact?.data[0];
 
   return (
     <div className="hidden lg:block py-2 bg-primary text-base-100">
@@ -17,7 +20,7 @@ export default function TopHeader() {
               className="flex items-center gap-2 hover:text-gray-200 duration-300"
             >
               <BsTelephoneInbound />
-              <p>+8801906-198021</p>
+              <p>{contactInfo?.phone}</p>
             </Link>
             <div className="divider divider-horizontal mx-1"></div>
             <Link
@@ -25,7 +28,7 @@ export default function TopHeader() {
               className="flex items-center gap-2 hover:text-gray-200 duration-300"
             >
               <MdOutlineMail className="text-base" />
-              <p>suport@pmall.com</p>
+              <p>{isLoading ? "example@gmail.com" : contactInfo?.email}</p>
             </Link>
           </div>
           <div className="flex items-center gap-6">
@@ -51,7 +54,7 @@ export default function TopHeader() {
                 className="flex items-center gap-1 hover:text-gray-200 duration-300"
               >
                 <BsPerson className="text-base" />
-                <p className="pt-1">Sell on eMall</p>
+                <p className="pt-1">Sell on Shoping Hobe</p>
               </Link>
             )}
           </div>
