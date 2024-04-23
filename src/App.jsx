@@ -4,7 +4,7 @@ import { routes } from "./Routes/Routes";
 import useAuthCheck from "./hooks/useAuthCheck";
 import useSellerAuthCheck from "./hooks/useSellerAuthCheck";
 import Spinner from "./components/Spinner/Spinner";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useGetFaviconQuery } from "./Redux/favicon/faviconApi";
 import { useGetBusinessInfoQuery } from "./Redux/businessInfoApi/businessInfoApi";
 import { useGetThemesQuery } from "./Redux/theme/themeApi";
@@ -54,7 +54,6 @@ export default function App() {
   return (
     <>
       <Helmet>
-        <meta charSet="utf-8" />
         <title>{title}</title>
         <link
           rel="icon"
@@ -63,13 +62,17 @@ export default function App() {
         />
         <link rel="canonical" href={import.meta.env.VITE_FRONTEND_URL} />
 
-        {/* For Seo */}
+        {/* For SEO */}
         <meta name="description" content={seo?.description} />
         <meta name="keywords" content={seo?.keywords} />
         <meta name="author" content={seo?.author} />
         <meta name="sitemap_link" content={seo?.sitemapLink} />
 
         {/* -- Open Graph data -- */}
+        <meta
+          property="og:image"
+          content={`${import.meta.env.VITE_BACKEND_URL}/favicon/${icon}`}
+        />
         <meta property="og:title" content={businessInfo?.tagline} />
         <meta property="og:type" content={businessInfo?.companyType} />
         <meta property="og:url" content={import.meta.env.VITE_FRONTEND_URL} />

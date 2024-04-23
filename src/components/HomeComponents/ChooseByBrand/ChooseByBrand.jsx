@@ -30,9 +30,9 @@ export default function ChooseByBrand() {
               alt=""
               className="w-10 sm:w-14 h-10 sm:h-14 mx-auto"
             />
-            <h6 className="mt-2 font-medium text-xs sm:text-sm lg:text-base">
+            <h1 className="mt-2 font-medium text-xs sm:text-sm lg:text-base">
               {brand?.name}
-            </h6>
+            </h1>
           </div>
         </Link>
       </SwiperSlide>

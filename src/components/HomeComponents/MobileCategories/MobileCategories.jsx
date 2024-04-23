@@ -60,9 +60,9 @@ export default function MobileCategories() {
                   alt=""
                   className="w-10 h-9 mx-auto"
                 />
-                <h6 className="mt-2 font-medium text-[10px]">
+                <h1 className="mt-2 font-medium text-[10px]">
                   {category?.name}
-                </h6>
+                </h1>
               </div>
             </Link>
           </SwiperSlide>

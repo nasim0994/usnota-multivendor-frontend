@@ -145,11 +145,12 @@ export default function SellerDashboard() {
               <p className="text-neutral font-dinMedium">Today Sales</p>
               <div className="flex items-end gap-1">
                 <h3 className="text-primary font-bold">
-                  {todayOrders?.length > 0 &&
-                    todayOrders.reduce(
-                      (total, item) => total + item.totalPrice,
-                      0
-                    )}
+                  {todayOrders?.length > 0
+                    ? todayOrders.reduce(
+                        (total, item) => total + item.totalPrice,
+                        0
+                      )
+                    : 0}
                 </h3>
                 <small>tk</small>
               </div>

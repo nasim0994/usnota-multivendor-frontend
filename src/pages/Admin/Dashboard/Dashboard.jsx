@@ -12,6 +12,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { SiBrandfolder } from "react-icons/si";
 import { useAllSellersQuery } from "../../../Redux/seller/seller/sellerApi";
 import { FaEye } from "react-icons/fa";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 export default function Dashboard() {
   const { data: products } = useGetAllProductsQuery();
@@ -24,6 +25,16 @@ export default function Dashboard() {
   const { data: brand } = useAllBrandsQuery();
 
   const { data, isLoading, isError, error } = useAllSellersQuery();
+
+  // Function to filter data created today
+  const filterTodayOrders = () => {
+    const today = new Date().toISOString().split("T")[0]; // Get today's date in ISO format
+    return orders?.data?.filter((item) => {
+      const itemDate = new Date(item.createdAt).toISOString().split("T")[0]; // Get item's creation date in ISO format
+      return itemDate === today; // Compare if item's creation date is equal to today's date
+    });
+  };
+  const todayOrders = filterTodayOrders();
 
   return (
     <section>
@@ -121,6 +132,51 @@ export default function Dashboard() {
 
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
             <SiBrandfolder className="text-xl" />
+          </div>
+        </div>
+      </div>
+
+      {/* sales */}
+      <div className="mt-4 bg-base-100 p-4 rounded shadow">
+        <p>Sales Report</p>
+
+        <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
+          <div className="flex justify-between items-center rounded-lg p-4 border">
+            <div>
+              <p className="text-neutral font-dinMedium">Today Sales</p>
+              <div className="flex items-end gap-1">
+                <h3 className="text-primary font-bold">
+                  {todayOrders?.length > 0
+                    ? todayOrders.reduce(
+                        (total, item) => total + item.totalPrice,
+                        0
+                      )
+                    : 0}
+                </h3>
+                <small>tk</small>
+              </div>
+            </div>
+            <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
+              <FaMoneyBillTrendUp className="text-xl" />
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center rounded-lg p-4 border">
+            <div>
+              <p className="text-neutral font-dinMedium">Total Sales</p>
+              <div className="flex items-end gap-1">
+                <h3 className="text-primary font-bold">
+                  {orders?.data.reduce(
+                    (total, item) => total + item.totalPrice,
+                    0
+                  )}
+                </h3>
+                <small>tk</small>
+              </div>
+            </div>
+            <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
+              <FaMoneyBillTrendUp className="text-xl" />
+            </div>
           </div>
         </div>
       </div>

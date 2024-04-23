@@ -27,9 +27,9 @@ const ChooseByCategory = () => {
             alt=""
             className="w-14 h-14 mx-auto"
           />
-          <h6 className="mt-2 font-medium text-sm md:text-base">
+          <h1 className="mt-2 font-medium text-sm md:text-base">
             {category?.name}
-          </h6>
+          </h1>
         </div>
       </Link>
     ));

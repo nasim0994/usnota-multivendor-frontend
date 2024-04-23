@@ -6,15 +6,12 @@ import {
   MdOutlineSettings,
 } from "react-icons/md";
 import { SiBrandfolder } from "react-icons/si";
-import { RiAdminFill } from "react-icons/ri";
-import { BsCart4 } from "react-icons/bs";
-import { FaUsers } from "react-icons/fa";
+import { FaUsers, FaRegImage } from "react-icons/fa";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import SidebarItems from "./SidebarItems";
 import { useGetMainLogoQuery } from "../../../Redux/logo/logoApi";
 import { VscPreview } from "react-icons/vsc";
 import { IoMdSettings } from "react-icons/io";
-import { MdFlashOn } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 
 import { useGetBusinessInfoQuery } from "../../../Redux/businessInfoApi/businessInfoApi";
@@ -88,7 +85,7 @@ const adminSidebarItems = [
     ],
   },
   {
-    icon: <MdOutlineSettings />,
+    icon: <FaRegImage />,
     title: "Banner",
     subMenu: [
       {

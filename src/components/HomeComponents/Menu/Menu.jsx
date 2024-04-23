@@ -9,7 +9,7 @@ export default function Menu() {
           <div className="sm:w-[267.5px] flex justify-between items-center bg-primary px-2 py-2.5 text-base-100">
             <div className="flex gap-2 items-center">
               <FiMenu className="text-xl" />
-              <h6>BROWSE CATEGORIES</h6>
+              <h1>BROWSE CATEGORIES</h1>
             </div>
           </div>
 

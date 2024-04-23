@@ -114,9 +114,14 @@ import AddProduct from "../pages/Seller/Product/AddProduct";
 import EditProduct from "../pages/Seller/Product/EditProduct";
 import AllSellers from "../pages/Admin/Users/Sellers/AllSellers";
 import ViewSeller from "../pages/Admin/Users/Sellers/ViewSeller/ViewSeller";
+
+//---------------Seller
 import SellerOrders from "../pages/Seller/Orders/SellerOrders";
 import SellerReview from "../pages/Seller/SellerReview/SellerReview";
 import SellerProfile from "../pages/Seller/AccountSetting/SellerProfile/SellerProfile";
+
+import SellerContact from "../pages/Seller/Support/SellerContact/SellerContact";
+import SellerHelpCenter from "../pages/Seller/Support/SellerHelpCenter/SellerHelpCenter";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -500,6 +505,16 @@ export const routes = createBrowserRouter([
       {
         path: "/seller/account-setting/profile",
         element: <SellerProfile />,
+      },
+
+      //--------Support
+      {
+        path: "/seller/support/help-center",
+        element: <SellerHelpCenter />,
+      },
+      {
+        path: "/seller/support/contact-us",
+        element: <SellerContact />,
       },
     ],
   },

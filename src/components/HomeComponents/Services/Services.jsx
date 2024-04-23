@@ -13,7 +13,7 @@ const Services = () => {
               <TbTruckDelivery className="text-4xl text-primary" />
             </div>
             <div>
-              <h6 className="text-sm sm:text-lg">Cash On Delivery</h6>
+              <h1 className="text-sm sm:text-lg">Cash On Delivery</h1>
               <p className="text-[10px] sm:text-[13px] text-neutral/90">
                 Cash On Delivery available
               </p>
@@ -25,7 +25,7 @@ const Services = () => {
               <MdVerified className="text-3xl  text-secondary" />
             </div>
             <div>
-              <h6 className="text-sm sm:text-lg">100% Authentic Product</h6>
+              <h1 className="text-sm sm:text-lg">100% Authentic Product</h1>
               <p className="text-[10px] sm:text-[13px] text-neutral/90">
                 Our all product 100% Authentic
               </p>
@@ -37,7 +37,7 @@ const Services = () => {
               <AiOutlineRedo className="text-3xl text-primary" />
             </div>
             <div>
-              <h6 className="text-sm sm:text-lg">Return Policy</h6>
+              <h1 className="text-sm sm:text-lg">Return Policy</h1>
               <p className="text-[10px] sm:text-[13px] text-neutral/90">
                 7 days return policy
               </p>
@@ -49,7 +49,7 @@ const Services = () => {
               <BiSupport className="text-3xl text-green-500" />
             </div>
             <div>
-              <h6 className="text-sm sm:text-lg">Support 24/7</h6>
+              <h1 className="text-sm sm:text-lg">Support 24/7</h1>
               <p className="text-[10px] sm:text-[13px] text-neutral/90">
                 Contact us 24 hours a day
               </p>

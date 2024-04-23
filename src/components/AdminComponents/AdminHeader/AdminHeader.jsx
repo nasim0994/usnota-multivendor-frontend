@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { userLogout } from "../../../Redux/user/userSlice";
+import { TbWorldWww } from "react-icons/tb";
 
 export default function AdminHeader({ setSidebar }) {
   const [dropdown, setDropdown] = useState(false);
@@ -29,11 +30,11 @@ export default function AdminHeader({ setSidebar }) {
           >
             <HiOutlineMenuAlt2 className="text-xl" />
           </button>
-          <div className="flex items-center text-[15px]">
-            <Link to="/admin/dashboard">Dashboard</Link>
-            {pathname !== "/admin/dashboard" && (
-              <p className="hidden sm:block">{pathname}</p>
-            )}
+
+          <div className="tooltip tooltip-bottom" data-tip="Visit Front-End">
+            <Link to="/" target="_blank">
+              <TbWorldWww className="text-2xl" />
+            </Link>
           </div>
         </div>
 
