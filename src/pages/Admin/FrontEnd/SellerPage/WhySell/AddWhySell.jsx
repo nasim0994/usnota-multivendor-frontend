@@ -15,6 +15,11 @@ export default function AddWhySell() {
       <form className="mt-4">
         <div className="form_group bg-base-100 shadhow rounded mb-4">
           <div className="mt-2">
+            <p className="text-neutral-content">Order</p>
+            <input type="number" name="order" required />
+          </div>
+
+          <div className="mt-2">
             <p className="text-neutral-content">Title</p>
             <input
               type="text"

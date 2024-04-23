@@ -2,39 +2,14 @@ import "../../../Style/Seller.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SellerForm from "./Form/SellerForm";
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+
 import Footer from "../../../components/Footer/Footer";
 import { useGetSellerLogoQuery } from "../../../Redux/logo/logoApi";
-
-const faqs = [
-  {
-    question: "What categories can I sell on Shoping Hobe?",
-    ans: `By signing up in Instantkaj.com, you can easily search for jobs in search job and earn by working from home.`,
-  },
-  {
-    question: "What is Shoping Hobe Commission?",
-    ans: `InstantKaj.com is the Best Freelancing platform in Bangladesh which acts like a bridge between freelancer and employee. Here Freelancers of Bangladesh can easily get their payouts through mobile banking. Employers can also make it Instantly! This is really efficient.`,
-  },
-  {
-    question: "What documents do I need to provide during signup?",
-    ans: `InstantKaj.com is the Best Freelancing platform in Bangladesh which acts like a bridge between freelancer and employee. Here Freelancers of Bangladesh can easily get their payouts through mobile banking. Employers can also make it Instantly! This is really efficient.`,
-  },
-  {
-    question: "What if incorrect information is submitted during signup?",
-    ans: `InstantKaj.com is the Best Freelancing platform in Bangladesh which acts like a bridge between freelancer and employee. Here Freelancers of Bangladesh can easily get their payouts through mobile banking. Employers can also make it Instantly! This is really efficient.`,
-  },
-];
+import FAQ from "./FAQ";
 
 export default function BecomeSeller() {
   const { data } = useGetSellerLogoQuery();
   const [formToggle, setFormToggle] = useState("login");
-  const [toggleFAQ, setToggleFAQ] = useState(null);
-  const handelToggleFAQ = (i) => {
-    if (toggleFAQ === i) {
-      return setToggleFAQ(null);
-    }
-    setToggleFAQ(i);
-  };
 
   return (
     <div>
@@ -281,52 +256,7 @@ export default function BecomeSeller() {
       </div>
 
       {/* FAQ */}
-      <div className="py-10 bg-gray-100">
-        <div className="w-[95%] xl:w-[1280px] mx-auto">
-          <div className="grid lg:grid-cols-2 justify-between gap-10">
-            <div>
-              <img src="/images/faq.svg" alt="" />
-            </div>
-            <div>
-              <h1 className="text-4xl text-primary font-bold">FAQ</h1>
-              <p className="text-neutral/80 py-4">
-                Shoping Hobe.com simplifies the lives of small business owners
-                with its all-in-one e-commerce platform that's tailored to meet
-                every business's unique Seller service needs.
-              </p>
-
-              <div className="mt-4">
-                {faqs.map((faq, i) => (
-                  <div key={i} className="mb-2">
-                    <button
-                      onClick={() => handelToggleFAQ(i)}
-                      className="bg-primary/10 w-full flex justify-between items-center p-4 font-medium text-neutral rounded"
-                    >
-                      <h6>{faq.question}</h6>
-                      <span>
-                        {toggleFAQ === i && "activeFAQ" ? (
-                          <IoIosArrowUp />
-                        ) : (
-                          <IoIosArrowDown />
-                        )}
-                      </span>
-                    </button>
-
-                    {/* Content/Ans */}
-                    <div
-                      className={`text-justify text-neutral duration-500 faq-content ${
-                        toggleFAQ === i && "activeFAQ"
-                      }`}
-                    >
-                      <p className="pb-5 p-3">{faq.ans}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <FAQ />
 
       <Footer />
     </div>

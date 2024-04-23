@@ -172,7 +172,7 @@ const adminSidebarItems = [
           },
           {
             title: "FAQ",
-            path: "/admin/front-end/seller-page/faq",
+            path: "/admin/front-end/seller-page/seller-faq",
           },
         ],
       },

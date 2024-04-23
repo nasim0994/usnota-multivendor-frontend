@@ -127,6 +127,9 @@ import MobileApp from "../pages/Admin/FrontEnd/SellerPage/MobileApp";
 import WhySellLists from "../pages/Admin/FrontEnd/SellerPage/WhySell/WhySellLists";
 import AddWhySell from "../pages/Admin/FrontEnd/SellerPage/WhySell/AddWhySell";
 import EditWhySale from "../pages/Admin/FrontEnd/SellerPage/WhySell/EditWhySale";
+import SellerFAQLists from "../pages/Admin/FrontEnd/SellerPage/SellerFAQ/SellerFAQLists";
+import AddSellerFAQ from "../pages/Admin/FrontEnd/SellerPage/SellerFAQ/AddSellerFAQ";
+import EditSellerFAQ from "../pages/Admin/FrontEnd/SellerPage/SellerFAQ/EditSellerFAQ";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -470,6 +473,19 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/front-end/seller-page/mobile-app",
         element: <MobileApp />,
+      },
+
+      {
+        path: "/admin/front-end/seller-page/seller-faq",
+        element: <SellerFAQLists />,
+      },
+      {
+        path: "/admin/front-end/seller-page/add-seller-faq",
+        element: <AddSellerFAQ />,
+      },
+      {
+        path: "/admin/front-end/seller-page/edit-seller-faq/:id",
+        element: <EditSellerFAQ />,
       },
 
       //----------SEO Setting

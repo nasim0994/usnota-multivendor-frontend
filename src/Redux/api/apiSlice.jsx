@@ -27,5 +27,6 @@ export const apiSlice = createApi({
     "sellerLogo",
     "mainLogo",
     "seller",
+    "sellerFAQ",
   ],
 });
