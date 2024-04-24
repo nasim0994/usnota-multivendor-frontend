@@ -47,7 +47,7 @@ export default function SellerHeader({ setSidebar }) {
           </button>
 
           {dropdown && (
-            <div className="absolute top-[140%] right-0 w-40 bg-base-100 rounded shadow p-2">
+            <div className="absolute z-50 top-[140%] right-0 w-40 bg-base-100 rounded shadow p-2">
               <Link
                 to="/seller/account-setting/profile"
                 className="block hover:bg-gray-100 w-full text-start px-2 py-1 rounded"

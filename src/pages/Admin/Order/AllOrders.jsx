@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { GrView } from "react-icons/gr";
@@ -11,13 +10,14 @@ import {
 } from "../../../Redux/order/orderApi";
 import Spinner from "../../../components/Spinner/Spinner";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Pagination from "../../../components/Pagination/Pagination";
 
 export default function AllOrders() {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const query = {};
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  query["page"] = page;
-  query["limit"] = limit;
+  query["page"] = currentPage;
+  query["limit"] = 10;
 
   const { data, isLoading, isError, error } = useGetAllOrdersQuery({
     ...query,
@@ -65,13 +65,6 @@ export default function AllOrders() {
     }
   };
 
-  const handlePageChange = (pageNumber) => {
-    if (pageNumber < 1) return;
-    if (data?.meta?.total && pageNumber > data?.meta.total / limit) return;
-
-    setPage(pageNumber);
-  };
-
   let content = null;
   if (isLoading) {
     return (content = <Spinner />);
@@ -82,8 +75,10 @@ export default function AllOrders() {
   if (!isLoading && !isError && data?.data?.length > 0) {
     content = data?.data?.map((order) => (
       <tr key={order?._id}>
-        <td>{order?._id}</td>
-        <td>{order?.products?.length}</td>
+        <td>#{order?.invoiceNumber}</td>
+        <td>{order?.createdAt?.split("T")[0]}</td>
+        <td>{order?.paymentMethod}</td>
+        <td>{order?.totalPrice} tk</td>
         <td>
           {statusLoading ? (
             <p>Loading...</p>
@@ -109,19 +104,21 @@ export default function AllOrders() {
             </button>
           )}
         </td>
-        <td className="flex gap-3">
-          <Link
-            to={`/admin/order/${order?._id}`}
-            className=" hover:text-blue-700"
-          >
-            <GrView />
-          </Link>
-          <button
-            onClick={() => deleteOrderHandler(order?._id)}
-            className="hover:text-red-700"
-          >
-            <AiOutlineDelete />
-          </button>
+        <td>
+          <div className="flex gap-3">
+            <Link
+              to={`/admin/order/${order?._id}`}
+              className=" hover:text-blue-700"
+            >
+              <GrView />
+            </Link>
+            <button
+              onClick={() => deleteOrderHandler(order?._id)}
+              className="hover:text-red-700"
+            >
+              <AiOutlineDelete />
+            </button>
+          </div>
         </td>
       </tr>
     ));
@@ -133,7 +130,9 @@ export default function AllOrders() {
         <thead>
           <tr>
             <th>Order Id</th>
-            <th>Total Products</th>
+            <th>Date</th>
+            <th>PAYMENT METHOD</th>
+            <th>Total Price</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -141,28 +140,12 @@ export default function AllOrders() {
         <tbody>{content}</tbody>
       </table>
 
-      {data?.data?.length > 0 && (
-        <div className="flex items-center justify-center mt-16 mb-5">
-          <div className="flex items-center space-x-1 border border-gray-300 rounded overflow-hidden text-sm">
-            <button
-              className="px-4 py-2 text-gray-600 hover:text-gray-800 focus:outline-none"
-              onClick={() => handlePageChange(page - 1)}
-              disabled={page === 1}
-            >
-              <FaArrowLeft />
-            </button>
-            <button className="px-4 py-2 bg-gray-700 text-gray-100 font-medium focus:outline-none">
-              Page {page}
-            </button>
-            <button
-              className="px-4 py-2 text-gray-600 hover:text-gray-800 focus:outline-none"
-              onClick={() => handlePageChange(page + 1)}
-              disabled={data?.meta?.total && page === data?.meta.total / limit}
-            >
-              <FaArrowRight />
-            </button>
-          </div>
-        </div>
+      {data?.data?.length > 10 && (
+        <Pagination
+          pages={data?.meta?.pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       )}
     </div>
   );

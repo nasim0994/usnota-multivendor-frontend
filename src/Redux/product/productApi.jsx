@@ -43,9 +43,11 @@ export const productApi = apiSlice.injectEndpoints({
     }),
 
     getProductBySellerId: builder.query({
-      query: (id) => ({
+      query: ({ id, query }) => ({
         url: `/product/seller/${id}`,
+        params: query,
       }),
+
       providesTags: ["product", "review", "seller"],
     }),
 

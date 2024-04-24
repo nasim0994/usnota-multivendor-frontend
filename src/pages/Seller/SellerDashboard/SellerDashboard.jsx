@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import { useAllBrandsQuery } from "../../../Redux/brand/brandApi";
 import { useGetCategoriesQuery } from "../../../Redux/category/categoryApi";
 import { useGetSellerOrderByIdQuery } from "../../../Redux/order/orderApi";
-import { useGetAllProductsQuery } from "../../../Redux/product/productApi";
+import {
+  useGetAllProductsQuery,
+  useGetProductBySellerIdQuery,
+} from "../../../Redux/product/productApi";
 import { useGetSubCategoriesQuery } from "../../../Redux/subCategory/subCategoryApi";
 import { useGetSubSubCategoriesQuery } from "../../../Redux/subSubCategory/subSubCategoryApi";
 import { FaBoxOpen, FaCartPlus } from "react-icons/fa";
@@ -26,7 +29,7 @@ export default function SellerDashboard() {
   query["page"] = currentPage;
   query["limit"] = 5;
 
-  const { data: products } = useGetAllProductsQuery();
+  const { data: products } = useGetProductBySellerIdQuery({ id: sellerId });
   const { data: orders } = useGetSellerOrderByIdQuery({ sellerId, query });
   const { data: category } = useGetCategoriesQuery();
   const { data: subCategory } = useGetSubCategoriesQuery();

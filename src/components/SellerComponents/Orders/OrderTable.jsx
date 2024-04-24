@@ -25,8 +25,8 @@ export default function OrderTable({ orders }) {
           <tr>
             <th>Order Id</th>
             <th>Date</th>
-            <th>Total Products</th>
             <th>Payment Method</th>
+            <th>Total Price</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -36,8 +36,8 @@ export default function OrderTable({ orders }) {
             <tr key={order?._id}>
               <td>#{order?.invoiceNumber}</td>
               <td>{order?.createdAt?.split("T")[0]}</td>
-              <td>{order?.products?.length}</td>
               <td>{order?.paymentMethod}</td>
+              <td>{order?.totalPrice} tk</td>
               <td>
                 <div
                   className={`w-max border text-xs ${
@@ -57,19 +57,21 @@ export default function OrderTable({ orders }) {
                   )}
                 </div>
               </td>
-              <td className="flex gap-3">
-                <Link
-                  to={`/admin/order/${order?._id}`}
-                  className=" hover:text-blue-700"
-                >
-                  <GrView />
-                </Link>
-                <button
-                  onClick={() => handleDeleteOrder(order?._id)}
-                  className="hover:text-red-700"
-                >
-                  <AiOutlineDelete />
-                </button>
+              <td>
+                <div className="flex gap-3">
+                  <Link
+                    to={`/admin/order/${order?._id}`}
+                    className=" hover:text-blue-700"
+                  >
+                    <GrView />
+                  </Link>
+                  <button
+                    onClick={() => handleDeleteOrder(order?._id)}
+                    className="hover:text-red-700"
+                  >
+                    <AiOutlineDelete />
+                  </button>
+                </div>
               </td>
             </tr>
           ))}

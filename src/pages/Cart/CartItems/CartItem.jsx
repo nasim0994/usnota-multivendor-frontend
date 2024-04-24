@@ -10,6 +10,8 @@ export default function CartItem({ product }) {
   const { slug, image, title, discount, price, quantity, size, color, stock } =
     product;
 
+  console.log(product);
+
   const discountPrice = parseInt(price - (price * discount) / 100);
   const total =
     parseInt(discount >= 1 ? discountPrice : price) * parseInt(quantity);

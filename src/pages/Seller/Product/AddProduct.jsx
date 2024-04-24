@@ -402,7 +402,7 @@ export default function AddProduct() {
         result.push({
           color,
           colorCode,
-          size,
+          size: size ? size : "",
           quantity,
           sellingPrice,
           purchasePrice,

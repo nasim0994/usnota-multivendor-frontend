@@ -14,10 +14,9 @@ import Spinner from "../../../components/Spinner/Spinner";
 export default function ProductList() {
   const query = {};
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
 
   query["page"] = page;
-  query["limit"] = limit;
+  query["limit"] = 10;
 
   const { data, isLoading, isError, error } = useGetAllProductsQuery({
     ...query,

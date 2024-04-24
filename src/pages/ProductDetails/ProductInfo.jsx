@@ -171,6 +171,7 @@ export default function ProductInfo({ product }) {
       color: selectedColor,
       stock: availableStock,
       sellerId: seller?._id,
+      sellerName: seller?.shopName,
     };
 
     const findProduct = carts?.find(

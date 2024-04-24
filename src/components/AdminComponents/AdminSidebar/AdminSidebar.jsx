@@ -6,7 +6,7 @@ import {
   MdOutlineSettings,
 } from "react-icons/md";
 import { SiBrandfolder } from "react-icons/si";
-import { FaUsers, FaRegImage } from "react-icons/fa";
+import { FaUsers, FaRegImage, FaUserShield, FaStore } from "react-icons/fa";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import SidebarItems from "./SidebarItems";
 import { useGetMainLogoQuery } from "../../../Redux/logo/logoApi";
@@ -65,22 +65,23 @@ const adminSidebarItems = [
     title: "Review",
     path: "/admin/reviews",
   },
-
   {
     icon: <FaUsers />,
-    title: "Users",
+    title: "Customers",
+    path: "/admin/customer/all-customers",
+  },
+  {
+    icon: <FaUserShield />,
+    title: "Administrator",
+    path: "/admin/administrator/all-administrator",
+  },
+  {
+    icon: <FaStore />,
+    title: "Seller",
     subMenu: [
       {
-        title: "Customers",
-        path: "/admin/customer/all-customers",
-      },
-      {
-        title: "Sellers",
+        title: "All Seller",
         path: "/admin/seller/all-sellers",
-      },
-      {
-        title: "Administrator",
-        path: "/admin/administrator/all-administrator",
       },
     ],
   },

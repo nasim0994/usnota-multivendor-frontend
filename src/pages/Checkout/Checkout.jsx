@@ -107,17 +107,47 @@ export default function Checkout() {
       return alert("Please Provide Your area name");
     }
 
-    const products = [];
-    carts.map((product) => {
-      products.push({
-        productId: product._id,
-        quantity: product.quantity,
-        size: product.size,
-        color: product.color,
-        variant: product?.variant,
-        sellerId: product?.sellerId,
-      });
-    });
+    // const products = [];
+    // carts.map((product) => {
+    //   products.push({
+    //     productId: product._id,
+    //     quantity: product.quantity,
+    //     size: product.size,
+    //     color: product.color,
+    //     sellerId: product?.sellerId,
+    //   });
+    // });
+
+    const mergedCarts = carts.reduce((acc, curr) => {
+      const existingSeller = acc.find(
+        (item) => item.sellerId === curr.sellerId
+      );
+
+      if (existingSeller) {
+        // If an object with the same sellerId exists, push the product to its products array
+        existingSeller.products.push({
+          color: curr.color,
+          size: curr.size,
+          quantity: curr.quantity,
+          productId: curr._id,
+        });
+      } else {
+        // If not, create a new object and push it to the accumulator
+        acc.push({
+          sellerId: curr.sellerId,
+          products: [
+            {
+              productId: curr._id,
+              color: curr.color,
+              size: curr.size,
+              quantity: curr.quantity,
+            },
+          ],
+        });
+      }
+
+      return acc;
+    }, []);
 
     const order = {
       userId: loggedUser?.data?._id,
@@ -127,7 +157,7 @@ export default function Checkout() {
         street,
       },
       paymentMethod,
-      products,
+      products: mergedCarts,
       totalPrice: grandTotal,
     };
 

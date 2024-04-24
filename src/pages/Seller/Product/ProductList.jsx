@@ -7,20 +7,25 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   useDeleteProductMutation,
-  useGetAllProductsQuery,
+  useGetProductBySellerIdQuery,
 } from "../../../Redux/product/productApi";
 import Spinner from "../../../components/Spinner/Spinner";
+import { useSelector } from "react-redux";
+import Pagination from "../../../components/Pagination/Pagination";
 
 export default function ProductList() {
+  const { loggedSeller } = useSelector((state) => state.seller);
+  const id = loggedSeller?.data?._id;
+
   const query = {};
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  query["page"] = page;
-  query["limit"] = limit;
+  query["page"] = currentPage;
+  query["limit"] = 10;
 
-  const { data, isLoading, isError, error } = useGetAllProductsQuery({
-    ...query,
+  const { data, isLoading, isError, error } = useGetProductBySellerIdQuery({
+    id,
+    query,
   });
 
   const [
@@ -33,13 +38,6 @@ export default function ProductList() {
     if (isConfirm) {
       await deleteProduct(id);
     }
-  };
-
-  const handlePageChange = (pageNumber) => {
-    if (pageNumber < 1) return;
-    if (data?.meta?.total && pageNumber > data?.meta.total / limit) return;
-
-    setPage(pageNumber);
   };
 
   useEffect(() => {
@@ -153,7 +151,7 @@ export default function ProductList() {
         </Link>
       </div>
 
-      <div className="bg-base-100 shadow-lg min-h-[80vh] flex flex-col justify-between">
+      <div className="bg-base-100 shadow-lg min-h-[80vh] flex flex-col justify-between pb-4">
         <div className="relative overflow-x-auto">
           <table className="dashboard_table">
             <thead>
@@ -171,31 +169,11 @@ export default function ProductList() {
         </div>
 
         {/* pagination */}
-        {data?.data?.length > 0 && (
-          <div className="flex items-end justify-end m-4">
-            <div className="flex items-center space-x-1 border border-gray-300 rounded overflow-hidden text-sm">
-              <button
-                className="px-4 py-2 text-gray-600 hover:text-gray-800 focus:outline-none"
-                onClick={() => handlePageChange(page - 1)}
-                disabled={page === 1}
-              >
-                <FaArrowLeft />
-              </button>
-              <button className="px-4 py-2 bg-gray-700 text-gray-100 font-medium focus:outline-none">
-                {page}
-              </button>
-              <button
-                className="px-4 py-2 text-gray-600 hover:text-gray-800 focus:outline-none"
-                onClick={() => handlePageChange(page + 1)}
-                disabled={
-                  data?.meta?.total && page === data?.meta?.total / limit
-                }
-              >
-                <FaArrowRight />
-              </button>
-            </div>
-          </div>
-        )}
+        <Pagination
+          pages={data?.meta?.pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </div>
   );

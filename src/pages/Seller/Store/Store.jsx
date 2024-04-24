@@ -21,11 +21,9 @@ export default function Store() {
     <section className="pb-10">
       {/* profile */}
       <div className="container">
-        <div className="relative w-full h-28 sm:h-48 bg-gray-100 rounded overflow-hidden">
+        <div className="relative w-full h-28 sm:h-48 bg-gray-200 rounded overflow-hidden">
           {!seller?.banner || seller?.banner === "" ? (
-            <p className="flex justify-center items-center w-full h-full text-gray-500">
-              Banner 1200px*190px
-            </p>
+            <p className="flex justify-center items-center w-full h-full text-gray-500"></p>
           ) : (
             <img
               src={`${import.meta.env.VITE_BACKEND_URL}/seller/profile/${
