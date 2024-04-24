@@ -130,6 +130,8 @@ import EditWhySale from "../pages/Admin/FrontEnd/SellerPage/WhySell/EditWhySale"
 import SellerFAQLists from "../pages/Admin/FrontEnd/SellerPage/SellerFAQ/SellerFAQLists";
 import AddSellerFAQ from "../pages/Admin/FrontEnd/SellerPage/SellerFAQ/AddSellerFAQ";
 import EditSellerFAQ from "../pages/Admin/FrontEnd/SellerPage/SellerFAQ/EditSellerFAQ";
+import SellerBalance from "../pages/Seller/Finance/SellerBalance/SellerBalance";
+import SellerPayout from "../pages/Seller/Finance/SellerPayout/SellerPayout";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -558,6 +560,16 @@ export const routes = createBrowserRouter([
       {
         path: "/seller/support/contact-us",
         element: <SellerContact />,
+      },
+
+      //--------Finance
+      {
+        path: "/seller/finance/payout",
+        element: <SellerPayout />,
+      },
+      {
+        path: "/seller/finance/balance",
+        element: <SellerBalance />,
       },
     ],
   },

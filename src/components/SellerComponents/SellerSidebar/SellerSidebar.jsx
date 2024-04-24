@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import { MdOutlineDashboard, MdOutlineVerifiedUser } from "react-icons/md";
+import {
+  MdOutlineAccountBalance,
+  MdOutlineDashboard,
+  MdOutlineVerifiedUser,
+} from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
 import { BiSolidShoppingBags, BiSupport } from "react-icons/bi";
 import SidebarItems from "./SidebarItems";
@@ -45,7 +49,6 @@ const adminSidebarItems = [
   {
     icon: <IoMdSettings />,
     title: "Account & Setting",
-    slug: "account-setting",
     subMenu: [
       {
         title: "Profile",
@@ -56,7 +59,6 @@ const adminSidebarItems = [
   {
     icon: <BiSupport />,
     title: "Support",
-    slug: "account-setting",
     subMenu: [
       {
         title: "Help Center",
@@ -65,6 +67,20 @@ const adminSidebarItems = [
       {
         title: "Contact Us",
         path: "/seller/support/contact-us",
+      },
+    ],
+  },
+  {
+    icon: <MdOutlineAccountBalance />,
+    title: "Finance",
+    subMenu: [
+      {
+        title: "Payment System",
+        path: "/seller/finance/payout",
+      },
+      {
+        title: "Balance",
+        path: "/seller/finance/balance",
       },
     ],
   },
