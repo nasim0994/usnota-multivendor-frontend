@@ -1,15 +1,14 @@
 import "../../../Style/Seller.css";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import SellerForm from "./Form/SellerForm";
-
 import Footer from "../../../components/Footer/Footer";
 import { useGetSellerLogoQuery } from "../../../Redux/logo/logoApi";
 import FAQ from "./FAQ";
+import SellerBanner from "./SellerBanner";
+import MobileApp from "./MobileApp";
+import WhySellHere from "./WhySellHere";
 
 export default function BecomeSeller() {
   const { data } = useGetSellerLogoQuery();
-  const [formToggle, setFormToggle] = useState("login");
 
   return (
     <div>
@@ -33,157 +32,13 @@ export default function BecomeSeller() {
       </header>
 
       {/* Banner */}
-      <div
-        style={{
-          "--image-url": `linear-gradient(310deg, #000000ab, #000000c9) ,url(${"https://grabmerchanthelp.zendesk.com/hc/article_attachments/900006446566/Mod_3_EDM_5.gif"})`,
-        }}
-        className={`merchantBanner py-10 lg:min-h-[90vh] lg:flex justify-center items-center bg-[image:var(--image-url)]`}
-      >
-        <div className="container">
-          <div className="lg:grid grid-cols-2 gap-40 justify-between items-center text-base-100">
-            <div className="mb-10 lg:mb-0">
-              <h1 className="text-4xl font-semibold mb-4">
-                Dedicated to Make Small Business Thrive
-              </h1>
-              <p>
-                pmall.com simplifies the lives of small business owners with its
-                all-in-one e-commerce platform that's tailored to meet every
-                business's unique Seller service needs.
-              </p>
-              <button
-                onClick={() => setFormToggle("signup")}
-                className="px-8 py-2 bg-primary mt-4 rounded scale-[.98] hover:scale-[1] duration-300"
-              >
-                Signup
-              </button>
-            </div>
+      <SellerBanner />
 
-            {/* Login/ Signup */}
-            <div className="bg-base-100 text-neutral px-4 py-10 rounded-lg md:w-3/4 mx-auto">
-              <div className="text-center mb-4">
-                <h2 className="text-2xl font-semibold">Welcome</h2>
-                <p className="text-sm">
-                  To Shoping Hobe Seller Login/Registration Panel
-                </p>
-              </div>
-
-              {/* Seller Signup/login Form */}
-              <SellerForm
-                formToggle={formToggle}
-                setFormToggle={setFormToggle}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Why PMall */}
-      <div className="py-10">
-        <div className="w-[95%] xl:w-[1280px] mx-auto">
-          <h1 className="text-4xl font-bold">WHY SELL ON Shoping Hobe?</h1>
-
-          <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div className="flex gap-4">
-              <img src="/images/whyPmall/1.png" alt="" className="w-12 h-12" />
-              <div>
-                <h2 className="text-2xl font-medium">Reach</h2>
-                <p className="text-sm mt-2">
-                  Millions of customers on Shoping Hobe, Bangladesh's most
-                  visited shopping destination
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <img src="/images/whyPmall/2.png" alt="" className="w-12 h-12" />
-              <div>
-                <h2 className="text-2xl font-medium">Free Registration</h2>
-                <p className="text-sm mt-2">
-                  Account registration & listing items for sale is free
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <img src="/images/whyPmall/3.png" alt="" className="w-12 h-12" />
-              <div>
-                <h2 className="text-2xl font-medium">Reliable Shipping</h2>
-                <p className="text-sm mt-2">
-                  Fast, reliable and hassle free delivery through Daraz logistic
-                  network
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <img src="/images/whyPmall/4.png" alt="" className="w-12 h-12" />
-              <div>
-                <h2 className="text-2xl font-medium">Timely Payments</h2>
-                <p className="text-sm mt-2">
-                  Funds are safely deposited directly to your bank account on a
-                  weekly basis
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <img src="/images/whyPmall/5.png" alt="" className="w-12 h-12" />
-              <div>
-                <h2 className="text-2xl font-medium">Marketing Tools</h2>
-                <p className="text-sm mt-2">
-                  Find new customers & grow more with advertising and our whole
-                  range of marketing tools
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <img src="/images/whyPmall/6.png" alt="" className="w-12 h-12" />
-              <div>
-                <h2 className="text-2xl font-medium">Support&Training</h2>
-                <p className="text-sm mt-2">
-                  Learn all about ecommerce for free and get help with seller
-                  support and Daraz University
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Why Sell Here */}
+      <WhySellHere />
 
       {/* mobile app banner */}
-      <div className="py-10">
-        <div className="bg-gradient-to-r from-[#1E1436] to-primary md:h-96">
-          <div className="w-[95%] xl:w-[1280px] mx-auto">
-            <div className="md:flex justify-between py-10">
-              <div className="md:w-[70%] text-base-100">
-                <p>Go Mobile</p>
-                <h6 className="text-4xl font-semibold">
-                  USE THE FREE Shoping Hobe SELLER APP
-                </h6>
-                <p className="mt-4 w-4/5 text-[17px]">
-                  The Shoping Hobe Seller app is packed with features to help
-                  you manage and grow your ecommerce business wherever you are.
-                  It gives you the freedom to take care of business details
-                  right from your phone.
-                </p>
-
-                <Link to="">
-                  <img
-                    src="/images/play_store.png"
-                    alt=""
-                    className="w-44 mt-8"
-                  />
-                </Link>
-              </div>
-
-              <div className="md:w-[30%]">
-                <img src="/images/mobileapp.png" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <MobileApp />
 
       {/* Simple Step to Start Selling */}
       <div className="py-10">

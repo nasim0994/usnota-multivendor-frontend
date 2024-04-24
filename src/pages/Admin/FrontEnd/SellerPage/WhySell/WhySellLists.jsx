@@ -1,6 +1,35 @@
 import { Link } from "react-router-dom";
+import {
+  useDeleteWhySellHereMutation,
+  useGetWhySellHereQuery,
+} from "../../../../../Redux/admin/sellerPage/whySellHereApi";
+import Spinner from "../../../../../components/Spinner/Spinner";
+import { AiFillEdit } from "react-icons/ai";
+import { MdDeleteOutline } from "react-icons/md";
+import Swal from "sweetalert2";
 
 export default function WhySellLists() {
+  const { data, isLoading } = useGetWhySellHereQuery();
+  const whySellHere = data?.data;
+
+  const [deleteWhySellHere] = useDeleteWhySellHereMutation();
+
+  const handleDelete = async (id) => {
+    const isConfirm = window.confirm("Are you sure delete this itms?");
+    if (isConfirm) {
+      const res = await deleteWhySellHere(id);
+      if (res?.data?.success) {
+        Swal.fire("", "delete success", "success");
+      } else {
+        Swal.fire("", "Something went wrong", "error");
+      }
+    }
+  };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <section className="bg-base-100 p-4 rounded shadow">
       <div className="flex justify-between items-center">
@@ -25,16 +54,33 @@ export default function WhySellLists() {
           </thead>
           <tbody>
             {/* row 1 */}
-            <tr>
-              <td>
-                <img src="" alt="icon" className="w-10 h-10 rounded-full" />
-              </td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-              <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-              </th>
-            </tr>
+            {whySellHere?.map((whysell) => (
+              <tr key={whysell?._id}>
+                <td>
+                  <img
+                    src={`${
+                      import.meta.env.VITE_BACKEND_URL
+                    }/sellerWhySellHere/${whysell?.icon}`}
+                    alt="icon"
+                    className="w-10 h-10 rounded-full"
+                  />
+                </td>
+                <td>{whysell?.title}</td>
+                <td>{whysell?.description}</td>
+                <td>
+                  <div className="flex items-center gap-2 text-lg">
+                    <Link
+                      to={`/admin/front-end/seller-page/edit-why-sell/${whysell?._id}`}
+                    >
+                      <AiFillEdit />
+                    </Link>
+                    <button onClick={() => handleDelete(whysell?._id)}>
+                      <MdDeleteOutline className="text-red-500" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

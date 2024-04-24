@@ -1,9 +1,65 @@
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import {
+  useAddSellerMobileAppMutation,
+  useGetSellerMobileAppQuery,
+  useUpdateSellerMobileAppMutation,
+} from "../../../../Redux/admin/sellerPage/sellerMobileAppApi";
+import Swal from "sweetalert2";
 
 export default function MobileApp() {
   const [images, setImages] = useState([]);
+
+  const { data } = useGetSellerMobileAppQuery();
+  const mobileApp = data?.data[0];
+  const id = data?.data?.length > 0 && data?.data[0]?._id;
+
+  const [addSellerMobileApp, { isLoading: addLoading }] =
+    useAddSellerMobileAppMutation();
+  const [updateSellerMobileApp, { isLoading: updateLoading }] =
+    useUpdateSellerMobileAppMutation();
+
+  const handleAddUpdate = async (e) => {
+    e.preventDefault();
+
+    const image = images[0]?.file;
+    const title = e.target.title.value;
+    const mainTitle = e.target.mainTitle.value;
+    const description = e.target.description.value;
+    const appLink = e.target.appLink.value;
+
+    if (!image) {
+      return Swal.fire("", "Image is required", "warning");
+    }
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("mainTitle", mainTitle);
+    formData.append("description", description);
+    formData.append("appLink", appLink);
+    if (image) {
+      formData.append("image", image);
+    }
+
+    if (id) {
+      const res = await updateSellerMobileApp({ id, formData });
+      if (res?.data?.success) {
+        Swal.fire("", "Mobile App update success", "success");
+        setImages([]);
+      } else {
+        Swal.fire("", "Something went wrong", "error");
+      }
+    } else {
+      const res = await addSellerMobileApp(formData);
+      if (res?.data?.success) {
+        Swal.fire("", "Mobile App add success", "success");
+        setImages([]);
+      } else {
+        Swal.fire("", "Something went wrong", "error");
+      }
+    }
+  };
 
   return (
     <section className="bg-base-100 rounded shadow">
@@ -13,7 +69,7 @@ export default function MobileApp() {
         </h3>
       </div>
 
-      <form className="p-4">
+      <form onSubmit={handleAddUpdate} className="p-4">
         <div className="form_group bg-base-100 shadhow rounded mb-4">
           <div className="mt-2">
             <p className="text-neutral-content">Title</p>
@@ -21,7 +77,7 @@ export default function MobileApp() {
               type="text"
               name="title"
               required
-              //   defaultValue={data?.data[0]?.title}
+              defaultValue={mobileApp?.title}
             />
           </div>
 
@@ -31,13 +87,18 @@ export default function MobileApp() {
               type="text"
               name="mainTitle"
               required
-              //   defaultValue={data?.data[0]?.title}
+              defaultValue={mobileApp?.title}
             />
           </div>
 
           <div className="mt-2">
             <p className="text-neutral-content">Description</p>
-            <textarea name="description" rows="3" required></textarea>
+            <textarea
+              name="description"
+              rows="3"
+              required
+              defaultValue={mobileApp?.description}
+            ></textarea>
           </div>
 
           <div className="mt-2">
@@ -46,7 +107,7 @@ export default function MobileApp() {
               type="text"
               name="appLink"
               required
-              //   defaultValue={data?.data[0]?.title}
+              defaultValue={mobileApp?.appLink}
             />
           </div>
 
@@ -93,25 +154,25 @@ export default function MobileApp() {
             </div>
 
             <div>
-              {/* {data?.data[0]?.image && (
+              {mobileApp?.image && (
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/aboutus/${
-                    data?.data[0]?.image
+                  src={`${import.meta.env.VITE_BACKEND_URL}/sellerBanner/${
+                    mobileApp?.image
                   }`}
                   alt=""
                   className="w-32 mt-4"
                 />
-              )} */}
+              )}
             </div>
           </div>
         </div>
 
         <div className="mt-6">
           <button
-            // disabled={updateLoading && "disabled"}
+            disabled={(updateLoading || addLoading) && "disabled"}
             className="primary_btn"
           >
-            Add
+            {updateLoading || addLoading ? "Loading..." : "Submit"}
           </button>
         </div>
       </form>

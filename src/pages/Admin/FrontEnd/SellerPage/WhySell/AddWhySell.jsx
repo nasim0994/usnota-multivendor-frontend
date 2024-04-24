@@ -1,10 +1,58 @@
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import {
+  useAddWhySellHereMutation,
+  useGetWhySellHereQuery,
+} from "../../../../../Redux/admin/sellerPage/whySellHereApi";
+import Spinner from "../../../../../components/Spinner/Spinner";
 
 export default function AddWhySell() {
+  const navigate = useNavigate();
   const [images, setImages] = useState([]);
+
+  const { data, isLoading: getLoading } = useGetWhySellHereQuery();
+
+  const [addWhySellHere, { isLoading }] = useAddWhySellHereMutation();
+
+  const handleAdd = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const icon = images[0]?.file;
+    const order = form.order.value;
+    const title = form.title.value;
+    const description = form.description.value;
+
+    if (!icon) {
+      return Swal.fire("", "Background Image is required", "warning");
+    }
+
+    const formData = new FormData();
+    formData.append("order", order);
+    formData.append("title", title);
+    formData.append("description", description);
+    if (icon) {
+      formData.append("icon", icon);
+    }
+
+    const res = await addWhySellHere(formData);
+    if (res?.data?.success) {
+      Swal.fire("", "add success", "success");
+      setImages([]);
+      form.reset();
+      navigate("/admin/front-end/seller-page/why-sell-here");
+    } else {
+      Swal.fire("", "Something went wrong", "error");
+    }
+  };
+
+  if (getLoading) {
+    return <Spinner />;
+  }
 
   return (
     <section className="bg-base-100 p-4 rounded shadow">
@@ -12,21 +60,21 @@ export default function AddWhySell() {
         <h1 className="font-medium">Add New Why Sell</h1>
       </div>
 
-      <form className="mt-4">
+      <form onSubmit={handleAdd} className="mt-4">
         <div className="form_group bg-base-100 shadhow rounded mb-4">
           <div className="mt-2">
             <p className="text-neutral-content">Order</p>
-            <input type="number" name="order" required />
+            <input
+              type="number"
+              name="order"
+              required
+              defaultValue={data?.data?.length + 1}
+            />
           </div>
 
           <div className="mt-2">
             <p className="text-neutral-content">Title</p>
-            <input
-              type="text"
-              name="title"
-              required
-              //   defaultValue={data?.data[0]?.title}
-            />
+            <input type="text" name="title" required />
           </div>
 
           <div className="mt-2">
@@ -75,18 +123,6 @@ export default function AddWhySell() {
                 )}
               </ImageUploading>
             </div>
-
-            <div>
-              {/* {data?.data[0]?.image && (
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/aboutus/${
-                    data?.data[0]?.image
-                  }`}
-                  alt=""
-                  className="w-32 mt-4"
-                />
-              )} */}
-            </div>
           </div>
         </div>
 
@@ -97,11 +133,8 @@ export default function AddWhySell() {
           >
             Cancel
           </Link>
-          <button
-            // disabled={updateLoading && "disabled"}
-            className="primary_btn"
-          >
-            Add
+          <button disabled={isLoading && "disabled"} className="primary_btn">
+            {isLoading ? "Loading..." : "Add"}
           </button>
         </div>
       </form>
