@@ -3,15 +3,18 @@ import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { TiChartLine } from "react-icons/ti";
 import { useGetSellerOrderByIdQuery } from "../../../../Redux/order/orderApi";
 import { useSelector } from "react-redux";
+import PaymentRequest from "./PaymentRequest";
+import AllPaymentRequest from "./AllPaymentRequest";
+import SuccessWithdrawal from "./SuccessWithdrawal";
+import PendingWithdrawal from "./PendingWithDrawal";
+import { useGetAllPaymentRequestBySellerIdQuery } from "../../../../Redux/payment/paymentApi";
 
 export default function SellerBalance() {
   const { loggedSeller } = useSelector((state) => state.seller);
   const sellerId = loggedSeller?.data?._id;
   const { data: orders } = useGetSellerOrderByIdQuery({ sellerId });
-  console.log(orders?.data);
 
   let totalPrice = 0;
-
   orders?.data?.forEach((item) => {
     item?.products?.forEach((product) => {
       if (product?.productId?.variants?.length > 0) {
@@ -36,6 +39,28 @@ export default function SellerBalance() {
       }
     });
   });
+
+  const query1 = {};
+  query1["status"] = "all";
+  const { data: allRequest } = useGetAllPaymentRequestBySellerIdQuery({
+    sellerId,
+    query: query1,
+  });
+
+  const totalWithDrawal = allRequest?.data?.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  const query2 = {};
+  query2["status"] = "pending";
+  const { data: pendingRequest } = useGetAllPaymentRequestBySellerIdQuery({
+    sellerId,
+    query: query2,
+  });
+
+  const pendingWithDrawal = pendingRequest?.data?.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
 
   return (
     <section>
@@ -65,7 +90,7 @@ export default function SellerBalance() {
         <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
           <div>
             <p className="text-neutral font-dinMedium">Total Withdrawal</p>
-            <h3 className="text-primary font-bold">00 tk</h3>
+            <h3 className="text-primary font-bold">{totalWithDrawal} tk</h3>
           </div>
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
             <FaMoneyBillTransfer className="text-xl" />
@@ -75,7 +100,7 @@ export default function SellerBalance() {
         <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
           <div>
             <p className="text-neutral font-dinMedium">Pending Withdrawal</p>
-            <h3 className="text-primary font-bold">00 tk</h3>
+            <h3 className="text-primary font-bold">{pendingWithDrawal} tk</h3>
           </div>
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
             <FaSpinner className="text-xl" />
@@ -84,77 +109,14 @@ export default function SellerBalance() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-4 mt-4">
-        <div className="bg-base-100 shadow p-3 rounded">
-          <div>
-            <h1>Request Withdrawal</h1>
-          </div>
+        <PaymentRequest loggedSeller={loggedSeller} />
 
-          <form className="mt-4 form_group">
-            <div className="flex flex-col sm:flex-row items-center gap-2">
-              <input
-                type="number"
-                name="withdrawalRequestAmount"
-                defaultValue="0"
-              />
-              <button className="primary_btn">Submit</button>
-            </div>
-          </form>
-        </div>
+        <PendingWithdrawal sellerId={sellerId} />
 
-        <div className="bg-base-100 shadow p-3 rounded">
-          <div>
-            <h1>Pending Withdrawal</h1>
-          </div>
-
-          <div className="mt-4 overflow-x-auto">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Date</th>
-                  <th>Ammount</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>20-20-2024</td>
-                  <td>500</td>
-                  <td>Pending</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className="bg-base-100 shadow p-3 rounded">
-          <div>
-            <h1>Success Withdrawal</h1>
-          </div>
-
-          <div className="mt-4 overflow-x-auto">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Date</th>
-                  <th>Ammount</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>20-20-2024</td>
-                  <td>500</td>
-                  <td>Pending</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <SuccessWithdrawal sellerId={sellerId} />
       </div>
+
+      <AllPaymentRequest sellerId={sellerId} />
     </section>
   );
 }

@@ -31,5 +31,6 @@ export const apiSlice = createApi({
     "sellerMobileApp",
     "sellerBanner",
     "whySellHereApi",
+    "paymentRequest",
   ],
 });
