@@ -69,6 +69,23 @@ export const orderApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["order"],
     }),
+
+    getSellerOrderByOrderId: builder.query({
+      query: (id) => ({
+        url: `/order/seller-order/single/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["order"],
+    }),
+
+    getSellerSeparateOrderById: builder.query({
+      query: ({ sellerId, query }) => ({
+        url: `/order/orders-separate-seller/${sellerId}`,
+        method: "GET",
+        params: query,
+      }),
+      providesTags: ["order"],
+    }),
   }),
 });
 
@@ -83,4 +100,6 @@ export const {
   useGetOrderByTransactionIdQuery,
 
   useGetSellerOrderByIdQuery,
+  useGetSellerOrderByOrderIdQuery,
+  useGetSellerSeparateOrderByIdQuery,
 } = orderApi;

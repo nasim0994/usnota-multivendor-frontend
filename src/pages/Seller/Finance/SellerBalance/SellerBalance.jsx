@@ -1,15 +1,49 @@
 import { FaMoneyBillAlt, FaSpinner } from "react-icons/fa";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { TiChartLine } from "react-icons/ti";
+import { useGetSellerOrderByIdQuery } from "../../../../Redux/order/orderApi";
+import { useSelector } from "react-redux";
 
 export default function SellerBalance() {
+  const { loggedSeller } = useSelector((state) => state.seller);
+  const sellerId = loggedSeller?.data?._id;
+  const { data: orders } = useGetSellerOrderByIdQuery({ sellerId });
+  console.log(orders?.data);
+
+  let totalPrice = 0;
+
+  orders?.data?.forEach((item) => {
+    item?.products?.forEach((product) => {
+      if (product?.productId?.variants?.length > 0) {
+        const variant = product?.productId?.variants?.find(
+          (variant) =>
+            variant?.color == product?.color && variant?.size == product?.size
+        );
+        if (variant) {
+          totalPrice +=
+            variant?.sellingPrice * product?.quantity -
+            parseInt(
+              (variant?.sellingPrice * product?.productId?.discount) / 100
+            );
+        }
+      } else {
+        totalPrice +=
+          product?.productId?.sellingPrice * product?.quantity -
+          parseInt(
+            (product?.productId?.sellingPrice * product?.productId?.discount) /
+              100
+          );
+      }
+    });
+  });
+
   return (
     <section>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
         <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
           <div>
             <p className="text-neutral font-dinMedium">Total Sales</p>
-            <h3 className="text-primary font-bold">00 tk</h3>
+            <h3 className="text-primary font-bold">{totalPrice} tk</h3>
           </div>
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
             <TiChartLine className="text-xl" />
@@ -19,7 +53,9 @@ export default function SellerBalance() {
         <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
           <div>
             <p className="text-neutral font-dinMedium">Available Balance</p>
-            <h3 className="text-primary font-bold">00 tk</h3>
+            <h3 className="text-primary font-bold">
+              {loggedSeller?.data?.balance} tk
+            </h3>
           </div>
           <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
             <FaMoneyBillAlt className="text-xl" />

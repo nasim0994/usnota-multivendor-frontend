@@ -132,6 +132,7 @@ import AddSellerFAQ from "../pages/Admin/FrontEnd/SellerPage/SellerFAQ/AddSeller
 import EditSellerFAQ from "../pages/Admin/FrontEnd/SellerPage/SellerFAQ/EditSellerFAQ";
 import SellerBalance from "../pages/Seller/Finance/SellerBalance/SellerBalance";
 import SellerPayout from "../pages/Seller/Finance/SellerPayout/SellerPayout";
+import SellerOrderDetails from "../pages/Seller/Orders/SellerOrderDetails/SellerOrderDetails";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -538,6 +539,10 @@ export const routes = createBrowserRouter([
       {
         path: "/seller/order/all-orders",
         element: <SellerOrders />,
+      },
+      {
+        path: "/seller/order/:id",
+        element: <SellerOrderDetails />,
       },
 
       //--------Review

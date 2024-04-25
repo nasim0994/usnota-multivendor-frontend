@@ -37,6 +37,32 @@ export default function SellerDashboard() {
   const { data: brand } = useAllBrandsQuery();
   const { data: reviews } = useGetReviewsBySellerIdQuery({ sellerId });
 
+  let totalSell = 0;
+  orders?.data?.forEach((item) => {
+    item?.products?.forEach((product) => {
+      if (product?.productId?.variants?.length > 0) {
+        const variant = product?.productId?.variants?.find(
+          (variant) =>
+            variant?.color == product?.color && variant?.size == product?.size
+        );
+        if (variant) {
+          totalSell +=
+            variant?.sellingPrice * product?.quantity -
+            parseInt(
+              (variant?.sellingPrice * product?.productId?.discount) / 100
+            );
+        }
+      } else {
+        totalSell +=
+          product?.productId?.sellingPrice * product?.quantity -
+          parseInt(
+            (product?.productId?.sellingPrice * product?.productId?.discount) /
+              100
+          );
+      }
+    });
+  });
+
   // Function to filter data created today
   const filterTodayOrders = () => {
     const today = new Date().toISOString().split("T")[0]; // Get today's date in ISO format
@@ -46,6 +72,32 @@ export default function SellerDashboard() {
     });
   };
   const todayOrders = filterTodayOrders();
+
+  let todaySells = 0;
+  todayOrders?.forEach((item) => {
+    item?.products?.forEach((product) => {
+      if (product?.productId?.variants?.length > 0) {
+        const variant = product?.productId?.variants?.find(
+          (variant) =>
+            variant?.color == product?.color && variant?.size == product?.size
+        );
+        if (variant) {
+          todaySells +=
+            variant?.sellingPrice * product?.quantity -
+            parseInt(
+              (variant?.sellingPrice * product?.productId?.discount) / 100
+            );
+        }
+      } else {
+        todaySells +=
+          product?.productId?.sellingPrice * product?.quantity -
+          parseInt(
+            (product?.productId?.sellingPrice * product?.productId?.discount) /
+              100
+          );
+      }
+    });
+  });
 
   return (
     <section>
@@ -147,14 +199,7 @@ export default function SellerDashboard() {
             <div>
               <p className="text-neutral font-dinMedium">Today Sales</p>
               <div className="flex items-end gap-1">
-                <h3 className="text-primary font-bold">
-                  {todayOrders?.length > 0
-                    ? todayOrders.reduce(
-                        (total, item) => total + item.totalPrice,
-                        0
-                      )
-                    : 0}
-                </h3>
+                <h3 className="text-primary font-bold">{todaySells}</h3>
                 <small>tk</small>
               </div>
             </div>
@@ -167,12 +212,7 @@ export default function SellerDashboard() {
             <div>
               <p className="text-neutral font-dinMedium">Total Sales</p>
               <div className="flex items-end gap-1">
-                <h3 className="text-primary font-bold">
-                  {orders?.data.reduce(
-                    (total, item) => total + item.totalPrice,
-                    0
-                  )}
-                </h3>
+                <h3 className="text-primary font-bold">{totalSell}</h3>
                 <small>tk</small>
               </div>
             </div>
@@ -192,7 +232,7 @@ export default function SellerDashboard() {
           </Link>
         </div>
 
-        <OrderTable orders={orders} />
+        <OrderTable orders={orders?.data} />
 
         <Pagination
           pages={orders?.meta?.pages}

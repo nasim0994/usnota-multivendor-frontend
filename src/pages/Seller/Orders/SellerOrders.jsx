@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
 import OrderTable from "../../../components/SellerComponents/Orders/OrderTable";
 import { useState } from "react";
-import { useGetSellerOrderByIdQuery } from "../../../Redux/order/orderApi";
+import {
+  useGetSellerOrderByIdQuery,
+  useGetSellerSeparateOrderByIdQuery,
+} from "../../../Redux/order/orderApi";
 import Pagination from "../../../components/Pagination/Pagination";
 import Spinner from "../../../components/Spinner/Spinner";
 
@@ -25,7 +28,7 @@ export default function SellerOrders() {
 
   return (
     <section>
-      <OrderTable orders={orders} />
+      <OrderTable orders={orders?.data} />
 
       <Pagination
         pages={orders?.meta?.pages}

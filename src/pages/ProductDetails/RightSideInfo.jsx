@@ -97,35 +97,27 @@ const RightSideInfo = ({ seller, service }) => {
           <h1 className="text-base font-medium">Sold by</h1>
         </div>
 
-        <div>
-          <p className="text-secondary text-base font-medium">
-            {seller?.shopName}
-          </p>
-        </div>
-
         <div className="flex justify-between items-center mt-2">
-          <div className="flex gap-1 items-center text-xs">
-            <MdOutlineVerified className="text-base text-green-500" />
-            <div>
-              <h2>VERIFIED</h2>
+          <div>
+            <Link
+              to={`/store/${seller?._id}`}
+              className="text-secondary text-base font-medium"
+            >
+              {seller?.shopName}
+            </Link>
+            <div className="flex gap-1 items-center text-xs">
+              <MdOutlineVerified className="text-base text-green-500" />
+              <div>
+                <h2>VERIFIED</h2>
+              </div>
             </div>
           </div>
 
-          <div className="flex text-yellow-400 gap-1">
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-          </div>
-        </div>
-
-        <div className="flex justify-between items-center mt-4">
           <Link
             to={`/store/${seller?._id}`}
             className="flex items-center gap-1 "
           >
-            <FiExternalLink className="text-lg opacity-90 -mt-1" />
+            <FiExternalLink className="opacity-90" />
             <p className="hover:text-primary duration-300">Visit Store</p>
           </Link>
         </div>
