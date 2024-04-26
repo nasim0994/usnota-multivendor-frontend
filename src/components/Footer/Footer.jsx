@@ -25,7 +25,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="pt-8 pb-4 bg-accent text-base-100">
+    <footer className="mt-2 pt-8 pb-4 bg-accent text-base-100">
       <div className="container">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
           <div className="md:col-span-2">
@@ -78,14 +78,16 @@ export default function Footer() {
                   Shop
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/best-seller" className="hover:underline">
-                  Best Seller
-                </Link>
-              </li>
+
               <li className="mb-2">
                 <Link to="/faq" className="hover:underline">
                   FAQ
+                </Link>
+              </li>
+
+              <li className="mb-2">
+                <Link to="/track-order" className="hover:underline">
+                  Track Order
                 </Link>
               </li>
 

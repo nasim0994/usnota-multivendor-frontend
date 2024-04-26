@@ -6,78 +6,97 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 
+import { SiBrandfolder } from "react-icons/si";
+
 export default function ChooseByBrand() {
   const { data, isLoading, isError, error } = useAllBrandsQuery();
 
   let content = null;
   if (isLoading) {
-    content = <CategoryCard />;
+    content = (
+      <div className="grid grid-cols-5 gap-2">
+        <CategoryCard />
+      </div>
+    );
   }
   if (!isLoading && isError) {
     content = <p>{error.error}</p>;
   }
-  if (!isLoading && !isError) {
-    content = data?.data?.map((brand) => (
-      <SwiperSlide key={brand?._id}>
-        <Link
-          to={`shops/brand/${brand?.slug}`}
-          className="shadow border rounded p-4 flex justify-center items-center text-center hover:bg-primary/10 duration-200"
-        >
-          <div>
-            <img
-              src={`${import.meta.env.VITE_BACKEND_URL}/brands/${brand?.icon}`}
-              alt=""
-              className="w-10 sm:w-14 h-10 sm:h-14 mx-auto"
-            />
-            <h1 className="mt-2 font-medium text-xs sm:text-sm lg:text-base">
-              {brand?.name}
-            </h1>
-          </div>
-        </Link>
-      </SwiperSlide>
-    ));
+
+  if (!isLoading && !isError && data?.data?.length > 0) {
+    content = (
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={10}
+        modules={[Autoplay]}
+        loop={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        breakpoints={{
+          100: {
+            slidesPerView: 3,
+            spaceBetween: 1,
+          },
+          350: {
+            slidesPerView: 3,
+            spaceBetween: 3,
+          },
+          600: {
+            slidesPerView: 6,
+            spaceBetween: 5,
+          },
+          1024: {
+            slidesPerView: 8,
+            spaceBetween: 2,
+          },
+        }}
+        className="pb-px"
+      >
+        {data?.data?.map((brand) => (
+          <SwiperSlide key={brand?._id}>
+            <Link
+              to={`shops/${brand.slug}`}
+              className="border rounded shadow bg-base-100 p-2 flex justify-center items-center text-center h-[90px]"
+            >
+              <div>
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/brands/${
+                    brand?.icon
+                  }`}
+                  alt=""
+                  className="w-10 h-9 mx-auto"
+                />
+                <h1 className="mt-2 font-semibold text-[10px] md:text-xs lg:font-normal">
+                  {brand?.name}
+                </h1>
+              </div>
+            </Link>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    );
   }
 
   if (data?.data?.length > 0)
     return (
-      <section className="mt-4">
-        <div className="container bg-base-100 p-4 rounded-lg shadow-lg">
-          <div className="sm:flex gap-8 items-center border-b pb-2 border-primary">
-            <h1 className="md:text-xl font-medium md:font-semibold text-neutral">
-              Featured Brands
-            </h1>
-          </div>
+      <section className="mt-2">
+        <div className="container">
+          <div className="flex items-center gap-1">
+            <div className="border rounded shadow bg-base-100 w-24 md:w-36 p-2 flex justify-center text-center h-[90px]">
+              <div className="flex flex-col justify-center items-center">
+                <div className="w-10 h-10 rounded-full bg-primary flex justify-center items-center">
+                  <SiBrandfolder className="text-lg text-base-100" />
+                </div>
+                <h1 className="mt-2 font-semibold text-[10px] md:text-xs lg:text-[13px] lg:font-normal">
+                  Brands
+                </h1>
+              </div>
+            </div>
 
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={10}
-            modules={[Autoplay]}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            breakpoints={{
-              100: {
-                slidesPerView: 3,
-                spaceBetween: 3,
-              },
-              350: {
-                slidesPerView: 4,
-                spaceBetween: 3,
-              },
-              750: {
-                slidesPerView: 5,
-                spaceBetween: 3,
-              },
-              1024: {
-                slidesPerView: 6,
-                spaceBetween: 10,
-              },
-            }}
-            className="mt-2"
-          >
-            {content}
-          </Swiper>
+            <div className="category_brand_content">{content}</div>
+          </div>
         </div>
       </section>
     );

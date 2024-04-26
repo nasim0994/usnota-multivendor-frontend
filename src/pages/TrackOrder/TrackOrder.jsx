@@ -1,4 +1,4 @@
-export default function FAQ() {
+export default function TrackOrder() {
   window.scroll(0, 0);
   return (
     <section>

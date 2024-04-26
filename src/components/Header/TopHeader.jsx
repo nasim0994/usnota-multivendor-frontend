@@ -11,7 +11,7 @@ export default function TopHeader() {
   const contactInfo = contact?.data[0];
 
   return (
-    <div className="hidden lg:block py-2 bg-primary text-base-100">
+    <div className="hidden lg:block py-1 bg-primary text-base-100">
       <div className="container">
         <div className="flex justify-between items-center text-[13px]">
           <div className="flex items-center">

@@ -31,12 +31,12 @@ export default function ProductDetails() {
   if (!isLoading && !isError && isSuccess) {
     content = (
       <div>
-        <div className="lg:flex shadow-lg mt-4 rounded overflow-hidden">
-          <div className="lg:w-[75%] bg-base-100 p-4 text-neutral">
+        <div className="lg:flex shadow-lg mt-1 md:mt-3 rounded overflow-hidden">
+          <div className="lg:w-[75%] bg-base-100 p-2 md:p-4 text-neutral">
             <ProductInfo product={data?.data} />
           </div>
 
-          <div className="lg:w-[25%] bg-stone-50 p-4 text-sm">
+          <div className="lg:w-[25%] bg-stone-50 p-2 md:p-4 text-sm">
             <RightSideInfo
               service={data?.data?.service}
               seller={data?.data?.seller}

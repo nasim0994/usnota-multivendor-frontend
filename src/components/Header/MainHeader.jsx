@@ -1,16 +1,19 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+
 import { AiOutlineHeart, AiOutlineLogin } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
 import { FiHeart, FiMonitor } from "react-icons/fi";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { RxDashboard } from "react-icons/rx";
+
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { useGetMainLogoQuery } from "../../Redux/logo/logoApi";
 import { userLogout } from "../../Redux/user/userSlice";
+import { CgMenu } from "react-icons/cg";
+
 import SearchBox from "./SearchBox";
-import { CgMenuRight } from "react-icons/cg";
 import SearchSidebar from "./SearchSidebar/SearchSidebar";
 
 export default function MainHeader() {
@@ -34,10 +37,24 @@ export default function MainHeader() {
   }, []);
 
   return (
-    <header className="py-1 md:py-2 text-neutral md:border-b sticky top-0 z-40 bg-[#ffffffcc] backdrop-blur-[10px]">
+    <header className="py-2 text-neutral md:border-b sticky top-0 z-40 bg-[#ffffffcc] backdrop-blur-[10px]">
       <div className="container">
         <div className="flex items-center justify-between gap-2">
-          <div>
+          <div className="flex items-center">
+            <div className="sm:hidden">
+              <button
+                onClick={() => setSearchSidebar(!searchSidebar)}
+                className="pr-2 pt-1 text-[22px]"
+              >
+                <CgMenu />
+              </button>
+
+              <SearchSidebar
+                searchSidebar={searchSidebar}
+                setSearchSidebar={setSearchSidebar}
+              />
+            </div>
+
             <Link to="/">
               <img
                 src={
@@ -53,18 +70,10 @@ export default function MainHeader() {
             </Link>
           </div>
 
-          <div className="sm:hidden">
-            <button
-              onClick={() => setSearchSidebar(!searchSidebar)}
-              className="pr-2 pt-1 text-[22px]"
-            >
-              <CgMenuRight />
-            </button>
-
-            <SearchSidebar
-              searchSidebar={searchSidebar}
-              setSearchSidebar={setSearchSidebar}
-            />
+          <div className="sm:hidden flex items-center gap-1">
+            <Link to="/login" className="flex items-center gap-1">
+              <AiOutlineLogin /> Login
+            </Link>
           </div>
 
           <div className="hidden lg:block lg:w-1/2 xl:w-3/5">

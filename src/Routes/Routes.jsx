@@ -133,6 +133,7 @@ import EditSellerFAQ from "../pages/Admin/FrontEnd/SellerPage/SellerFAQ/EditSell
 import SellerBalance from "../pages/Seller/Finance/SellerBalance/SellerBalance";
 import SellerPayout from "../pages/Seller/Finance/SellerPayout/SellerPayout";
 import SellerOrderDetails from "../pages/Seller/Orders/SellerOrderDetails/SellerOrderDetails";
+import TrackOrder from "../pages/TrackOrder/TrackOrder";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -209,6 +210,12 @@ export const routes = createBrowserRouter([
       {
         path: "/store/:id",
         element: <Store />,
+      },
+
+      //
+      {
+        path: "/track-order",
+        element: <TrackOrder />,
       },
     ],
   },

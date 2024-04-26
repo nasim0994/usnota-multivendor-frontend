@@ -107,11 +107,8 @@ export default function SellerProfile() {
                 )}
               </h1>
               <div className="mt-1 flex items-center gap-4 text-neutral-content text-[11px] sm:text-[13px]">
-                <div className="flex items-center gap-1 border-r pr-1 sm:pr-4">
-                  <p>Likes (0)</p>
-                </div>
                 <div className="flex items-center gap-1">
-                  <p>Follows (0)</p>
+                  <p>Follows ({seller?.follow})</p>
                 </div>
               </div>
             </div>

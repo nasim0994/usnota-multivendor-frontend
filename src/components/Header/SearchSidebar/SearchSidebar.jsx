@@ -16,19 +16,24 @@ export default function SearchSidebar({ searchSidebar, setSearchSidebar }) {
 
         <ul className="px-4 flex flex-col gap-2">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/" onClick={() => setSearchSidebar(false)}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/shops">Shop</NavLink>
+            <NavLink to="/shops" onClick={() => setSearchSidebar(false)}>
+              Shop
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/best-seller">Best Seller</NavLink>
+            <NavLink to="/faq" onClick={() => setSearchSidebar(false)}>
+              FAQ
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/faq">FAQ</NavLink>
-          </li>
-          <li>
-            <NavLink to="/track-order">Track Order</NavLink>
+            <NavLink to="/track-order" onClick={() => setSearchSidebar(false)}>
+              Track Order
+            </NavLink>
           </li>
           <li className="mt-1">
             <Link

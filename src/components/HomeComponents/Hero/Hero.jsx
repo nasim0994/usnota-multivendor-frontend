@@ -29,27 +29,21 @@ export default function Hero() {
   }
 
   return (
-    <section>
+    <section className="mt-1">
       <div className="container">
-        <div className="lg:flex items-start gap-4">
-          <div className="hidden lg:block border rounded-b md:h-[400px]">
-            <CategoryLists />
-          </div>
-
-          <div className="hero_slider h-36 sm:h-52 lg:h-[400px] mt-2 lg:mt-0">
-            <Swiper
-              navigation={true}
-              modules={[Navigation, Autoplay]}
-              loop={true}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-              className="mySwiper w-full h-full"
-            >
-              {content}
-            </Swiper>
-          </div>
+        <div className="h-36 sm:h-52 lg:h-[300px] mt-2 lg:mt-0">
+          <Swiper
+            navigation={true}
+            modules={[Navigation, Autoplay]}
+            loop={true}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            className="mySwiper w-full h-full"
+          >
+            {content}
+          </Swiper>
         </div>
       </div>
     </section>
