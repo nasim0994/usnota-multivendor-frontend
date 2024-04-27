@@ -140,17 +140,17 @@ export default function OrderDetails() {
                                 ৳{" "}
                                 {product?.productId?.variants?.length > 0
                                   ? parseInt(
-                                      selectedvariant?.sellingPrice *
-                                        product?.quantity -
+                                      selectedvariant?.sellingPrice -
                                         (selectedvariant?.sellingPrice *
                                           product?.productId?.discount) /
                                           100
-                                    )
-                                  : product?.productId?.sellingPrice *
-                                      product?.quantity -
-                                    (product?.productId?.sellingPrice *
-                                      product?.productId?.discount) /
-                                      100}
+                                    ) * parseInt(product?.quantity)
+                                  : parseInt(
+                                      product?.productId?.sellingPrice -
+                                        (product?.productId?.sellingPrice *
+                                          product?.productId?.discount) /
+                                          100
+                                    ) * parseInt(product?.quantity)}
                               </p>
                             </div>
                           </div>

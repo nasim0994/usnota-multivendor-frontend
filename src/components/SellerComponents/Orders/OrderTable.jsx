@@ -1,8 +1,12 @@
-import { useDeleteOrderMutation } from "../../../Redux/order/orderApi";
+import {
+  useDeleteOrderMutation,
+  useSellerOrderStatusUpdateMutation,
+} from "../../../Redux/order/orderApi";
 import { Link } from "react-router-dom";
 import { GrView } from "react-icons/gr";
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 export default function OrderTable({ orders }) {
   const [deleteOrder] = useDeleteOrderMutation();
@@ -19,7 +23,33 @@ export default function OrderTable({ orders }) {
   //   }
   // };
 
-  console.log(orders);
+  const [sellerOrderStatusUpdate] = useSellerOrderStatusUpdateMutation();
+
+  const handleChnageStatus = async (mainOrderId, sellerId, id, status) => {
+    const isConfirm = window.confirm("Are You Sure Update Delivery Status?");
+
+    const info = {
+      status,
+      mainOrderId,
+      sellerId,
+    };
+
+    if (isConfirm) {
+      const res = await sellerOrderStatusUpdate({ id, info });
+
+      if (res?.data?.success) {
+        Swal.fire("", "Order status ppdate success", "success");
+      } else {
+        Swal.fire(
+          "",
+          res?.error?.data?.error
+            ? res?.error?.data?.error
+            : "Something went wrong",
+          "error"
+        );
+      }
+    }
+  };
 
   return (
     <div className="mt-4 relative overflow-x-auto">
@@ -46,20 +76,20 @@ export default function OrderTable({ orders }) {
                 );
                 if (variant) {
                   total +=
-                    variant?.sellingPrice * product?.quantity -
                     parseInt(
-                      (variant?.sellingPrice * product?.productId?.discount) /
-                        100
-                    );
+                      variant?.sellingPrice -
+                        (variant?.sellingPrice * product?.productId?.discount) /
+                          100
+                    ) * parseInt(product?.quantity);
                 }
               } else {
                 total +=
-                  product?.productId?.sellingPrice * product?.quantity -
                   parseInt(
-                    (product?.productId?.sellingPrice *
-                      product?.productId?.discount) /
-                      100
-                  );
+                    product?.productId?.sellingPrice -
+                      (product?.productId?.sellingPrice *
+                        product?.productId?.discount) /
+                        100
+                  ) * parseInt(product?.quantity);
               }
             });
 
@@ -70,23 +100,36 @@ export default function OrderTable({ orders }) {
                 <td>{order?.mainOrderId?.paymentMethod}</td>
                 <td>{total} tk</td>
                 <td>
-                  <div
-                    className={`w-max border text-xs ${
+                  <select
+                    className={`text-sm border rounded px-2 py-1 outline-none ${
                       order?.status === "pending"
-                        ? "border-yellow-500"
-                        : order?.status === "shipped"
-                        ? "border-green-500"
-                        : "border-red-500"
-                    } rounded px-2 py-1`}
+                        ? "text-yellow-500 border-yellow-500"
+                        : order?.status === "processing"
+                        ? "text-indigo-400 border-indigo-400"
+                        : "text-green-500 border-green-500"
+                    }`}
+                    onChange={(e) =>
+                      handleChnageStatus(
+                        order?.mainOrderId?._id,
+                        order?.sellerId,
+                        order?._id,
+                        e.target.value
+                      )
+                    }
+                    defaultValue={order?.status}
                   >
-                    {order?.status === "pending" ? (
-                      <span className="text-yellow-500">{order?.status}</span>
-                    ) : order?.status === "shipped" ? (
-                      <span className="text-green-500">{order?.status}</span>
-                    ) : (
-                      <span className="text-red-500">{order?.status}</span>
-                    )}
-                  </div>
+                    <option value="pending" className="text-yellow-500">
+                      Pending
+                    </option>
+
+                    <option value="processing" className="text-indigo-400">
+                      Processing
+                    </option>
+
+                    <option value="warehouse" className="text-green-500">
+                      Warehouse
+                    </option>
+                  </select>
                 </td>
                 <td>
                   <div className="flex gap-3">

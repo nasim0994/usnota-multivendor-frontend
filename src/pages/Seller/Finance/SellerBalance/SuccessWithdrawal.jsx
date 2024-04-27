@@ -29,7 +29,7 @@ export default function SuccessWithdrawal({ sellerId }) {
                 <td>{i + 1}</td>
                 <td>{req?.createdAt?.split("T")[0]}</td>
                 <td>{req?.amount}</td>
-                <td>{req?.status}</td>
+                <td className="text-green-500">{req?.status}</td>
               </tr>
             ))}
           </tbody>

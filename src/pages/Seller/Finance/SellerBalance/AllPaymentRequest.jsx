@@ -29,7 +29,17 @@ export default function AllPaymentRequest({ sellerId }) {
                 <td>{i + 1}</td>
                 <td>{req?.createdAt?.split("T")[0]}</td>
                 <td>{req?.amount}</td>
-                <td>{req?.status}</td>
+                <td
+                  className={`${
+                    req?.status === "pending"
+                      ? "text-yellow-500"
+                      : req?.status === "processing"
+                      ? "text-indigo-400"
+                      : "text-green-500"
+                  }`}
+                >
+                  {req?.status}
+                </td>
               </tr>
             ))}
           </tbody>

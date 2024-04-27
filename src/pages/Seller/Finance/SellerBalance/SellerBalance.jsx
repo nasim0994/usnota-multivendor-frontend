@@ -108,8 +108,10 @@ export default function SellerBalance() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4 mt-4">
+      <div className="grid md:grid-cols-2 gap-4 mt-4 items-start">
         <PaymentRequest loggedSeller={loggedSeller} />
+
+        <div></div>
 
         <PendingWithdrawal sellerId={sellerId} />
 

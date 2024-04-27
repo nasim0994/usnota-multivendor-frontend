@@ -10,7 +10,7 @@ export default function PendingWithdrawal({ sellerId }) {
   return (
     <div className="bg-base-100 shadow p-3 rounded">
       <div>
-        <h1>Success Withdrawal</h1>
+        <h1>Pending Withdrawal</h1>
       </div>
 
       <div className="mt-4 overflow-x-auto">
@@ -29,7 +29,7 @@ export default function PendingWithdrawal({ sellerId }) {
                 <td>{i + 1}</td>
                 <td>{req?.createdAt?.split("T")[0]}</td>
                 <td>{req?.amount}</td>
-                <td>{req?.status}</td>
+                <td className="text-yellow-500">{req?.status}</td>
               </tr>
             ))}
           </tbody>
