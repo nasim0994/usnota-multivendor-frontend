@@ -1,7 +1,7 @@
 import Spinner from "../../../components/Spinner/Spinner";
 import { useAllCustomersQuery } from "../../../Redux/user/userApi";
 
-export default function AllUsers() {
+export default function AllUser() {
   const { data, isLoading, isError, error } = useAllCustomersQuery();
 
   let content = null;
