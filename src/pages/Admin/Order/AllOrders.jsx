@@ -88,7 +88,9 @@ export default function AllOrders() {
 
       if (res?.data?.success) {
         Swal.fire("", "Balance Transfer success", "success");
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 500);
       } else {
         Swal.fire(
           "",
