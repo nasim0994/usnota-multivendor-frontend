@@ -15,7 +15,7 @@ const authSlice = createSlice({
     },
     userLogout: (state) => {
       state.token = "";
-      localStorage.removeItem("multivendor_jwt");
+      localStorage.removeItem("shoppinghobe_jwt");
       state.loggedUser = undefined;
     },
   },

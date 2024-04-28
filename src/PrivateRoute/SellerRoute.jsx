@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export default function SellerRoute({ children }) {
   const { loggedSeller } = useSelector((state) => state.seller);
   const location = useLocation();
-  const token = localStorage.getItem("multivendor_seller_jwt");
+  const token = localStorage.getItem("shoppinghobe_seller_jwt");
   let seller = loggedSeller?.data?.role === "seller";
 
   if (!loggedSeller?.success && !token) {

@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 const AdminRoute = ({ children }) => {
   const { loggedUser } = useSelector((state) => state.user);
   const location = useLocation();
-  const token = localStorage.getItem("multivendor_jwt");
+  const token = localStorage.getItem("shoppinghobe_jwt");
   let admin =
     loggedUser?.data?.role === "admin" ||
     loggedUser?.data?.role === "superAdmin";

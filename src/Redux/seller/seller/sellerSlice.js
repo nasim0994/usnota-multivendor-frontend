@@ -15,7 +15,7 @@ const sellerSlice = createSlice({
     },
     sellerLogout: (state) => {
       state.token = "";
-      localStorage.removeItem("multivendor_seller_jwt");
+      localStorage.removeItem("shoppinghobe_seller_jwt");
       state.loggedSeller = undefined;
     },
   },

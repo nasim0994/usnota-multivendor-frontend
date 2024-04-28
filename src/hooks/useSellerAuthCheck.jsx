@@ -6,10 +6,10 @@ import { sellerLoggedIn } from "../Redux/seller/seller/sellerSlice";
 export default async function useSellerAuthCheck() {
   const dispatch = useDispatch();
   const [sellerAuthChecked, setSellerAuthChecked] = useState(false);
-  const token = localStorage?.getItem("multivendor_seller_jwt");
+  const token = localStorage?.getItem("shoppinghobe_seller_jwt");
   const { isExpired } = useJwt(token);
   if (isExpired) {
-    localStorage.removeItem("multivendor_seller_jwt");
+    localStorage.removeItem("shoppinghobe_seller_jwt");
   }
 
   useEffect(() => {

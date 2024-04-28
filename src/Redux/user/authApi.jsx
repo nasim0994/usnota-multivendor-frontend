@@ -23,7 +23,7 @@ export const authApi = apiSlice.injectEndpoints({
           const result = await queryFulfilled;
 
           if (result?.data?.success) {
-            localStorage.setItem("multivendor_jwt", result?.data?.token);
+            localStorage.setItem("shoppinghobe_jwt", result?.data?.token);
             dispatch(
               userLoggedIn({
                 token: result?.data?.token,
