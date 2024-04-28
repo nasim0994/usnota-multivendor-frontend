@@ -5,7 +5,7 @@ import { AiOutlineRedo } from "react-icons/ai";
 
 const Services = () => {
   return (
-    <div className="py-5">
+    <div className="pt-5">
       <div className="container">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 text-center">
           <div className="border rounded p-4 flex flex-col sm:flex-row sm:gap-4 justify-center items-center bg-base-100 shadow">

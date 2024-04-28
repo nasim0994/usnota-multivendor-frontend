@@ -14,7 +14,7 @@ export default function TopCampaignBanner() {
     <section className="pt-2 md:py-3">
       <div className="container">
         <div className="sm:w-3/4 mx-auto">
-          <div className="w-full h-28 sm:h-40 lg:h-60 relative">
+          <div className="w-full h-28 sm:h-40 lg:h-48 relative">
             <Link to="/shops">
               <img
                 src={`${import.meta.env.VITE_BACKEND_URL}/banner/${

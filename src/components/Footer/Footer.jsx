@@ -4,13 +4,11 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useGetCategoriesQuery } from "../../Redux/category/categoryApi";
 import { useGetContactQuery } from "../../Redux/contact/contactApi";
-import { useGetMainLogoQuery } from "../../Redux/logo/logoApi";
 import { useGetBusinessInfoQuery } from "../../Redux/businessInfoApi/businessInfoApi";
 
 export default function Footer() {
   const { data, isLoading } = useGetCategoriesQuery();
   const { data: contact, isLoading: contactLoading } = useGetContactQuery();
-  const { data: logo, isLoading: logoLoading } = useGetMainLogoQuery();
 
   const fiveCategories = data?.data.slice(0, 5);
 
@@ -18,9 +16,8 @@ export default function Footer() {
   const businessInfo = business?.data[0];
 
   let yearNow = new Date().getFullYear();
-  const startYear = businessInfo?.companyStartYear;
 
-  if (isLoading || contactLoading || logoLoading) {
+  if (isLoading || contactLoading) {
     return null;
   }
 
@@ -31,22 +28,15 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="w-max">
               <Link to="/">
-                <img
-                  src={
-                    logo?.data[0]?.logo === ""
-                      ? "/images/logo/logo.png"
-                      : `${import.meta.env.VITE_BACKEND_URL}/logo/${
-                          logo?.data[0]?.logo
-                        }`
-                  }
-                  className="w-48"
-                  alt="Logo"
-                />
+                <img src="/images/logo/logo.png" className="w-36" alt="Logo" />
               </Link>
             </div>
 
             <div className="mt-2 text-sm text-gray-400">
-              <p>{businessInfo?.bio}</p>
+              <p>
+                Usnota is Bangladesh's largest online shop for Fashion,
+                Electronics, Mobile Phones, and much more!
+              </p>
             </div>
           </div>
 
@@ -137,15 +127,8 @@ export default function Footer() {
         {/* bottom */}
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-[15px] text-gray-400">
-            Copyright© {yearNow != startYear && startYear + " -"} {yearNow}{" "}
-            {businessInfo?.companyName}. All Rights Reserved. develop by{" "}
-            <Link
-              to="https://emanagerit.com"
-              target="_blank"
-              className="underline"
-            >
-              eManager
-            </Link>
+            Copyright© {2023 + " -"} {yearNow} {businessInfo?.companyName}. All
+            Rights Reserved.
           </span>
           <ul className="flex items-center gap-2 text-gray-400 mt-3 sm:mt-0">
             <li>

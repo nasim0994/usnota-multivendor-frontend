@@ -57,15 +57,9 @@ export default function MainHeader() {
 
             <Link to="/">
               <img
-                src={
-                  logo?.data[0]?.logo === ""
-                    ? "/images/logo/logo.png"
-                    : `${import.meta.env.VITE_BACKEND_URL}/logo/${
-                        logo?.data[0]?.logo
-                      }`
-                }
+                src="/images/logo/logo.png"
                 alt=""
-                className="w-32 sm:w-40"
+                className="w-32 sm:w-[140px]"
               />
             </Link>
           </div>

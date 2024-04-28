@@ -38,7 +38,7 @@ export default function CampaignBanner() {
                   banner?.image
                 }`}
                 alt="Campaign Banner"
-                className="w-full h-40 md:h-52 rounded"
+                className="w-full h-32 md:h-48 rounded"
               />
             </Link>
           </SwiperSlide>

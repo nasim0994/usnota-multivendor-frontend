@@ -5,7 +5,7 @@ export const sellerApiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BACKEND_URL,
     prepareHeaders: async (headers) => {
-      const token = localStorage.getItem("shoppinghobe_seller_jwt");
+      const token = localStorage.getItem("usnota_seller_jwt");
       if (token) {
         headers.set("Authorization", `bearer ${token}`);
       }

@@ -49,7 +49,7 @@ export default function Signup() {
       role: "user",
     };
 
-    await register(userInfo);
+    const res = await register(userInfo);
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function Signup() {
     if (isError) {
       Swal.fire(
         "",
-        error?.data?.message ? error?.data?.message : "register fail",
+        error?.data?.error ? error?.data?.error : "register fail",
         "error"
       );
     }

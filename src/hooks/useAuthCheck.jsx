@@ -6,10 +6,10 @@ import { useJwt } from "react-jwt";
 export default async function useAuthCheck() {
   const dispatch = useDispatch();
   const [authChecked, setAuthChecked] = useState(false);
-  const token = localStorage?.getItem("shoppinghobe_jwt");
+  const token = localStorage?.getItem("usnota_jwt");
   const { isExpired } = useJwt(token);
   if (isExpired) {
-    localStorage.removeItem("shoppinghobe_jwt");
+    localStorage.removeItem("usnota_jwt");
   }
 
   useEffect(() => {

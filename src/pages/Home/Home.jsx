@@ -1,11 +1,8 @@
 import AllProducts from "../../components/HomeComponents/AllProducts/AllProducts";
 import CampaignBanner from "../../components/HomeComponents/Campaign/CampaignBanner/CampaignBanner";
 import TopCampaignBanner from "../../components/HomeComponents/Campaign/TopCampaignBanner/TopCampaignBanner";
-import CategoryWaysProducts from "../../components/HomeComponents/CategoryWaysProducts/CategoryWaysProducts";
 import ChooseByBrand from "../../components/HomeComponents/ChooseByBrand/ChooseByBrand";
-import ChooseByCategory from "../../components/HomeComponents/ChooseByCategory/ChooseByCategory";
 import FeaturedProducts from "../../components/HomeComponents/FeaturedProducts/FeaturedProducts";
-import FlashSale from "../../components/HomeComponents/FlashSale/FlashSale";
 import Hero from "../../components/HomeComponents/Hero/Hero";
 import Menu from "../../components/HomeComponents/Menu/Menu";
 import MobileCategories from "../../components/HomeComponents/MobileCategories/MobileCategories";
@@ -18,20 +15,16 @@ export default function Home() {
   return (
     <>
       <SearchCom />
-      <MobileCategories />
+      <Menu />
       <Hero />
-      <ChooseByBrand />
       <FeaturedProducts />
       <TopCampaignBanner />
+      <MobileCategories />
       <PopularProducts />
+      <ChooseByBrand />
       <CampaignBanner />
       <AllProducts />
-
-      {/* <ChooseByCategory /> */}
-      {/* <Menu />
-      <FlashSale />
-      <CategoryWaysProducts />
-      <Services /> */}
+      <Services />
     </>
   );
 }

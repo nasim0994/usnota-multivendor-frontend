@@ -23,10 +23,7 @@ export const sellerApi = sellerApiSlice.injectEndpoints({
           const result = await queryFulfilled;
 
           if (result?.data?.success) {
-            localStorage.setItem(
-              "shoppinghobe_seller_jwt",
-              result?.data?.token
-            );
+            localStorage.setItem("usnota_seller_jwt", result?.data?.token);
             dispatch(
               sellerLoggedIn({
                 token: result?.data?.token,
