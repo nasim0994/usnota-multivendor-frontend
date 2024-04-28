@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { GrView } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
+
 import { toast } from "react-toastify";
 import {
   useDeleteOrderMutation,
@@ -13,6 +15,7 @@ import Spinner from "../../../components/Spinner/Spinner";
 import Pagination from "../../../components/Pagination/Pagination";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Swal from "sweetalert2";
+import { useTransferBalanceByAdminMutation } from "../../../Redux/payment/paymentApi";
 
 export default function AllOrders() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -60,6 +63,32 @@ export default function AllOrders() {
 
       if (res?.data?.success) {
         Swal.fire("", "Order status update success", "success");
+      } else {
+        Swal.fire(
+          "",
+          res?.error?.data?.error
+            ? res?.error?.data?.error
+            : "Something went wrong",
+          "error"
+        );
+      }
+    }
+  };
+
+  const [transferBalanceByAdmin] = useTransferBalanceByAdminMutation();
+
+  const handleTransferBalance = async (sellerId, mainOrderId, amount) => {
+    const isConfirm = window.confirm("Are You Sure Transfer Balance?");
+    if (isConfirm) {
+      const info = {
+        mainOrderId,
+        amount,
+      };
+      const res = await transferBalanceByAdmin({ sellerId, info });
+
+      if (res?.data?.success) {
+        Swal.fire("", "Balance Transfer success", "success");
+        location.reload();
       } else {
         Swal.fire(
           "",
@@ -191,7 +220,23 @@ export default function AllOrders() {
                   {sellerOrder?.status}
                 </p>
               </td>
-              <td className="bg-gray-200"></td>
+              <td className="bg-gray-200">
+                {order?.status == "delivered" && !sellerOrder?.paid && (
+                  <button
+                    className="tooltip tooltip-bottom"
+                    data-tip="Transfer Balance"
+                    onClick={() =>
+                      handleTransferBalance(
+                        sellerOrder?.sellerId?._id,
+                        order?._id,
+                        total
+                      )
+                    }
+                  >
+                    <FaMoneyBillTransfer className="text-xl" />
+                  </button>
+                )}
+              </td>
             </tr>
           );
         })}

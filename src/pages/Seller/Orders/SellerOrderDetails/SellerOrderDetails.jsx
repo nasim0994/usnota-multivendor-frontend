@@ -13,17 +13,34 @@ export default function SellerOrderDetails() {
       <div className="bg-base-100 rounded p-4 xl:w-1/2 mx-auto">
         <div className="border-b pb-2 mb-2 flex justify-between items-center">
           <p>Status:</p>
-          <p
-            className={`${
-              order?.status === "pending"
-                ? "text-yellow-500"
-                : order?.status === "processing"
-                ? "text-indigo-400"
-                : "text-green-500"
-            }`}
-          >
-            {order?.status}
-          </p>
+
+          {order?.mainOrderId?.status == "processing" ||
+          order?.mainOrderId?.status == "shipped" ||
+          order?.mainOrderId?.status == "delivered" ? (
+            <p
+              className={`text-sm ${
+                order?.mainOrderId?.status === "processing"
+                  ? "text-indigo-500"
+                  : order?.mainOrderId?.status === "shipped"
+                  ? "text-green-400"
+                  : "text-red-500"
+              }`}
+            >
+              {order?.mainOrderId?.status}
+            </p>
+          ) : (
+            <p
+              className={`${
+                order?.status === "pending"
+                  ? "text-yellow-500"
+                  : order?.status === "processing"
+                  ? "text-indigo-400"
+                  : "text-green-500"
+              }`}
+            >
+              {order?.status}
+            </p>
+          )}
         </div>
         <div>
           <div className="flex justify-between items-center border-b pb-3">

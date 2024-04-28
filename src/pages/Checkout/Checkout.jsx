@@ -119,22 +119,26 @@ export default function Checkout() {
     // });
 
     const mergedCarts = carts.reduce((acc, curr) => {
+      let totalSellerPrice =
+        parseInt(curr?.price - (curr?.price * curr?.discount) / 100) *
+        curr?.quantity;
+
       const existingSeller = acc.find(
         (item) => item.sellerId === curr.sellerId
       );
 
       if (existingSeller) {
-        // If an object with the same sellerId exists, push the product to its products array
-        existingSeller.products.push({
+        existingSeller?.products.push({
           color: curr.color,
           size: curr.size,
           quantity: curr.quantity,
           productId: curr._id,
+          totalSellerPrice,
         });
       } else {
-        // If not, create a new object and push it to the accumulator
         acc.push({
           sellerId: curr.sellerId,
+          totalSellerPrice,
           products: [
             {
               productId: curr._id,

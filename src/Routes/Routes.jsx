@@ -134,6 +134,7 @@ import SellerBalance from "../pages/Seller/Finance/SellerBalance/SellerBalance";
 import SellerPayout from "../pages/Seller/Finance/SellerPayout/SellerPayout";
 import SellerOrderDetails from "../pages/Seller/Orders/SellerOrderDetails/SellerOrderDetails";
 import TrackOrder from "../pages/TrackOrder/TrackOrder";
+import SellerPaymentRequest from "../pages/Admin/Users/SellerPaymentRequest/SellerPaymentRequest";
 
 export const routes = createBrowserRouter([
   // ----- Main
@@ -362,6 +363,11 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/seller/view/:id",
         element: <ViewSeller />,
+      },
+
+      {
+        path: "/admin/seller/payment-request",
+        element: <SellerPaymentRequest />,
       },
 
       //--------------Administrator

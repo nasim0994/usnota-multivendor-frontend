@@ -25,6 +25,24 @@ export const paymentApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["paymentRequest"],
     }),
+
+    transferBalanceByAdmin: builder.mutation({
+      query: ({ sellerId, info }) => ({
+        url: `/payment-request/transfer-balance/${sellerId}`,
+        method: "PATCH",
+        body: info,
+      }),
+      invalidatesTags: ["paymentRequest"],
+    }),
+
+    acceptRequestByAdmin: builder.mutation({
+      query: ({ requestId, sellerId, amount }) => ({
+        url: `/payment-request/accept-request/${requestId}/${sellerId}`,
+        method: "PATCH",
+        body: { amount },
+      }),
+      invalidatesTags: ["paymentRequest"],
+    }),
   }),
 });
 
@@ -32,4 +50,6 @@ export const {
   useCreatePaymentRequestMutation,
   useGetAllPaymentRequestQuery,
   useGetAllPaymentRequestBySellerIdQuery,
+  useTransferBalanceByAdminMutation,
+  useAcceptRequestByAdminMutation,
 } = paymentApi;

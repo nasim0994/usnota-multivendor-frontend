@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { GrView } from "react-icons/gr";
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
-import { useState } from "react";
 
 export default function OrderTable({ orders }) {
   const [deleteOrder] = useDeleteOrderMutation();
@@ -100,36 +99,52 @@ export default function OrderTable({ orders }) {
                 <td>{order?.mainOrderId?.paymentMethod}</td>
                 <td>{total} tk</td>
                 <td>
-                  <select
-                    className={`text-sm border rounded px-2 py-1 outline-none ${
-                      order?.status === "pending"
-                        ? "text-yellow-500 border-yellow-500"
-                        : order?.status === "processing"
-                        ? "text-indigo-400 border-indigo-400"
-                        : "text-green-500 border-green-500"
-                    }`}
-                    onChange={(e) =>
-                      handleChnageStatus(
-                        order?.mainOrderId?._id,
-                        order?.sellerId,
-                        order?._id,
-                        e.target.value
-                      )
-                    }
-                    defaultValue={order?.status}
-                  >
-                    <option value="pending" className="text-yellow-500">
-                      Pending
-                    </option>
+                  {order?.mainOrderId?.status == "processing" ||
+                  order?.mainOrderId?.status == "shipped" ||
+                  order?.mainOrderId?.status == "delivered" ? (
+                    <p
+                      className={`text-sm ${
+                        order?.mainOrderId?.status === "processing"
+                          ? "text-indigo-500"
+                          : order?.mainOrderId?.status === "shipped"
+                          ? "text-green-400"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {order?.mainOrderId?.status}
+                    </p>
+                  ) : (
+                    <select
+                      className={`text-sm border rounded px-2 py-1 outline-none ${
+                        order?.status === "pending"
+                          ? "text-yellow-500 border-yellow-500"
+                          : order?.status === "processing"
+                          ? "text-indigo-400 border-indigo-400"
+                          : "text-green-500 border-green-500"
+                      }`}
+                      onChange={(e) =>
+                        handleChnageStatus(
+                          order?.mainOrderId?._id,
+                          order?.sellerId,
+                          order?._id,
+                          e.target.value
+                        )
+                      }
+                      defaultValue={order?.status}
+                    >
+                      <option value="pending" className="text-yellow-500">
+                        Pending
+                      </option>
 
-                    <option value="processing" className="text-indigo-400">
-                      Processing
-                    </option>
+                      <option value="processing" className="text-indigo-400">
+                        Processing
+                      </option>
 
-                    <option value="warehouse" className="text-green-500">
-                      Warehouse
-                    </option>
-                  </select>
+                      <option value="warehouse" className="text-green-500">
+                        Warehouse
+                      </option>
+                    </select>
+                  )}
                 </td>
                 <td>
                   <div className="flex gap-3">

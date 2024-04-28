@@ -78,6 +78,10 @@ const adminSidebarItems = [
         title: "All Seller",
         path: "/admin/seller/all-sellers",
       },
+      {
+        title: "Seller Payment Request",
+        path: "/admin/seller/payment-request",
+      },
     ],
   },
   {
