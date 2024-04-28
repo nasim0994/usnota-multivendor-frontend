@@ -38,9 +38,9 @@ export const orderApi = apiSlice.injectEndpoints({
       invalidatesTags: ["order"],
     }),
 
-    statusUpdate: builder.mutation({
+    statusUpdateByAdmin: builder.mutation({
       query: ({ id, status }) => ({
-        url: `/order/update-status/${id}`,
+        url: `/order/admin/update-status/${id}`,
         method: "PATCH",
         body: { status },
       }),
@@ -55,6 +55,7 @@ export const orderApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["order"],
     }),
+
     getOrderByTransactionId: builder.query({
       query: (transactionId) => ({
         url: `/order/transaction/${transactionId}`,
@@ -62,7 +63,7 @@ export const orderApi = apiSlice.injectEndpoints({
       providesTags: ["order"],
     }),
 
-    // Seller
+    //-----------Seller
     getSellerOrderById: builder.query({
       query: ({ sellerId, query }) => ({
         url: `/order/seller-orders/${sellerId}`,
@@ -106,7 +107,7 @@ export const {
   useAddOrderMutation,
   useGetOrderByIdQuery,
   useDeleteOrderMutation,
-  useStatusUpdateMutation,
+  useStatusUpdateByAdminMutation,
   useInitSslPaymentMutation,
   useGetOrderByTransactionIdQuery,
 

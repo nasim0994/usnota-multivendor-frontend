@@ -6,16 +6,24 @@ import { toast } from "react-toastify";
 import {
   useDeleteOrderMutation,
   useGetAllOrdersQuery,
-  useStatusUpdateMutation,
+  useStatusUpdateByAdminMutation,
 } from "../../../Redux/order/orderApi";
+
 import Spinner from "../../../components/Spinner/Spinner";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Pagination from "../../../components/Pagination/Pagination";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import Swal from "sweetalert2";
 
 export default function AllOrders() {
-  const [viewOrder, setViewOrder] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [toggleOrder, setToggleOrder] = useState(null);
+  const handelToggleOrder = (i) => {
+    if (toggleOrder === i) {
+      return setToggleOrder(null);
+    }
+    setToggleOrder(i);
+  };
 
   const query = {};
   query["page"] = currentPage;
@@ -26,8 +34,8 @@ export default function AllOrders() {
   });
 
   const [deleteOrder] = useDeleteOrderMutation();
-  const [statusUpdate, { isLoading: statusLoading }] =
-    useStatusUpdateMutation();
+
+  const [statusUpdateByAdmin] = useStatusUpdateByAdminMutation();
 
   const deleteOrderHandler = async (id) => {
     const isConfirm = window.confirm("Do you want to delete this order?");
@@ -44,25 +52,22 @@ export default function AllOrders() {
     }
   };
 
-  const statusHandler = async (id, status) => {
-    const isConfirm = window.confirm("Do you want to update status?");
-
-    if (status === "pending") {
-      status = "shipped";
-    } else if (status === "shipped") {
-      status = "delivered";
-    } else {
-      status = "pending";
-    }
+  const handleChnageStatus = async (id, status) => {
+    const isConfirm = window.confirm("Are You Sure Update Delivery Status?");
 
     if (isConfirm) {
-      try {
-        const result = await statusUpdate({ id, status });
-        if (result?.data?.success) {
-          toast.success(result?.data?.message);
-        }
-      } catch (error) {
-        toast.error(error?.data?.error);
+      const res = await statusUpdateByAdmin({ id, status });
+
+      if (res?.data?.success) {
+        Swal.fire("", "Order status update success", "success");
+      } else {
+        Swal.fire(
+          "",
+          res?.error?.data?.error
+            ? res?.error?.data?.error
+            : "Something went wrong",
+          "error"
+        );
       }
     }
   };
@@ -75,37 +80,43 @@ export default function AllOrders() {
     content = <p>{error.error}</p>;
   }
   if (!isLoading && !isError && data?.data?.length > 0) {
-    content = data?.data?.map((order) => (
-      <tbody key={order?._id}>
-        <tr>
+    content = data?.data?.map((order, i) => (
+      <>
+        <tr key={order?._id}>
           <td>#{order?.invoiceNumber}</td>
           <td>{order?.createdAt?.split("T")[0]}</td>
           <td>{order?.paymentMethod}</td>
           <td>{order?.totalPrice} tk</td>
           <td>
-            {statusLoading ? (
-              <p>Loading...</p>
-            ) : (
-              <button
-                onClick={() => statusHandler(order?._id, order?.status)}
-                disabled={order?.status === "delivered"}
-                className={`border text-xs ${
-                  order?.status === "pending"
-                    ? "border-yellow-500"
-                    : order?.status === "shipped"
-                    ? "border-green-500"
-                    : "border-red-500"
-                } rounded px-2 py-1`}
-              >
-                {order?.status === "pending" ? (
-                  <span className="text-yellow-500">{order?.status}</span>
-                ) : order?.status === "shipped" ? (
-                  <span className="text-green-500">{order?.status}</span>
-                ) : (
-                  <span className="text-red-500">{order?.status}</span>
-                )}
-              </button>
-            )}
+            <select
+              className={`text-sm border rounded px-2 py-1 outline-none ${
+                order?.status == "pending"
+                  ? "text-yellow-500 border-yellow-500"
+                  : order?.status == "processing"
+                  ? "text-indigo-400 border-indigo-400"
+                  : order?.status == "shipped"
+                  ? "text-green-500 border-green-500"
+                  : "text-red-500 border-red-500"
+              }`}
+              onChange={(e) => handleChnageStatus(order?._id, e.target.value)}
+              defaultValue={order?.status}
+            >
+              <option value="pending" className="text-yellow-500">
+                Pending
+              </option>
+
+              <option value="processing" className="text-indigo-400">
+                Processing
+              </option>
+
+              <option value="shipped" className="text-green-500">
+                Shipped
+              </option>
+
+              <option value="delivered" className="text-red-500">
+                Delivered
+              </option>
+            </select>
           </td>
           <td>
             <div className="flex gap-3 items-center">
@@ -123,66 +134,68 @@ export default function AllOrders() {
                 <AiOutlineDelete />
               </button>
 
-              <button onClick={() => setViewOrder(!viewOrder)}>
+              <button onClick={() => handelToggleOrder(i)}>
                 <MdOutlineKeyboardArrowDown className="text-lg" />
               </button>
             </div>
           </td>
         </tr>
 
-        {viewOrder &&
-          order?.products?.map((sellerOrder) => {
-            let total = 0;
-            sellerOrder?.products?.forEach((product) => {
-              if (product?.productId?.variants?.length > 0) {
-                const variant = product?.productId?.variants?.find(
-                  (variant) =>
-                    variant?.color == product?.color &&
-                    variant?.size == product?.size
-                );
-                if (variant) {
-                  total +=
-                    parseInt(
-                      variant?.sellingPrice -
-                        (variant?.sellingPrice * product?.productId?.discount) /
-                          100
-                    ) * parseInt(product?.quantity);
-                }
-              } else {
+        {order?.products?.map((sellerOrder) => {
+          let total = 0;
+          sellerOrder?.products?.forEach((product) => {
+            if (product?.productId?.variants?.length > 0) {
+              const variant = product?.productId?.variants?.find(
+                (variant) =>
+                  variant?.color == product?.color &&
+                  variant?.size == product?.size
+              );
+              if (variant) {
                 total +=
                   parseInt(
-                    product?.productId?.sellingPrice -
-                      (product?.productId?.sellingPrice *
-                        product?.productId?.discount) /
+                    variant?.sellingPrice -
+                      (variant?.sellingPrice * product?.productId?.discount) /
                         100
                   ) * parseInt(product?.quantity);
               }
-            });
+            } else {
+              total +=
+                parseInt(
+                  product?.productId?.sellingPrice -
+                    (product?.productId?.sellingPrice *
+                      product?.productId?.discount) /
+                      100
+                ) * parseInt(product?.quantity);
+            }
+          });
 
-            return (
-              <tr key={sellerOrder?._id}>
-                <td className="bg-gray-200">{sellerOrder?._id}</td>
-                <td className="bg-gray-200">''</td>
-                <td className="bg-gray-200">
-                  Shop: {sellerOrder?.sellerId?.shopName}
-                </td>
-                <td className="bg-gray-200">{total} tk</td>
-                <td
-                  className={`bg-gray-200 text-sm ${
-                    order?.status === "pending"
+          return (
+            <tr
+              key={sellerOrder?._id}
+              className={`${toggleOrder === i ? "table-row" : "hidden"}`}
+            >
+              <td className="bg-gray-200">{sellerOrder?.sellerId?.shopName}</td>
+              <td className="bg-gray-200">''</td>
+              <td className="bg-gray-200">''</td>
+              <td className="bg-gray-200">{total} tk</td>
+              <td className="bg-gray-200 ">
+                <p
+                  className={`text-sm ${
+                    sellerOrder?.status == "pending"
                       ? "text-yellow-500"
-                      : order?.status === "processing"
+                      : sellerOrder?.status == "processing"
                       ? "text-indigo-400"
                       : "text-green-500"
                   }`}
                 >
                   {sellerOrder?.status}
-                </td>
-                <td className="bg-gray-200"></td>
-              </tr>
-            );
-          })}
-      </tbody>
+                </p>
+              </td>
+              <td className="bg-gray-200"></td>
+            </tr>
+          );
+        })}
+      </>
     ));
   }
 
@@ -199,7 +212,7 @@ export default function AllOrders() {
             <th>Action</th>
           </tr>
         </thead>
-        <>{content}</>
+        <tbody>{content}</tbody>
       </table>
 
       {data?.data?.length > 10 && (

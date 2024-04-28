@@ -1,9 +1,6 @@
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-  useGetOrderByIdQuery,
-  useStatusUpdateMutation,
-} from "../../../Redux/order/orderApi";
+import { useGetOrderByIdQuery } from "../../../Redux/order/orderApi";
 import Spinner from "../../../components/Spinner/Spinner";
 
 export default function OrderDetails() {
@@ -11,36 +8,9 @@ export default function OrderDetails() {
   const id = params.id;
 
   const { data, isLoading, isError, error } = useGetOrderByIdQuery(id);
-  const [statusUpdate, { isLoading: statusLoading }] =
-    useStatusUpdateMutation();
 
   const order = data?.data;
   const products = data?.data?.products;
-
-  console.log(order);
-
-  const statusHandler = async (id, status) => {
-    const isConfirm = window.confirm("Do you want to update status?");
-
-    if (status === "pending") {
-      status = "shipped";
-    } else if (status === "shipped") {
-      status = "delivered";
-    } else {
-      status = "pending";
-    }
-
-    if (isConfirm) {
-      try {
-        const result = await statusUpdate({ id, status });
-        if (result?.data?.success) {
-          toast.success(result?.data?.message);
-        }
-      } catch (error) {
-        toast.error(error?.data?.error);
-      }
-    }
-  };
 
   let content = null;
   if (isLoading) {
@@ -53,25 +23,6 @@ export default function OrderDetails() {
   if (!isLoading && !isError) {
     content = (
       <div>
-        <div className="flex justify-end">
-          {statusLoading ? (
-            <p>Loading...</p>
-          ) : (
-            <button
-              onClick={() => statusHandler(order?._id, order?.status)}
-              disabled={order?.status === "delivered"}
-              className="text-base-100 bg-gray-700 px-6 py-2 rounded mb-4 text-sm hover:bg-primary duration-300"
-            >
-              {order?.status === "pending" ? (
-                <span className="">{order?.status}</span>
-              ) : order?.status === "shipped" ? (
-                <span className="">{order?.status}</span>
-              ) : (
-                <span className="">{order?.status}</span>
-              )}
-            </button>
-          )}
-        </div>
         <div className="border p-4 rounded-md">
           <p className="text-lg">Order Details:</p>
           <p>
