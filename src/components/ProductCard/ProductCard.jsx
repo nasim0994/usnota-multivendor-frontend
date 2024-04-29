@@ -32,8 +32,8 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="p-2">
-          <h1 className="font-medium mb-1 text-sm sm:text-[15px]">
-            {title.length > 30 ? `${title.slice(0, 30)}...` : title}
+          <h1 className="font-medium mb-1 text-sm sm:text-[15px] h-10">
+            {title.length > 40 ? `${title.slice(0, 40)}...` : title}
           </h1>
 
           <div className="pt-1 pb-2 flex gap-1 items-center justify-between text-xs mt-1 text-gray-400">
@@ -66,7 +66,7 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
 
-        <div className="pb-2">
+        <div>
           <button className="bg-primary text-base-100 w-full text-sm py-1.5">
             Buy Now
           </button>

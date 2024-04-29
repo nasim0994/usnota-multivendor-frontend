@@ -3,8 +3,12 @@ import { useSellerByIdQuery } from "../../../Redux/seller/seller/sellerApi";
 import { useGetProductBySellerIdQuery } from "../../../Redux/product/productApi";
 import Spinner from "../../../components/Spinner/Spinner";
 import ProductCard from "../../../components/ProductCard/ProductCard";
+import { useEffect } from "react";
 
 export default function Store() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   const { id } = useParams();
   const { data: sellerInfo, isLoading: sellerIsLoading } =
     useSellerByIdQuery(id);

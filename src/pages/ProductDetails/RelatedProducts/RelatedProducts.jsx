@@ -3,6 +3,8 @@ import ProductCard from "../../../components/ProductCard/ProductCard";
 import ProductCards from "../../../components/Skeleton/ProductCards/ProductCards";
 
 export default function RelatedProducts({ category }) {
+  window.scroll(0, 0);
+
   const query = {};
   query["page"] = 1;
   query["limit"] = 5;

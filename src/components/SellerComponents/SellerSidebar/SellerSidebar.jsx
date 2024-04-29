@@ -90,7 +90,7 @@ export default function SellerSidebar() {
   const { data } = useGetSellerLogoQuery();
 
   return (
-    <div className="h-full flex flex-col justify-between">
+    <div className="bg-base-100 h-full flex flex-col justify-between">
       <div>
         <Link to="/seller/dashboard" className="block border-b py-4">
           <img

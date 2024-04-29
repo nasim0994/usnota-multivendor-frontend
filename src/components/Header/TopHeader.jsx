@@ -33,7 +33,7 @@ export default function TopHeader() {
           </div>
           <div className="flex items-center gap-6">
             <Link
-              to="/tracj-order"
+              to="/track-order"
               className="flex items-center gap-1 hover:text-gray-200 duration-300"
             >
               <FiSend className="text-base" />
